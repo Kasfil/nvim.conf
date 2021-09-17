@@ -1,0 +1,35 @@
+local g = vim.g
+g.mapleader = ","
+
+local disable_distributed_plugin = function()
+    g.loaded_gzip = 1
+    g.loaded_tar = 1
+    g.loaded_tarPlugin = 1
+    g.loaded_zip = 1
+    g.loaded_zipPlugin = 1
+    g.loaded_getscript = 1
+    g.loaded_getscriptPlugin = 1
+    g.loaded_vimball = 1
+    g.loaded_vimballPlugin = 1
+    g.loaded_matchit = 1
+    g.loaded_matchparen = 1
+    g.loaded_2html_plugin = 1
+    g.loaded_logiPat = 1
+    g.loaded_rrhelper = 1
+    g.loaded_netrw = 1
+    g.loaded_netrwPlugin = 1
+    g.loaded_netrwSettings = 1
+    g.loaded_netrwFileHandlers = 1
+end
+
+local load_config = function()
+    disable_distributed_plugin()
+    require("main.preload")
+    require("main.options")
+    require("packs")
+    require("main.keymaps")
+    require("lsp")
+    vim.cmd("colorscheme nord")
+end
+
+load_config()
