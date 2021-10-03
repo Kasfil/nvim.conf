@@ -13,6 +13,7 @@ local setup_treesitter = function()
         },
         indent = {
             enable = true,
+            disable = {"python"}
         },
         incremental_selection = {
             enable = true,

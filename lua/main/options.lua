@@ -66,6 +66,7 @@ opt.laststatus = 2
 opt.display = "lastline"
 opt.showbreak = "↳  "
 opt.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:↲"
+opt.fillchars = {eob = " "}
 opt.pumblend = 10
 opt.winblend = 10
 opt.formatoptions = "1jcroql"
@@ -79,3 +80,13 @@ opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.conceallevel = 2
+
+if vim.g.nvui then
+    opt.guifont = "JetBrains Mono:h10.5"
+end
+
+if vim.g.fvim_loaded then
+    opt.guifont = "JetBrains Mono:h12"
+    -- vim.cmd("FVimCursorSmoothMove true")
+    -- vim.cmd("FVimCursorSmoothBlink true")
+end

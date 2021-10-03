@@ -106,4 +106,7 @@ return require("packer").startup(function(use)
             require("packs.indentblankline")
         end
     }
+
+    -- language specific
+    use {"Vimjas/vim-python-pep8-indent"}
 end)

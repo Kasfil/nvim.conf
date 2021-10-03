@@ -85,27 +85,21 @@ lsp.sumneko_lua.setup({
 lsp.pyright.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    root_dir = function(fname)
-        local root_files = {
-            "pyproject.toml",
-            "setup.py",
-            "setup.cfg",
-            "requirements.txt",
-            "Pipfile",
-            "pyrightconfig.json",
-            "index.py",
-        }
-        return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
-    end,
     settings = {
         python = {
             analysis = {
                 autoSearchPaths = true,
                 diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = "off",
             }
         }
     }
+})
+
+lsp.jedi_language_server.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 lsp.gopls.setup({
@@ -116,4 +110,46 @@ lsp.gopls.setup({
 lsp.rls.setup({
     on_attach = on_attach,
     capabilities = capabilities
+})
+
+local eslint = {
+    lintCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
+    lintIgnoreExitCode = true,
+    lintStdin = true,
+    lintFormats = {
+        "%f(%l,%c): %tarning %m",
+        "%f(%l,%c): %rror %m"
+    },
+}
+
+local flake8 = {
+    lintCommand = "flake8 --stdin-display-name ${INPUT} -",
+    lintStdin = true,
+    lintFormats = {"%f:%l:%c: %m"}
+}
+
+local revive = {
+    lintCommand = "revive ${INPUT}",
+    lintStdin = true,
+    lintIgnoreExitCode = true,
+    lintFormats = {"%f:%l:%c: %m"},
+}
+
+local languages = {
+    python = {flake8},
+    go = {revive},
+    javascript = {eslint},
+    typescript = {eslint},
+}
+
+lsp.efm.setup({
+    init_options = {
+        documentFormatting = false,
+        codeAction = true,
+    },
+    filetypes = vim.tbl_keys(languages),
+    settings = {
+        rootMarkers = {".git/"},
+        languages = languages
+    }
 })
