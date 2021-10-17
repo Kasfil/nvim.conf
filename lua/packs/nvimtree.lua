@@ -16,7 +16,9 @@ require("nvim-tree").setup({
     auto_close = true,
     disable_netrw = true,
     hijack_netrw = true,
-    lsp_diagnostics = true,
     hijack_cursor = true,
     update_cwd = true,
+    diagnostics = {
+        enable = false,
+    },
 })

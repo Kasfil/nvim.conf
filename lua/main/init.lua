@@ -29,7 +29,7 @@ local load_config = function()
     require("packs")
     require("main.keymaps")
     require("lsp")
-    vim.cmd("colorscheme nord")
+    require("main.colorscheme")
 end
 
 load_config()

@@ -3,8 +3,9 @@ local nest = require("nest")
 
 require("lsp.completion")
 require("lsp.trouble")
+require("lsp.snippet")
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local function bufsetoption(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     -- enable completion triggered by <C-x><C-o>
@@ -13,8 +14,8 @@ local on_attach = function(client, bufnr)
     nest.defaults.buffer = true
     nest.applyKeymaps({
         {"g", {
-            {"D", function() vim.lsp.buf.declaration() end},
-            {"d", function() require("lspsaga.provider").preview_definition() end},
+            {"d", function() vim.lsp.buf.definition() end},
+            {"D", function() require("lspsaga.provider").preview_definition() end},
             {"i", function() require("lspsaga.provider").lsp_finder() end},
         }},
         {"K", function() require("lspsaga.hover").render_hover_doc() end},

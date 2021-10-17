@@ -1,4 +1,11 @@
 local nest = require("nest")
+local telescope = require("telescope")
+
+telescope.setup({
+    defaults = {
+        selection_caret = " ",
+    },
+})
 
 nest.applyKeymaps({
     {"<leader>", {

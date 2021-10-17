@@ -44,6 +44,17 @@ return require("packer").startup(function(use)
         requires = {"kyazdani42/nvim-web-devicons"},
     }
 
+    -- debugging utility
+    use {
+        "mfussenegger/nvim-dap",
+        requires = {
+            "Pocco81/DAPInstall.nvim"
+        },
+        config = function()
+            require("packs.dap")
+        end
+    }
+
     -- utilities
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -72,9 +83,9 @@ return require("packer").startup(function(use)
         end
     }
     use {
-        "terrortylor/nvim-comment",
+        "numToStr/Comment.nvim",
         config = function()
-            require("nvim_comment").setup()
+            require("Comment").setup()
         end
     }
     use {"tpope/vim-surround"}
@@ -89,6 +100,12 @@ return require("packer").startup(function(use)
         "numtostr/FTerm.nvim",
         config = function()
             require("packs.fterm")
+        end
+    }
+    use {
+        "mhartington/formatter.nvim",
+        config = function()
+            require("packs.formatter")
         end
     }
 
