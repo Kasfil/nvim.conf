@@ -80,6 +80,7 @@ opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.conceallevel = 2
+opt.colorcolumn = "89,101"
 
 if vim.g.nvui then
     opt.guifont = "JetBrains Mono:h10.5"
