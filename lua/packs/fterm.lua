@@ -13,8 +13,8 @@ fterm.setup({
     }
 })
 
-local gitui = fterm:new({
-    cmd = "gitui",
+local lazygit = fterm:new({
+    cmd = "lazygit",
     auto_close = true,
     dimensions = {
         height = 0.9,
@@ -28,5 +28,5 @@ nest.applyKeymaps({
         feedkey("<C-\\><C-n>")
         fterm.toggle()
     end},
-    {"<A-g>", function() gitui:toggle() end},
+    {"<A-g>", function() lazygit:toggle() end},
 })
