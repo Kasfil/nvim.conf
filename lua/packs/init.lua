@@ -43,6 +43,12 @@ return require("packer").startup(function(use)
         "folke/trouble.nvim",
         requires = {"kyazdani42/nvim-web-devicons"},
     }
+    use {
+        "simrat39/symbols-outline.nvim",
+        config = function()
+            require("packs.outline")
+        end
+    }
 
     -- debugging utility
     use {
