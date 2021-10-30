@@ -16,8 +16,10 @@ dap.configurations.python = {
     {
         type = "python",
         request = "launch",
-        name = "fastapi",
-        module = "uvicorn",
-        args = {"bootstrap:app", "--reload"},
+        name = "FastAPI",
+        program = vim.fn.getcwd() .. "/fastapidebug.py",
+        pythonPath = function()
+            return "python"
+        end
     }
 }
