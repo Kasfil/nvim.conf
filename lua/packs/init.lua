@@ -108,6 +108,12 @@ return require("packer").startup(function(use)
             require("packs.formatter")
         end
     }
+    use {
+        "jghauser/mkdir.nvim",
+        config = function()
+            require("mkdir")
+        end
+    }
 
     -- user interface
     use {
