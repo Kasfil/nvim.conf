@@ -1,9 +1,15 @@
 local nest = require("nest")
 local telescope = require("telescope")
+local action = require("telescope.actions")
 
 telescope.setup({
     defaults = {
-        selection_caret = " ",
+        selection_caret = "",
+        mappings = {
+            i = {
+                ["<ESC>"] = action.close
+            }
+        }
     },
 })
 
