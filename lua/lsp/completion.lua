@@ -29,7 +29,7 @@ cmp.setup({
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             elseif has_word_before() then
-                cmp.complee()
+                cmp.complete()
             else
                 fallback()
             end
