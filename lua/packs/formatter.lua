@@ -4,8 +4,8 @@ require("formatter").setup({
             function()
                 return {
                     exe = "isort",
-                    args = {"--profile", "black"},
-                    stdin = true,
+                    args = {"--profile", "black", vim.api.nvim_buf_get_name(0)},
+                    stdin = false,
                 }
             end,
             function()
