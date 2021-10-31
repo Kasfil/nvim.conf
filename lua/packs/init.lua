@@ -27,7 +27,7 @@ return require("packer").startup(function(use)
     -- lsp and completion
     use {"neovim/nvim-lspconfig"}
     use {"ray-x/lsp_signature.nvim"}
-    use {"glepnir/lspsaga.nvim"}
+    use {"tami5/lspsaga.nvim", branch = "nvim51"}
     use {"L3MON4D3/LuaSnip"}
     use {
         "hrsh7th/nvim-cmp",
