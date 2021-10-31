@@ -29,8 +29,8 @@ local on_attach = function(_, bufnr)
         }},
         {"[e", function() require("lspsaga.diagnostic").lsp_jump_diagnostic_prev() end},
         {"]e", function() require("lspsaga.diagnostic").lsp_jump_diagnostic_next() end},
-        {"<C-f>", function() require("lspsaga.action").smart_scroll_with_saga(1) end},
-        {"<C-b>", function() require("lspsaga.action").smart_scroll_with_saga(-1) end},
+        {options = {}, "<C-f>", function() require("lspsaga.action").smart_scroll_with_saga(1) end},
+        {options = {}, "<C-b>", function() require("lspsaga.action").smart_scroll_with_saga(-1) end},
     })
 end
 
@@ -150,7 +150,7 @@ lsp.efm.setup({
     },
     filetypes = vim.tbl_keys(languages),
     settings = {
-        rootMarkers = {".git/"},
+        rootMarkers = {".git/", "requirements.txt", "index.py", "main.go"},
         languages = languages
     }
 })
