@@ -85,9 +85,3 @@ opt.colorcolumn = "89,101"
 if vim.g.nvui then
     opt.guifont = "JetBrains Mono:h10.5"
 end
-
-if vim.g.fvim_loaded then
-    opt.guifont = "JetBrains Mono:h12"
-    -- vim.cmd("FVimCursorSmoothMove true")
-    -- vim.cmd("FVimCursorSmoothBlink true")
-end
