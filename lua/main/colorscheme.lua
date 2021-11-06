@@ -1,1 +1,2 @@
-require("nord").set()
+vim.cmd("colorscheme onenord")
+require("onenord").setup()

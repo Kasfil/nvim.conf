@@ -10,7 +10,7 @@ return require("packer").startup(function(use)
     use {"wbthomason/packer.nvim"}
 
     -- colorscheme
-    use {"shaunsingh/nord.nvim"}
+    use {"rmehri01/onenord.nvim"}
 
     -- git integration
     use {"tpope/vim-fugitive"}
