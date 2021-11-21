@@ -1,37 +1,39 @@
 local lsp = require("lspconfig")
-local nest = require("nest")
 
 require("lsp.completion")
-require("lsp.trouble")
 require("lsp.snippet")
 
 local on_attach = function(_, bufnr)
-    local function bufsetoption(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    -- enable completion triggered by <C-x><C-o>
-    bufsetoption("omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    nest.defaults.buffer = true
-    nest.applyKeymaps({
-        {"g", {
-            {"d", function() vim.lsp.buf.definition() end},
-            {"D", function() require("lspsaga.provider").preview_definition() end},
-            {"i", function() require("lspsaga.provider").lsp_finder() end},
-        }},
-        {"K", function() require("lspsaga.hover").render_hover_doc() end},
-        {"<space>", {
-            {"D", function() vim.lsp.buf.type_definition() end},
-            {"e", function() require("lspsaga.diagnostic").show_line_diagnostics() end},
-            {"ca", function() require("lspsaga.codeaction").code_action() end},
-            {mode = "v", "ca", function() require("lspsaga.codeaction").range_code_action() end},
-            {"rn", function() require("lspsaga.rename").rename() end},
-            {"gs", function() require("lspsaga.signaturehelp").signature_help() end},
-        }},
-        {"[e", function() require("lspsaga.diagnostic").lsp_jump_diagnostic_prev() end},
-        {"]e", function() require("lspsaga.diagnostic").lsp_jump_diagnostic_next() end},
-        {options = {}, "<C-f>", function() require("lspsaga.action").smart_scroll_with_saga(1) end},
-        {options = {}, "<C-b>", function() require("lspsaga.action").smart_scroll_with_saga(-1) end},
-    })
+    -- attach lsp_signature
+    require("lsp_signature").on_attach()
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

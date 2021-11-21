@@ -41,7 +41,7 @@ opt.splitright = true
 opt.switchbuf = "useopen"
 opt.backspace = "indent,eol,start"
 opt.diffopt = "filler,iwhite,internal,algorithm:patience"
-opt.completeopt = "menuone,noselect"
+opt.completeopt = "menu,menuone,noselect"
 opt.showmode = false
 opt.shortmess = "aoOTIcF"
 opt.scrolloff = 2
@@ -72,7 +72,7 @@ opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.conceallevel = 2
-opt.colorcolumn = "89,101"
+-- opt.colorcolumn = "89,101"
 
 -- Disable distributed plugin
 g.loaded_gzip = 1

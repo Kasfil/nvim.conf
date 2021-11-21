@@ -52,7 +52,10 @@ cmp.setup({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = false
+        }),
     },
 })
 

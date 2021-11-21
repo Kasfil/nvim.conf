@@ -1,26 +1,28 @@
-local nest = require("nest")
+local wk = require("which-key")
 
-nest.applyKeymaps({
+wk.register({
     -- common operation
-    {"<leader>", {
-        {"w", ":w!<CR>"},
-        {"<CR>", ":nohlsearch<CR>"},
-    }},
+    ["<leader>"] = {
+        name = "common",
+        w = {"<cmd>w!<CR>", "save file"},
+        ["<CR>"] = {"<cmd>nohlsearch<CR>", "clear highlight"},
+    },
 
     -- window operation
     -- split
-    {"<C-\\>", ":vsp<CR>"},
-    {"<A-\\>", ":sp<CR>"},
-    -- moving and resize
-    {"<Right>", "<C-w>l"},
-    {"<S-Right>", ":vertical resize +5<CR>"},
-    {"<Left>", "<C-w>h"},
-    {"<S-Left>", ":vertical resize -5<CR>"},
-    {"<Up>", "<C-w>k"},
-    {"<S-Up>", ":resize +5<CR>"},
-    {"<Down>", "<C-w>j"},
-    {"<S-Down>", ":resize -5<CR>"},
+    ["<C-\\>"] = {"<cmd>vsp<CR>", "vertical split"},
+    ["<A-\\>"] = {"<cmd>sp<CR>", "split"},
+    -- moving
+    ["<Right>"] = {"<C-w>l", "active window right"},
+    ["<Left>"] = {"<C-w>h", "active window left"},
+    ["<Down>"] = {"<C-w>j", "active window below"},
+    ["<Up>"] = {"<C-w>k", "active window above"},
+    -- Resize
+    ["<S-Right>"] = {"<cmd>vertical resize +5<CR>", "width +5"},
+    ["<S-Left>"] = {"<cmd>vertical resize -5<CR>", "width -5"},
+    ["<S-Up>"] = {"<cmd>resize +5<CR>", "height +5"},
+    ["<S-Down>"] = {"<cmd>resize -5<CR>", "height -5"},
 
     -- nvimtree
-    {"<A-n>", ":NvimTreeToggle<CR>"}
+    ["<A-n>"] = {"<cmd>NvimTreeToggle<CR>", "toggle file tree"}
 })
