@@ -24,5 +24,9 @@ wk.register({
     ["<S-Down>"] = {"<cmd>resize -5<CR>", "height -5"},
 
     -- nvimtree
-    ["<A-n>"] = {"<cmd>NvimTreeToggle<CR>", "toggle file tree"}
+    ["<A-n>"] = {"<cmd>NvimTreeToggle<CR>", "toggle file tree"},
+    ["<A-N>"] = {"<cmd>NvimTreeFocus<CR>", "focus on file tree window"},
+
+    -- Outline symbols
+    ["<A-o>"] = { "<cmd>SymbolsOutline<CR>", "Toggle Outline" },
 })

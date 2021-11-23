@@ -2,7 +2,7 @@ require"lualine".setup {
     options = {
         icons_enabled = true,
         theme = "github",
-        disabled_filetypes = {"NvimTree", "packer", "Outline", "toggleterm"}
+        disabled_filetypes = {"packer", "toggleterm"}
     },
     sections = {
         lualine_a = {"mode"},
@@ -13,11 +13,18 @@ require"lualine".setup {
             },
         },
         lualine_c = {
-            "filename",
+            {
+                "filename",
+                path = 1,
+            },
             {
                 "diff",
                 colored = true,
-                symbols = {added = "+", modified = "~", removed = "-"},
+                symbols = {
+                    added = "▲",
+                    modified = "↻ ",
+                    removed = "▼"
+                },
             }
         },
         lualine_x = {
@@ -44,5 +51,5 @@ require"lualine".setup {
         lualine_z = {}
     },
     tabline = {},
-    extensions = {}
+    extensions = {"nvim-tree", "outline"}
 }

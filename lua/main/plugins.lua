@@ -87,6 +87,7 @@ return require("packer").startup({
                 require("Comment").setup()
             end
         }
+        use {"mg979/vim-visual-multi", branch = "master"}
 
         -- syntax highlighting
         use {
@@ -147,6 +148,12 @@ return require("packer").startup({
             keys = {"<leader>tt", "<leader>tg"},
             config = function()
                 require("packs.toggleterm")
+            end
+        }
+        use {
+            "akinsho/bufferline.nvim",
+            config = function()
+                require("packs.bufferline")
             end
         }
         use {
