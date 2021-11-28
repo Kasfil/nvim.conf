@@ -1,5 +1,6 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local lspkind = require("lspkind")
 
 local has_word_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -57,6 +58,21 @@ cmp.setup({
             select = false
         }),
     },
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            require "cmp-under-comparator".under,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        }
+    },
+    formatting = {
+        format = lspkind.cmp_format({with_text = true, maxwidth = 50})
+    }
 })
 
 -- autopairs

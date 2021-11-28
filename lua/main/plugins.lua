@@ -57,6 +57,7 @@ return require("packer").startup({
                 "hrsh7th/cmp-path",
                 "hrsh7th/cmp-nvim-lua",
                 "saadparwaiz1/cmp_luasnip",
+                "lukas-reineke/cmp-under-comparator",
             }
         }
         use {
@@ -72,7 +73,7 @@ return require("packer").startup({
         -- debugging utility
         use {
             "mfussenegger/nvim-dap",
-            module = "dap",
+            keys = {"<leader>db", "<leader>dc", "<leader>dwb"},
             requires = {
                 "mfussenegger/nvim-dap-python"
             },
@@ -177,6 +178,7 @@ return require("packer").startup({
             end
         }
         use {"folke/which-key.nvim"}
+        use {"onsails/lspkind-nvim"}
 
         -- language specific
         use {

@@ -2,6 +2,10 @@ local dap = require("dap")
 local widget = require("dap.ui.widgets")
 local wk = require("which-key")
 
+-- other things
+vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
+vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="", linehl="", numhl=""})
+
 -- Python dap configuration
 require("dap-python").setup("python")
 table.insert(dap.configurations.python, {
@@ -18,20 +22,39 @@ table.insert(dap.configurations.python, {
     end,
     console = "integratedTerminal"
 })
+-- table.insert(dap.configurations.python, {
+--     name = "Fastapi uvicorn",
+--     type = "python",
+--     request = "launch",
+--     module = "uvicorn",
+--     args = {
+--         "index:app",
+--         "--reload",
+--         "--reload-exclude",
+--         "logs/",
+--         "--reload-exclude",
+--         ".docker/"
+--     },
+--     console = "integratedTerminal"
+-- })
 table.insert(dap.configurations.python, {
-    name = "Fastapi uvicorn",
+    name = "FastAPI debugger file",
     type = "python",
     request = "launch",
-    module = "uvicorn",
-    args = {
-        "index:app",
-        "--reload",
-        "--reload-exclude",
-        "logs/",
-        "--reload-exclude",
-        ".docker/"
-    },
-    console = "integratedTerminal"
+    program = vim.fn.getcwd() .. "/debugger.py",
+    pythonPath = function()
+        return "python"
+    end
+})
+table.insert(dap.configurations.python, {
+    name = "Django",
+    type = "python",
+    request = "launch",
+    program = vim.fn.getcwd() .. "/manage.py",
+    args = {"runserver"},
+    pythonPath = function()
+        return "python"
+    end
 })
 
 wk.register({
@@ -47,7 +70,3 @@ wk.register({
         wc = { function() widget.centered_float(widget.scopes) end, "open float widget scope" },
     }
 })
-
--- other things
-vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
-vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="", linehl="", numhl=""})

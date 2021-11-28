@@ -57,10 +57,11 @@ opt.cmdwinheight = 5
 opt.laststatus = 2
 opt.display = "lastline"
 opt.showbreak = "↳  "
-opt.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:↲"
+-- opt.lcs = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:↲"
+opt.listchars = {tab="»·",nbsp="+",trail="·",extends="→",precedes="←",eol="↲"}
 opt.fillchars = {eob = " "}
-opt.pumblend = 10
-opt.winblend = 10
+opt.pumblend = 1
+opt.winblend = 1
 opt.formatoptions = "1jcroql"
 opt.textwidth = 80
 opt.tabstop = 4

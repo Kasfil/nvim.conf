@@ -29,4 +29,9 @@ wk.register({
 
     -- Outline symbols
     ["<A-o>"] = { "<cmd>SymbolsOutline<CR>", "Toggle Outline" },
+
+    -- bufferline
+    ["<TAB>"] = { "<cmd>BufferLineCycleNext<CR>", "Next buffer" },
+    ["<S-TAB>"] = { "<cmd>BufferLineCyclePrev<CR>", "Prev buffer" },
+    ["<leader>bp"] = { "<cmd>BufferLinePick<CR>", "Pick buffer" },
 })
