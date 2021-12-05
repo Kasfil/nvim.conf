@@ -97,3 +97,5 @@ g.loaded_netrwFileHandlers = 1
 
 -- Set map leader
 g.mapleader = ","
+
+g.python3_host_prog = "/usr/bin/python3"

@@ -3,6 +3,14 @@ local lsp = require("lspconfig")
 require("lsp.completion")
 require("lsp.snippet")
 
+vim.diagnostic.config({
+    virtual_text = {
+        source = "always",
+        prefix = "  "
+    },
+    severity_sort = true,
+})
+
 local border = {
     {"🭽", "FloatBorder"},
     {"▔", "FloatBorder"},
@@ -103,20 +111,21 @@ lsp.sumneko_lua.setup({
     },
 })
 
--- lsp.pyright.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         python = {
---             analysis = {
---                 autoSearchPaths = true,
---                 diagnosticMode = "workspace",
---                 useLibraryCodeForTypes = true,
---                 typeCheckingMode = "off",
---             }
---         }
---     }
--- })
+lsp.pyright.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        DisableLanguageServices = true,
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = "on",
+            }
+        }
+    }
+})
 
 lsp.jedi_language_server.setup({
     on_attach = on_attach,

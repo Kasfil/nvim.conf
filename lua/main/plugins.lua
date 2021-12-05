@@ -38,6 +38,7 @@ return require("packer").startup({
         use {"tpope/vim-fugitive", cmd = {"Git"}}
         use {
             "lewis6991/gitsigns.nvim",
+            event = {"BufRead"},
             requires = {"nvim-lua/plenary.nvim"},
             config = function()
                 require("packs.gitsigns")
@@ -69,6 +70,13 @@ return require("packer").startup({
                 require("packs.trouble")
             end
         }
+        use {
+            "rmagatti/goto-preview",
+            keys = {"gpd", "gpi"},
+            config = function()
+                require("packs.goto_prev")
+            end
+        }
 
         -- debugging utility
         use {
@@ -83,16 +91,21 @@ return require("packer").startup({
         }
         use {
             "numToStr/Comment.nvim",
-            keys = {{"n","gcc"}, {"n","gc"}},
+            event = {"BufRead"},
             config = function()
                 require("Comment").setup()
             end
         }
-        use {"mg979/vim-visual-multi", branch = "master"}
+        use {
+            "mg979/vim-visual-multi",
+            keys = {{"n", "<C-n>"}},
+            branch = "master"
+        }
 
         -- syntax highlighting
         use {
             "nvim-treesitter/nvim-treesitter",
+            event = {"BufRead"},
             config = function()
                 require("packs.treesitter")
             end
@@ -130,14 +143,27 @@ return require("packer").startup({
         use {
             "mhartington/formatter.nvim",
             cmd = {"Format", "FormatWrite"},
+            event = {"BufWritePre"},
             config = function()
                 require("packs.formatter")
             end
         }
         use {
             "blackCauldron7/surround.nvim",
+            event = {"BufRead"},
             config = function()
                 require"surround".setup {mappings_style = "surround"}
+            end
+        }
+        use {
+            "ethanholz/nvim-lastplace",
+            event = {"BufRead"},
+            config = function()
+                require("nvim-lastplace").setup({
+                    lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
+                    lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+                    lastplace_open_folds = true
+                })
             end
         }
 
@@ -153,18 +179,21 @@ return require("packer").startup({
         }
         use {
             "akinsho/bufferline.nvim",
+            event = {"VimEnter"},
             config = function()
                 require("packs.bufferline")
             end
         }
         use {
             "lukas-reineke/indent-blankline.nvim",
+            event = {"BufRead"},
             config = function()
                 require("packs.indentblankline")
             end
         }
         use {
             "nvim-lualine/lualine.nvim",
+            event = {"VimEnter"},
             requires = {"kyazdani42/nvim-web-devicons"},
             config = function()
                 require("packs.lualine")
@@ -173,6 +202,7 @@ return require("packer").startup({
         use {
             "simrat39/symbols-outline.nvim",
             cmd = {"SymbolsOutline"},
+            keys = {"<space>o"},
             config = function()
                 require("packs.outline")
             end

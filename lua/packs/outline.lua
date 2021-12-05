@@ -1,24 +1,12 @@
-vim.g.symbols_outline = {
-    highlight_hovered_item = false,
-    show_guides = true,
+local wk = require("which-key")
+
+require("symbols-outline").setup({
+    relative_width = true,
     auto_preview = false,
-    position = 'right',
-    width = 25,
-    show_numbers = false,
-    show_relative_numbers = false,
-    show_symbol_details = false,
-    preview_bg_highlight = 'Pmenu',
-    keymaps = { -- These keymaps can be a string or a table for multiple keys
-        close = {"<Esc>", "q"},
-        goto_location = "<Cr>",
-        focus_location = "o",
-        hover_symbol = "<C-space>",
-        toggle_preview = "K",
-        rename_symbol = "r",
-        code_actions = "a",
-    },
+    width = 40,
+    lsp_blacklist = {"pyright", "efm"},
     symbols = {
-        File = {icon = " ", hl = "TSURI"},
+        File = {icon = " ", hl = "TSURI"},
         Module = {icon = " ", hl = "TSNamespace"},
         Namespace = {icon = " ", hl = "TSNamespace"},
         Package = {icon = " ", hl = "TSNamespace"},
@@ -27,22 +15,27 @@ vim.g.symbols_outline = {
         Property = {icon = " ", hl = "TSMethod"},
         Field = {icon = " ", hl = "TSField"},
         Constructor = {icon = " ", hl = "TSConstructor"},
-        Enum = {icon = "⩧ ", hl = "TSType"},
-        Interface = {icon = "ﰮ ", hl = "TSType"},
+        Enum = {icon = " ", hl = "TSType"},
+        Interface = {icon = " ", hl = "TSType"},
         Function = {icon = " ", hl = "TSFunction"},
         Variable = {icon = " ", hl = "TSConstant"},
         Constant = {icon = " ", hl = "TSConstant"},
-        String = {icon = "𝓐 ", hl = "TSString"},
-        Number = {icon = "# ", hl = "TSNumber"},
+        String = {icon = " ", hl = "TSString"},
+        Number = {icon = " ", hl = "TSNumber"},
         Boolean = {icon = "⊨ ", hl = "TSBoolean"},
-        Array = {icon = " ", hl = "TSConstant"},
-        Object = {icon = "⦿ ", hl = "TSType"},
+        Array = {icon = " ", hl = "TSConstant"},
+        Object = {icon = " ", hl = "TSType"},
         Key = {icon = " ", hl = "TSType"},
         Null = {icon = "NULL", hl = "TSType"},
         EnumMember = {icon = " ", hl = "TSField"},
-        Struct = {icon = "𝓢 ", hl = "TSType"},
-        Event = {icon = "🗲 ", hl = "TSType"},
+        Struct = {icon = " ", hl = "TSType"},
+        Event = {icon = " ", hl = "TSType"},
         Operator = {icon = "+ ", hl = "TSOperator"},
         TypeParameter = {icon = "𝙏 ", hl = "TSParameter"}
     }
-}
+})
+
+wk.register({
+    -- Outline symbols
+    ["<space>o"] = { function() require("symbols-outline").toggle_outline() end, "Toggle Outline" },
+}, { nowait = true, silent = false })
