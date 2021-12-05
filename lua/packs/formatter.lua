@@ -16,6 +16,15 @@ require("formatter").setup({
                 }
             end
         },
+        rust = {
+            function()
+                return {
+                    exe = "rustfmt",
+                    -- args = {vim.api.nvim_buf_get_name(0)},
+                    stdin = true,
+                }
+            end,
+        }
     },
 })
 
@@ -23,6 +32,6 @@ require("formatter").setup({
 vim.api.nvim_exec([[
 augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.py FormatWrite
+    autocmd BufWritePost *.py,*.rs FormatWrite
 augroup END
 ]], true)
