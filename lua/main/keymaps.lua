@@ -32,4 +32,7 @@ wk.register({
     ["<S-TAB>"] = { "<CMD>BufferLineCyclePrev<CR>", "Prev buffer" },
     ["<leader>bp"] = { "<CMD>BufferLinePick<CR>", "Pick buffer" },
     ["<leader>bc"] = { "<CMD>BufferLinePickClose<CR>", "Pick close" },
+
+    -- delete buffer by famiu/bufdelete.nvim
+    ["<leader>bd"] = { function() require("bufdelete").bufdelete(0) end, "Delete current buffer"}
 })

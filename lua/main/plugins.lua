@@ -210,6 +210,10 @@ return require("packer").startup({
         use {"folke/which-key.nvim"}
         use {"onsails/lspkind-nvim"}
 
+        -- utility
+        use {"famiu/bufdelete.nvim"}
+        use {"editorconfig/editorconfig-vim"}
+
         -- language specific
         use {
             "Vimjas/vim-python-pep8-indent",
