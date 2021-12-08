@@ -10,7 +10,7 @@ local custom_hl = {
     LightspeedLabelDistantOverlapped = { fg = colors.yellow, style = "bold,underline" },
     LightspeedShortcut = { fg = colors.blue, style = "bold" },
     LightspeedShortcutOverlapped = { fg = colors.bright_red, style = "bold,underline" },
-    LightspeedMaskedChar = { fg = colors.bright_cyan, bg = colors.colors2_gui, style = "bold" },
+    LightspeedMaskedChar = { fg = colors.bright_cyan, bg = colors.bg2, style = "bold" },
     LightspeedGreyWash = { fg = colors.syntax.comment },
     LightspeedUnlabeledMatch = { fg = colors.yellow, bg = colors.bg2 },
     LightspeedOneCharMatch = { fg = colors.cyan, style = "bold,reverse" },
