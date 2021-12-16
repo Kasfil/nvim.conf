@@ -111,21 +111,21 @@ lsp.sumneko_lua.setup({
     },
 })
 
-lsp.pyright.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        DisableLanguageServices = true,
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
-                useLibraryCodeForTypes = true,
-                typeCheckingMode = "on",
-            }
-        }
-    }
-})
+-- lsp.pyright.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         DisableLanguageServices = true,
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 diagnosticMode = "openFilesOnly",
+--                 useLibraryCodeForTypes = true,
+--                 typeCheckingMode = "on",
+--             }
+--         }
+--     }
+-- })
 
 lsp.jedi_language_server.setup({
     on_attach = on_attach,
