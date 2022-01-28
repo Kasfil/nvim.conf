@@ -1,7 +1,7 @@
 require"lualine".setup {
     options = {
         icons_enabled = true,
-        theme = "custom-github",
+        theme = "kanagawa",
         section_separators = {left = "", right = ""},
         component_separators = {left = "", right = ""},
         disabled_filetypes = {"packer", "toggleterm"}
@@ -53,5 +53,5 @@ require"lualine".setup {
         lualine_z = {}
     },
     tabline = {},
-    extensions = {"nvim-tree", "outline"}
+    extensions = {"nvim-tree"}
 }

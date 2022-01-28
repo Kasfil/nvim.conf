@@ -1,6 +1,9 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+require("nvim-autopairs").setup()
 
 local has_word_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -46,7 +49,7 @@ cmp.setup({
             end
         end, { "i", "s" }),
 
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-e>'] = cmp.mapping({
@@ -58,24 +61,9 @@ cmp.setup({
             select = false
         }),
     },
-    sorting = {
-        comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            require "cmp-under-comparator".under,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        }
-    },
     formatting = {
-        format = lspkind.cmp_format({with_text = true, maxwidth = 50})
+        format = lspkind.cmp_format()
     }
 })
 
--- autopairs
-require("nvim-autopairs").setup()
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))

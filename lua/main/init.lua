@@ -1,6 +1,0 @@
-require("main.options")
-require("main.plugins")
-require("main.keymaps")
-require("lsp")
-require("main.colorscheme").apply()
-require("packer_compiled")

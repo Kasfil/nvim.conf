@@ -1,10 +1,7 @@
-local wk = require("which-key")
-
 require("symbols-outline").setup({
-    relative_width = true,
+    relative_width = false,
     auto_preview = false,
     width = 40,
-    lsp_blacklist = {"pyright", "efm"},
     symbols = {
         File = {icon = " ", hl = "TSURI"},
         Module = {icon = " ", hl = "TSNamespace"},
@@ -34,8 +31,3 @@ require("symbols-outline").setup({
         TypeParameter = {icon = "𝙏 ", hl = "TSParameter"}
     }
 })
-
-wk.register({
-    -- Outline symbols
-    ["<space>o"] = { function() require("symbols-outline").toggle_outline() end, "Toggle Outline" },
-}, { nowait = true, silent = false })
