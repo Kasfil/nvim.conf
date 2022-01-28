@@ -1,72 +1,89 @@
 local dap = require("dap")
-local widget = require("dap.ui.widgets")
-local wk = require("which-key")
+local pydap = require("dap-python")
 
--- other things
-vim.cmd([[au FileType dap-repl lua require('dap.ext.autocompl').attach()]])
-vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="", linehl="", numhl=""})
+vim.cmd [[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]]
 
--- Python dap configuration
-require("dap-python").setup("python")
+-- dap external terminal fallback
+dap.defaults.fallback.external_terminal = {
+    command = "alacritty",
+    args = {
+        "-o",
+        "window.decorations=none",
+        "-e"
+    },
+}
+
+-- force to use external terminal
+dap.defaults.fallback.force_external_terminal = true
+
+-- debugging signs
+vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="", linehl="", numhl=""})
+vim.fn.sign_define("DapBreakpointCondition", {text=" ", texthl="", linehl="", numhl=""})
+vim.fn.sign_define("DapLogPoint", {text=" ", texthl="", linehl="", numhl=""})
+vim.fn.sign_define("DapBreakpointRejected", {text=" ", texthl="", linehl="", numhl=""})
+vim.fn.sign_define("DapStopped", {text=" ", texthl="", linehl="debugPC", numhl=""})
+
+-- setting dap-python
+pydap.setup("python", { console = "externalTerminal" })
+pydap.test_runner = "pytest"
+
 table.insert(dap.configurations.python, {
-    name = "Select and launch file",
+    name = "uvicorn",
     type = "python",
     request = "launch",
-    program = function()
-        local filepath = vim.fn.input("File path relative workspace: ")
-        return "${workspaceFolder}/" .. filepath
-    end,
+    module = "uvicorn",
     args = function()
-        local args_string = vim.fn.input('Arguments: ')
-        return vim.split(args_string, " +")
+        local args = {}
+
+        -- app name
+        local app = vim.fn.input("app (index:app): ")
+        if app == "" then
+            app = "index:app"
+        end
+        table.insert(args, app)
+
+        -- port to run
+        local port = vim.fn.input("port (8000): ")
+        if (port == nil or port == "") then
+            port = 8000
+        else
+            port = tonumber(port)
+        end
+        table.insert(args, "--port=" .. port)
+
+        -- ask should enable reload?
+        local reload = vim.fn.input("enable reload? (y/N): ")
+        local reload_exclude = {".*", "tmp", "log*"}
+        if string.lower(reload) == "y" then
+            -- enable reload
+            table.insert(args, "--reload")
+            table.insert(args, "--reload-delay=0.5")
+            -- exclude regular excluded file and folder
+            for _, item in pairs(reload_exclude) do
+                table.insert(args, "--reload-exclude=" .. item)
+            end
+        end
+
+        return args
     end,
-    console = "integratedTerminal"
+    console = "externalTerminal",
 })
--- table.insert(dap.configurations.python, {
---     name = "Fastapi uvicorn",
---     type = "python",
---     request = "launch",
---     module = "uvicorn",
---     args = {
---         "index:app",
---         "--reload",
---         "--reload-exclude",
---         "logs/",
---         "--reload-exclude",
---         ".docker/"
---     },
---     console = "integratedTerminal"
--- })
-table.insert(dap.configurations.python, {
-    name = "FastAPI debugger file",
-    type = "python",
-    request = "launch",
-    program = vim.fn.getcwd() .. "/debugger.py",
-    pythonPath = function()
-        return "python"
-    end
-})
+
 table.insert(dap.configurations.python, {
     name = "Django",
     type = "python",
     request = "launch",
-    program = vim.fn.getcwd() .. "/manage.py",
-    args = {"runserver"},
-    pythonPath = function()
-        return "python"
-    end
+    program = "${workspaceFolder}/manage.py",
+    args = {"runserver", "--noreload", "--nothreading"},
+    autoReload = {enable = true},
+    console = "externalTerminal",
 })
 
-wk.register({
-    ["<leader>d"] = {
-        name = "debugger",
-        c = { function() dap.continue() end, "start / continue debugger" },
-        b = { function() dap.toggle_breakpoint() end, "toggle break point" },
-        B = { function() dap.set_breakpoint(vim.fn.input("Condition")) end, "toggle conditional break point" },
-        rp = { function() dap.repl.open() end, "open dap repl" },
-        rl = { function() dap.run_last() end, "run last debugging profile" },
-        K = { function() widget.hover() end, "inspect value under cursor" },
-        wb = { function() widget.sidebar(widget.frames).open() end, "open sidebar widget frames" },
-        wc = { function() widget.centered_float(widget.scopes) end, "open float widget scope" },
-    }
-})
+dap.listeners.after["event_debugpyAttach"]["dap-python"] = function(_, config)
+    local session = require("dap.session"):connect(config.connect, {}, vim.inspect)
+    session:initialize(config)
+    dap.set_session(session)
+end
+
+-- dap go initialization
+require("dap-go").setup()

@@ -211,6 +211,17 @@ return packer.startup({
                 })
             end
         }
+        use {
+            "mfussenegger/nvim-dap",
+            requires = {
+                "mfussenegger/nvim-dap-python",
+                "leoluz/nvim-dap-go",
+            },
+            module = {"dap"},
+            config = function()
+                require("plugins.configs.dap")
+            end
+        }
 
         -- user interfaces
         use {

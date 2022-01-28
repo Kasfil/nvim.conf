@@ -23,6 +23,22 @@ nnoremap["<ESC>"] = ":nohlsearch <CR>"
 nnoremap["<C-\\>"] = "<CMD>vsp<CR>"
 nnoremap["<A-\\>"] = "<CMD>sp<CR>"
 
+-- nvim dap
+-- debugger mapping
+nnoremap["<leader>dc"] = function() require("dap").continue() end
+nnoremap["<leader>du"] = function() require("dap").run_last() end
+nnoremap["<leader>do"] = function() require("dap").step_over() end
+nnoremap["<leader>di"] = function() require("dap").step_into() end
+nnoremap["<leader>dq"] = function() require("dap").step_out() end
+nnoremap["<leader>db"] = function() require("dap").toggle_breakpoint() end
+nnoremap["<leader>dB"] = function() require("dap").set_breakpoint(vim.fn.input("condition: ")) end
+nnoremap["<leader>dl"] = function() require("dap").set_breakpoint(nil, nil, vim.fn.input("log point message: ")) end
+nnoremap["<leader>dr"] = function() require("dap").repl.open() end
+-- debugger widget
+nnoremap["<space>K"] = function() require("dap.ui.widgets").hover() end
+nnoremap["<space>ws"] = function() require("dap.ui.widgets").sidebar(require("dap.ui.widgets").frames).open() end
+nnoremap["<space>wc"] = function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end
+
 -- moving
 nnoremap["<C-l>"] = "<C-w>l"
 nnoremap["<C-h>"] = "<C-w>h"
