@@ -18,10 +18,11 @@ require('kanagawa').setup({
 local M = {}
 
 local custom_hl = {
+    -- Telescope
     TelescopePromptNormal = {bg = colors.sumiInk3},
     TelescopePromptBorder = {bg = colors.sumiInk3, fg = colors.sumiInk3},
     TelescopePromptTitle = {bg = colors.crystalBlue, fg = colors.sumiInk1},
-    TelescopePromptPrefix = {fg = colors.crystalBlue},
+    TelescopePromptPrefix = {fg = colors.crystalBlue, bg = colors.sumiInk3},
 
     TelescopeResultsNormal = {bg = colors.sumiInk1},
     TelescopeResultsBorder = {bg = colors.sumiInk1, fg = colors.sumiInk1},
@@ -30,6 +31,15 @@ local custom_hl = {
     TelescopePreviewNormal = {bg = colors.sumiInk1},
     TelescopePreviewBorder = {bg = colors.sumiInk1, fg = colors.sumiInk1},
     TelescopePreviewTitle = {bg = colors.carpYellow, fg = colors.sumiInk1},
+
+    TelescopeSelection = {bg = colors.sumiInk3},
+
+    -- Lightspeed
+    LightspeedLabel = {fg = colors.sumiInk1, bg = colors.oniViolet},
+    LightspeedLabelOverlapped = {fg = colors.sumiInk1, bg = colors.autumnRed},
+    LightspeedShortcut = {fg = colors.sumiInk1, bg = colors.oniViolet},
+    LightspeedShortcutOverlapped = {fg = colors.sumiInk1, bg = colors.autumnRed},
+    LightspeedOneCharMatch = {fg = colors.sumiInk1, bg = colors.autumnRed},
 }
 
 M.apply = function ()
