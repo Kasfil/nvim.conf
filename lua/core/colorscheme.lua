@@ -1,49 +1,45 @@
-local colors = require("kanagawa.colors").setup()
-
-require('kanagawa').setup({
-    undercurl = true,
-    commentStyle = "italic",
-    functionStyle = "NONE",
-    keywordStyle = "italic",
-    statementStyle = "bold",
-    typeStyle = "NONE",
-    variablebuiltinStyle = "italic",
-    specialReturn = true,
-    specialException = true,
-    dimInactive = true,
-    colors = {},
-    overrides = {},
-})
+local colors = require('rose-pine.palette')
 
 local M = {}
 
 local custom_hl = {
+    -- normal
+    NonText = {fg = colors.overlay},
+
+    -- treesitter
+    TSComment = {fg = colors.subtle, style = "italic"},
+
     -- Telescope
-    TelescopePromptNormal = {bg = colors.sumiInk3},
-    TelescopePromptBorder = {bg = colors.sumiInk3, fg = colors.sumiInk3},
-    TelescopePromptTitle = {bg = colors.crystalBlue, fg = colors.sumiInk1},
-    TelescopePromptPrefix = {fg = colors.crystalBlue, bg = colors.sumiInk3},
+    TelescopePromptNormal = {bg = colors.muted, fg = colors.text},
+    TelescopePromptBorder = {bg = colors.muted, fg = colors.muted},
+    TelescopePromptTitle = {bg = colors.iris, fg = colors.base},
+    TelescopePromptPrefix = {fg = colors.iris, bg = colors.muted},
+    TelescopePromptCounter = {fg = colors.iris},
 
-    TelescopeResultsNormal = {bg = colors.sumiInk1},
-    TelescopeResultsBorder = {bg = colors.sumiInk1, fg = colors.sumiInk1},
-    TelescopeResultsTitle = {bg = colors.springGreen, fg = colors.sumiInk1},
+    TelescopeResultsNormal = {bg = colors.overlay},
+    TelescopeResultsBorder = {bg = colors.overlay, fg = colors.overlay},
+    TelescopeResultsTitle = {bg = colors.foam, fg = colors.overlay},
 
-    TelescopePreviewNormal = {bg = colors.sumiInk1},
-    TelescopePreviewBorder = {bg = colors.sumiInk1, fg = colors.sumiInk1},
-    TelescopePreviewTitle = {bg = colors.carpYellow, fg = colors.sumiInk1},
+    TelescopePreviewNormal = {bg = colors.overlay},
+    TelescopePreviewBorder = {bg = colors.overlay, fg = colors.overlay},
+    TelescopePreviewTitle = {bg = colors.gold, fg = colors.overlay},
 
-    TelescopeSelection = {bg = colors.sumiInk3},
+    TelescopeSelection = {bg = colors.base},
+    TelescopeSelectionCaret = {fg = colors.love, bg = colors.base},
 
     -- Lightspeed
-    LightspeedLabel = {fg = colors.sumiInk1, bg = colors.oniViolet},
-    LightspeedLabelOverlapped = {fg = colors.sumiInk1, bg = colors.autumnRed},
-    LightspeedShortcut = {fg = colors.sumiInk1, bg = colors.oniViolet},
-    LightspeedShortcutOverlapped = {fg = colors.sumiInk1, bg = colors.autumnRed},
-    LightspeedOneCharMatch = {fg = colors.sumiInk1, bg = colors.autumnRed},
+    LightspeedLabel = {fg = colors.overlay, bg = colors.rose},
+    LightspeedLabelOverlapped = {fg = colors.overlay, bg = colors.love},
+    LightspeedShortcut = {fg = colors.overlay, bg = colors.rose},
+    LightspeedShortcutOverlapped = {fg = colors.overlay, bg = colors.love},
+    LightspeedOneCharMatch = {fg = colors.overlay, bg = colors.love},
 }
 
 M.apply = function ()
-    vim.cmd("colorscheme kanagawa")
+    vim.g.rose_pine_bold_vertical_split_line = true
+    vim.g.rose_pine_disable_italics = true
+
+    vim.cmd("colorscheme rose-pine")
 
     -- apply custom highlight
     for group, color in pairs(custom_hl) do

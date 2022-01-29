@@ -11,8 +11,8 @@ M.file_exists = function(file)
     end
 end
 
-M.send_key = function (str)
-    vim.api.nvim_replace_termcodes(str, true, true, true)
+M.send_key = function (key)
+    vim.api.nvim_replace_termcodes(key, true, true, true)
 end
 
 M.close_window = function()

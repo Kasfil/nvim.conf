@@ -163,7 +163,6 @@ return packer.startup({
         use {
             "simrat39/symbols-outline.nvim",
             cmd = {"SymbolsOutline"},
-            keys = {"<space>o"},
             config = function()
                 require("plugins.configs.outline")
             end
@@ -253,7 +252,8 @@ return packer.startup({
         }
 
         -- colorschemes
-        use { "rebelot/kanagawa.nvim" }
+        use { "rose-pine/neovim", as = "rose-pine" }
+        use { "~/github/kosmikoa.nvim" }
     end,
 
     config = config
