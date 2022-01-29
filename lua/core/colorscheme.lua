@@ -5,27 +5,29 @@ local M = {}
 local custom_hl = {
     -- normal
     NonText = {fg = colors.overlay},
+    StatusLine = {bg = colors.overlay},
+    StatusLineNC = {bg = colors.highlight_low},
 
     -- treesitter
     TSComment = {fg = colors.subtle, style = "italic"},
 
     -- Telescope
-    TelescopePromptNormal = {bg = colors.muted, fg = colors.text},
-    TelescopePromptBorder = {bg = colors.muted, fg = colors.muted},
-    TelescopePromptTitle = {bg = colors.iris, fg = colors.base},
-    TelescopePromptPrefix = {fg = colors.iris, bg = colors.muted},
+    TelescopePromptNormal = {bg = colors.overlay, fg = colors.text},
+    TelescopePromptBorder = {bg = colors.overlay, fg = colors.overlay},
+    TelescopePromptTitle = {bg = colors.iris, fg = colors.overlay},
+    TelescopePromptPrefix = {fg = colors.iris, bg = colors.overlay},
     TelescopePromptCounter = {fg = colors.iris},
 
-    TelescopeResultsNormal = {bg = colors.overlay},
-    TelescopeResultsBorder = {bg = colors.overlay, fg = colors.overlay},
-    TelescopeResultsTitle = {bg = colors.foam, fg = colors.overlay},
+    TelescopeResultsNormal = {bg = colors.surface},
+    TelescopeResultsBorder = {bg = colors.surface, fg = colors.surface},
+    TelescopeResultsTitle = {bg = colors.surface, fg = colors.surface},
 
-    TelescopePreviewNormal = {bg = colors.overlay},
-    TelescopePreviewBorder = {bg = colors.overlay, fg = colors.overlay},
-    TelescopePreviewTitle = {bg = colors.gold, fg = colors.overlay},
+    TelescopePreviewNormal = {bg = colors.surface},
+    TelescopePreviewBorder = {bg = colors.surface, fg = colors.surface},
+    TelescopePreviewTitle = {bg = colors.gold, fg = colors.surface},
 
-    TelescopeSelection = {bg = colors.base},
-    TelescopeSelectionCaret = {fg = colors.love, bg = colors.base},
+    TelescopeSelection = {bg = colors.overlay},
+    TelescopeSelectionCaret = {fg = colors.love, bg = colors.overlay},
 
     -- Lightspeed
     LightspeedLabel = {fg = colors.overlay, bg = colors.rose},
@@ -33,6 +35,9 @@ local custom_hl = {
     LightspeedShortcut = {fg = colors.overlay, bg = colors.rose},
     LightspeedShortcutOverlapped = {fg = colors.overlay, bg = colors.love},
     LightspeedOneCharMatch = {fg = colors.overlay, bg = colors.love},
+
+    -- SymbolsOutline
+    FocusedSymbol = {bg = colors.surface, fg = colors.gold}
 }
 
 M.apply = function ()

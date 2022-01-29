@@ -103,6 +103,13 @@ return packer.startup({
                 require("plugins.configs.goto-preview")
             end
         }
+        use {
+            "j-hui/fidget.nvim",
+            after = "nvim-lspconfig",
+            config = function()
+                require("fidget").setup({})
+            end
+        }
 
         -- syntax highlighting
         use {
@@ -238,10 +245,9 @@ return packer.startup({
             end
         }
         use {
-            "nvim-lualine/lualine.nvim",
-            requires = {"kyazdani42/nvim-web-devicons"},
+            "rebelot/heirline.nvim",
             config = function()
-                require("plugins.configs.lualine")
+                require("plugins.configs.heirline")
             end
         }
 
