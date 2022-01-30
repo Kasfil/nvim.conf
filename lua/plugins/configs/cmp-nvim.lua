@@ -1,6 +1,5 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local lspkind = require("lspkind")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 require("nvim-autopairs").setup()
@@ -61,9 +60,6 @@ cmp.setup({
             select = false
         }),
     },
-    -- formatting = {
-    --     format = lspkind.cmp_format()
-    -- }
 })
 
 cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))

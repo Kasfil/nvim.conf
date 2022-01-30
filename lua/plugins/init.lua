@@ -41,13 +41,6 @@ return packer.startup({
 
         -- lsp stuff
         use {
-            "onsails/lspkind-nvim",
-            module = "lspkind",
-            config = function()
-                require("plugins.configs.lspkind")
-            end
-        }
-        use {
             "hrsh7th/nvim-cmp",
             requires = {
                 "windwp/nvim-autopairs",
