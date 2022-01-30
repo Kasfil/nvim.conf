@@ -4,6 +4,8 @@ local M = {}
 
 local custom_hl = {
     -- normal
+    Pmenu = {fg = colors.text, bg = colors.overlay},
+    NormalFloat = {bg = colors.overlay},
     NonText = {fg = colors.overlay},
     StatusLine = {bg = colors.overlay},
     StatusLineNC = {bg = colors.highlight_low},
@@ -37,7 +39,9 @@ local custom_hl = {
     LightspeedOneCharMatch = {fg = colors.overlay, bg = colors.love},
 
     -- SymbolsOutline
-    FocusedSymbol = {bg = colors.surface, fg = colors.gold}
+    FocusedSymbol = {bg = colors.surface, fg = colors.gold},
+
+    GitSignsCurrentLineBlame = {fg = colors.highlight_high}
 }
 
 M.apply = function ()

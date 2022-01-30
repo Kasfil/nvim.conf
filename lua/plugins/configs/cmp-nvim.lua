@@ -61,9 +61,9 @@ cmp.setup({
             select = false
         }),
     },
-    formatting = {
-        format = lspkind.cmp_format()
-    }
+    -- formatting = {
+    --     format = lspkind.cmp_format()
+    -- }
 })
 
 cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex = "" } }))

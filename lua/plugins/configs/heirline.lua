@@ -24,6 +24,32 @@ local ViMode = {
     end,
     static = {
         mode_names = { -- change the strings if yow like it vvvvverbose!
+            no = "NORM-SELECT",
+            nov = "NORM-SELECT",
+            noV = "NORM-SELECT",
+            ["no^V"] = "NORM-SELECT",
+            niI = "Ni",
+            niR = "Nr",
+            niV = "Nv",
+            nt = "Nt",
+            vs = "Vs",
+            Vs = "Vs",
+            ["^V"] = "^V",
+            ["^Vs"] = "^V",
+            s = "S",
+            S = "S_",
+            ["^S"] = "^S",
+            ic = "Ic",
+            ix = "Ix",
+            Rc = "Rc",
+            Rx = "Rx",
+            Rvc = "Rv",
+            Rvx = "Rv",
+            cv = "Ex",
+            rm = "M",
+            ["r?"] = "?",
+            ["!"] = "!",
+            -- common
             n = "NORMAL",
             v = "VISUAL",
             V = "V-LINE",
@@ -35,6 +61,11 @@ local ViMode = {
             t = "TERMINAL",
         },
         mode_colors = {
+            ["^V"] =  colors.orange,
+            s =  colors.magenta,
+            S =  colors.magenta,
+            ["^S"] =  colors.magenta,
+            ["!"] =  colors.red,
             n = colors.blue ,
             i = colors.yellow,
             v = colors.magenta,
@@ -52,7 +83,8 @@ local ViMode = {
     end,
 
     hl = function(self)
-        return { fg = self.mode_colors[self.mode] }
+        local mode = self.mode:sub(1, 1)
+        return { fg = self.mode_colors[mode] }
     end,
 }
 
@@ -185,7 +217,7 @@ local Git = {
         condition = function(self)
             return self.has_changes
         end,
-        provider = " │ "
+        provider = " "
     },
     {
         provider = function(self)
@@ -212,7 +244,7 @@ local Git = {
         condition = function(self)
             return self.has_changes
         end,
-        provider = "│",
+        provider = "",
     },
 }
 
@@ -268,13 +300,13 @@ local DAPMessages = {
         end
     end,
     provider = function()
-        return "   "
+        return "  " .. require("dap").status()
     end,
     hl = { bg = colors.red, fg = colors.overlay },
 }
 
 local DefaultStatusline = {
-    ViMode, Space, DAPMessages, Space, FileNameBlock, Space, Diagnostics, Align,
+    ViMode, DAPMessages, FileNameBlock, Space, Diagnostics, Align,
     FileType, Space, Git, Space, Ruler, Space, ScrollBar
 }
 

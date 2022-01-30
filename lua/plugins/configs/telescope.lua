@@ -18,7 +18,7 @@ local default = {
             }
         },
         selection_caret = " ",
-        prompt_prefix = "  ",
+        prompt_prefix = "Find  ",
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
