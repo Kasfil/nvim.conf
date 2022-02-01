@@ -25,11 +25,13 @@ nnoremap["<A-\\>"] = "<CMD>sp<CR>"
 
 -- nvim dap
 -- debugger mapping
-nnoremap["<leader>dc"] = function() require("dap").continue() end
-nnoremap["<leader>du"] = function() require("dap").run_last() end
-nnoremap["<leader>do"] = function() require("dap").step_over() end
-nnoremap["<leader>di"] = function() require("dap").step_into() end
-nnoremap["<leader>dq"] = function() require("dap").step_out() end
+nnoremap["<F5>"] = function() require("dap").continue() end
+nnoremap["<F17>"] = function() require("dap").terminate() end
+nnoremap["<F4>"] = function() require("dap").run_last() end
+nnoremap["<F10>"] = function() require("dap").step_over() end
+nnoremap["<F9>"] = function() require("dap").step_into() end
+nnoremap["<F21>"] = function() require("dap").step_out() end
+nnoremap["<leader>dc"] = function() require("dap").clear_breakpoints() end
 nnoremap["<leader>db"] = function() require("dap").toggle_breakpoint() end
 nnoremap["<leader>dB"] = function() require("dap").set_breakpoint(vim.fn.input("condition: ")) end
 nnoremap["<leader>dl"] = function() require("dap").set_breakpoint(nil, nil, vim.fn.input("log point message: ")) end
