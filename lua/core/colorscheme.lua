@@ -1,5 +1,9 @@
 local colors = require('rose-pine.palette')
 
+local extended_colors = {
+    base_darker = "#16141f"
+}
+
 local M = {}
 
 local custom_hl = {
@@ -8,7 +12,7 @@ local custom_hl = {
     NormalFloat = {bg = colors.overlay},
     NonText = {fg = colors.overlay},
     StatusLine = {bg = colors.overlay},
-    StatusLineNC = {bg = colors.highlight_low},
+    StatusLineNC = {bg = extended_colors.base_darker},
 
     -- treesitter
     TSComment = {fg = colors.subtle, style = "italic"},
@@ -41,11 +45,25 @@ local custom_hl = {
     -- SymbolsOutline
     FocusedSymbol = {bg = colors.surface, fg = colors.gold},
 
-    GitSignsCurrentLineBlame = {fg = colors.highlight_high}
+    -- dap nvim
+    DebugPC = {bg = extended_colors.base_darker},
+
+    -- Gitsigns
+    GitSignsCurrentLineBlame = {fg = colors.highlight_high},
+
+    -- nvim tree lua
+    NvimTreeNormal = {bg = extended_colors.base_darker, fg = colors.text},
+
+    -- neogit
+    NeogitNotificationInfo = {bg = colors.overlay, fg = colors.foam},
+    NeogitNotificationWarning = {bg = colors.overlay, fg = colors.gold},
+    NeogitNotificationError = {bg = colors.overlay, fg = colors.love},
+
+    -- custom
+    SideWin = {bg = extended_colors.base_darker, fg = colors.text},
 }
 
 M.apply = function ()
-    vim.g.rose_pine_bold_vertical_split_line = true
     vim.g.rose_pine_disable_italics = true
 
     vim.cmd("colorscheme rose-pine")
