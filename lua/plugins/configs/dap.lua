@@ -17,11 +17,11 @@ dap.defaults.fallback.external_terminal = {
 dap.defaults.fallback.force_external_terminal = true
 
 -- debugging signs
-vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="", linehl="", numhl=""})
-vim.fn.sign_define("DapBreakpointCondition", {text=" ", texthl="", linehl="", numhl=""})
-vim.fn.sign_define("DapLogPoint", {text=" ", texthl="", linehl="", numhl=""})
-vim.fn.sign_define("DapBreakpointRejected", {text=" ", texthl="", linehl="", numhl=""})
-vim.fn.sign_define("DapStopped", {text=" ", texthl="", linehl="debugPC", numhl=""})
+vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="DiagnosticError", linehl="", numhl=""})
+vim.fn.sign_define("DapBreakpointCondition", {text=" ", texthl="DiagnosticError", linehl="", numhl=""})
+vim.fn.sign_define("DapLogPoint", {text="⯁ ", texthl="DiagnosticError", linehl="", numhl=""})
+vim.fn.sign_define("DapBreakpointRejected", {text=" ", texthl="DiagnosticError", linehl="", numhl=""})
+vim.fn.sign_define("DapStopped", {text=" ", texthl="", linehl="debugPC", numhl=""})
 
 -- setting dap-python
 pydap.setup("python", { console = "externalTerminal" })
