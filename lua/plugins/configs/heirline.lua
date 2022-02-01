@@ -300,13 +300,13 @@ local DAPMessages = {
         end
     end,
     provider = function()
-        return "  " .. require("dap").status()
+        return "  " .. require("dap").status() .. " "
     end,
     hl = { bg = colors.red, fg = colors.overlay },
 }
 
 local DefaultStatusline = {
-    ViMode, DAPMessages, FileNameBlock, Space, Diagnostics, Align,
+    ViMode, DAPMessages, Space, FileNameBlock, Space, Diagnostics, Align,
     FileType, Space, Git, Space, Ruler, Space, ScrollBar
 }
 
@@ -315,7 +315,7 @@ local InactiveStatusline = {
         return not conditions.is_active()
     end,
 
-    FileType, Space, FileName, Align,
+    FileName, Align,
 }
 
 local SpecialStatusline = {
