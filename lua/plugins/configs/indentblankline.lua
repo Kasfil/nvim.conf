@@ -1,5 +1,5 @@
 require("indent_blankline").setup({
-    use_treesitter = true,
+    use_treesitter = false,
     show_first_indent_level = true,
     max_indent_increase = 1,
     show_trailing_blankline_indent = true,

@@ -1,21 +1,24 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local pallete = require('rose-pine.palette')
+
+local background = vim.opt.background:get()
+local configuration = vim.fn["gruvbox_material#get_configuration"]()
+local palette = vim.fn["gruvbox_material#get_palette"](background, configuration.palette)
 
 local Align = { provider = "%=" }
 local Space = { provider = "  " }
 
 local colors = {
-    base = pallete.base,
-    overlay = pallete.overlay,
-    white = pallete.text,
-    red = pallete.love,
-    yellow = pallete.gold,
-    orange = pallete.rose,
-    cyan = pallete.pine,
-    blue = pallete.foam,
-    magenta = pallete.iris,
-    fade = pallete.muted,
+    base = palette.bg0[1],
+    overlay = palette.bg3[1],
+    white = palette.fg0[1],
+    red = palette.red[1],
+    yellow = palette.yellow[1],
+    orange = palette.orange[1],
+    cyan = palette.aqua[1],
+    blue = palette.blue[1],
+    magenta = palette.purple[1],
+    fade = palette.bg5[1],
 }
 
 local ViMode = {
@@ -149,10 +152,10 @@ local Diagnostics = {
     condition = conditions.has_diagnostics,
 
     static = {
-        error_icon = " ",
-        warn_icon = " ",
-        info_icon = " ",
-        hint_icon = " ",
+        error_icon = "E:",
+        warn_icon = "W:",
+        info_icon = "I:",
+        hint_icon = "H:",
     },
 
     init = function(self)
@@ -162,9 +165,6 @@ local Diagnostics = {
         self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
     end,
 
-    {
-        provider = "![",
-    },
     {
         provider = function(self)
             -- 0 is just another output, we can decide to print it or not!
@@ -189,9 +189,6 @@ local Diagnostics = {
             return self.hints > 0 and (self.hint_icon .. self.hints)
         end,
         hl = { fg = colors.blue },
-    },
-    {
-        provider = "]",
     },
 }
 
@@ -258,7 +255,7 @@ local Ruler = {
 
 local FileType = {
     provider = function()
-        return "*" .. vim.bo.filetype .. "*"
+        return vim.bo.filetype
     end,
     hl = { fg = utils.get_highlight("Type").fg, style = 'bold' },
 }
@@ -273,7 +270,7 @@ local ScrollBar = {
         local i = math.floor(curr_line / lines * (#self.sbar - 1)) + 1
         return string.rep(self.sbar[i], 2)
     end,
-    hl = {fg = colors.magenta, bg = colors.base},
+    hl = {fg = colors.red, bg = colors.base},
 }
 
 local HelpFileName = {

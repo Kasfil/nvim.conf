@@ -30,6 +30,7 @@ return packer.startup({
         use { "wbthomason/packer.nvim" }
 
         -- git integration
+        use { "tpope/vim-fugitive" }
         use {
             "lewis6991/gitsigns.nvim",
             requires = {"nvim-lua/plenary.nvim"},
@@ -42,13 +43,9 @@ return packer.startup({
         -- lsp stuff
         use {
             "hrsh7th/nvim-cmp",
+            event = "BufReadPre",
             requires = {
                 "windwp/nvim-autopairs",
-                "hrsh7th/cmp-nvim-lsp",
-                "hrsh7th/cmp-nvim-lua",
-                "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-path",
-                "saadparwaiz1/cmp_luasnip",
                 {
                     "L3MON4D3/LuaSnip",
                     config = function()
@@ -60,6 +57,12 @@ return packer.startup({
                 require("plugins.configs.cmp-nvim")
             end
         }
+        use { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" }
+        use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
+        use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua", module = "cmp_nvim_lsp" }
+        use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
+        use { "hrsh7th/cmp-path", after = "cmp-buffer" }
+        use { "rafamadriz/friendly-snippets", after = "LuaSnip" }
         use {
             "ray-x/lsp_signature.nvim",
             after = "nvim-cmp",
@@ -69,14 +72,14 @@ return packer.startup({
         }
         use {
             "neovim/nvim-lspconfig",
-            after = "lsp_signature.nvim",
+            event = "BufReadPre",
             config = function()
                 require("plugins.configs.lspconfig")
             end
         }
         use {
             "jose-elias-alvarez/null-ls.nvim",
-            event = "VimEnter",
+            event = "BufReadPost",
             config = function()
                 require("plugins.configs.null-ls")
             end
@@ -100,7 +103,12 @@ return packer.startup({
             "j-hui/fidget.nvim",
             after = "nvim-lspconfig",
             config = function()
-                require("fidget").setup({})
+                require("fidget").setup({
+                    text = {
+                        spinner = "arrow",
+                        done = "++",
+                    }
+                })
             end
         }
 
@@ -116,13 +124,24 @@ return packer.startup({
         -- utilities
         use {
             "numToStr/Comment.nvim",
-            event = {"BufRead"},
+            event = {"BufReadPost"},
             config = function()
                 require("Comment").setup()
             end
         }
         use {
+            "danymat/neogen",
+            after = "nvim-treesitter",
+            config = function()
+                require('neogen').setup {
+                    enabled = true
+                }
+            end,
+            requires = "nvim-treesitter/nvim-treesitter"
+        }
+        use {
             "ggandor/lightspeed.nvim",
+            event = "BufReadPost",
             config = function()
                 require("lightspeed").setup({
                     repeat_ft_with_target_char = true,
@@ -139,7 +158,7 @@ return packer.startup({
         }
         use {
             "tpope/vim-surround",
-            event = {"BufRead"},
+            event = {"BufReadPost"},
         }
         use {
             "ethanholz/nvim-lastplace",
@@ -175,7 +194,6 @@ return packer.startup({
             "famiu/bufdelete.nvim",
             cmd = "Bdelete",
         }
-        use {"Iron-E/nvim-cartographer"}
         use {
             "mizlan/iswap.nvim",
             after = "nvim-treesitter",
@@ -238,9 +256,10 @@ return packer.startup({
             end
         }
         use {
-            "rebelot/heirline.nvim",
+            'nvim-lualine/lualine.nvim',
+            requires = { 'kyazdani42/nvim-web-devicons', opt = true },
             config = function()
-                require("plugins.configs.heirline")
+                require("plugins.configs.lualine")
             end
         }
 
@@ -252,7 +271,7 @@ return packer.startup({
 
         -- colorschemes
         use { "rose-pine/neovim", as = "rose-pine" }
-        use { "~/github/kosmikoa.nvim" }
+        use { "sainnhe/gruvbox-material" }
     end,
 
     config = config

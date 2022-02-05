@@ -1,72 +1,67 @@
-local colors = require('rose-pine.palette')
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_sign_column_background = "none"
+vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+vim.g.gruvbox_material_diagnostic_text_highlight = 1
 
-local extended_colors = {
-    base_darker = "#16141f"
-}
+local background = vim.opt.background:get()
+local configuration = vim.fn["gruvbox_material#get_configuration"]()
+local palette = vim.fn["gruvbox_material#get_palette"](background, configuration.palette)
 
 local M = {}
 
 local custom_hl = {
     -- normal
-    Pmenu = {fg = colors.text, bg = colors.overlay},
-    NormalFloat = {bg = colors.overlay},
-    NonText = {fg = colors.overlay},
-    StatusLine = {bg = colors.overlay},
-    StatusLineNC = {bg = extended_colors.base_darker},
+    NonText = {fg = palette.bg2[1]},
+    -- StatusLine = {bg = palette.bg_statusline3[1]},
+    -- StatusLineNC = {bg = palette.bg1[1]},
 
     -- treesitter
-    TSComment = {fg = colors.subtle, style = "italic"},
+    -- TSComment = {fg = palette.subtle, style = "italic"},
 
     -- Telescope
-    TelescopePromptNormal = {bg = colors.overlay, fg = colors.text},
-    TelescopePromptBorder = {bg = colors.overlay, fg = colors.overlay},
-    TelescopePromptTitle = {bg = colors.iris, fg = colors.overlay},
-    TelescopePromptPrefix = {fg = colors.iris, bg = colors.overlay},
-    TelescopePromptCounter = {fg = colors.iris},
+    TelescopePromptNormal = {bg = palette.bg3[1], fg = palette.fg0[1]},
+    TelescopePromptBorder = {bg = palette.bg3[1], fg = palette.bg3[1]},
+    TelescopePromptTitle = {bg = palette.green[1], fg = palette.bg3[1]},
+    TelescopePromptPrefix = {fg = palette.green[1], bg = palette.bg3[1]},
+    TelescopePromptCounter = {fg = palette.green[1]},
 
-    TelescopeResultsNormal = {bg = colors.surface},
-    TelescopeResultsBorder = {bg = colors.surface, fg = colors.surface},
-    TelescopeResultsTitle = {bg = colors.surface, fg = colors.surface},
+    TelescopeResultsNormal = {bg = palette.bg1[1]},
+    TelescopeResultsBorder = {bg = palette.bg1[1], fg = palette.bg1[1]},
+    TelescopeResultsTitle = {bg = palette.bg1[1], fg = palette.bg1[1]},
 
-    TelescopePreviewNormal = {bg = colors.surface},
-    TelescopePreviewBorder = {bg = colors.surface, fg = colors.surface},
-    TelescopePreviewTitle = {bg = colors.gold, fg = colors.surface},
+    TelescopePreviewNormal = {bg = palette.bg1[1]},
+    TelescopePreviewBorder = {bg = palette.bg1[1], fg = palette.bg1[1]},
+    TelescopePreviewTitle = {bg = palette.yellow[1], fg = palette.bg1[1]},
 
-    TelescopeSelection = {bg = colors.overlay},
-    TelescopeSelectionCaret = {fg = colors.love, bg = colors.overlay},
+    TelescopeSelection = {bg = palette.bg3[1]},
+    TelescopeSelectionCaret = {fg = palette.red[1], bg = palette.bg3[1]},
 
     -- Lightspeed
-    LightspeedLabel = {fg = colors.overlay, bg = colors.rose},
-    LightspeedLabelOverlapped = {fg = colors.overlay, bg = colors.love},
-    LightspeedShortcut = {fg = colors.overlay, bg = colors.rose},
-    LightspeedShortcutOverlapped = {fg = colors.overlay, bg = colors.love},
-    LightspeedOneCharMatch = {fg = colors.overlay, bg = colors.love},
+    LightspeedLabel = {fg = palette.bg0[1], bg = palette.orange[1]},
+    LightspeedLabelOverlapped = {fg = palette.bg0[1], bg = palette.red[1]},
+    LightspeedShortcut = {fg = palette.bg0[1], bg = palette.orange[1]},
+    LightspeedShortcutOverlapped = {fg = palette.bg0[1], bg = palette.red[1]},
+    LightspeedOneCharMatch = {fg = palette.bg0[1], bg = palette.red[1]},
 
     -- SymbolsOutline
-    FocusedSymbol = {bg = colors.surface, fg = colors.gold},
+    FocusedSymbol = {bg = palette.bg1[1], fg = palette.yellow[1]},
 
     -- dap nvim
-    DebugPC = {bg = extended_colors.base_darker},
+    DebugPC = {bg = palette.bg1[1]},
 
     -- Gitsigns
-    GitSignsCurrentLineBlame = {fg = colors.highlight_high},
+    GitSignsCurrentLineBlame = {fg = palette.bg3[1]},
 
     -- nvim tree lua
-    NvimTreeNormal = {bg = extended_colors.base_darker, fg = colors.text},
-
-    -- neogit
-    NeogitNotificationInfo = {bg = colors.overlay, fg = colors.foam},
-    NeogitNotificationWarning = {bg = colors.overlay, fg = colors.gold},
-    NeogitNotificationError = {bg = colors.overlay, fg = colors.love},
+    -- NvimTreeNormal = {bg = extended_colors.base_darker, fg = palette.fg0[1]},
 
     -- custom
-    SideWin = {bg = extended_colors.base_darker, fg = colors.text},
+    -- SideWin = {bg = extended_colors.base_darker, fg = palette.fg0[1]},
 }
 
 M.apply = function ()
-    vim.g.rose_pine_disable_italics = true
 
-    vim.cmd("colorscheme rose-pine")
+    vim.cmd("colorscheme gruvbox-material")
 
     -- apply custom highlight
     for group, color in pairs(custom_hl) do

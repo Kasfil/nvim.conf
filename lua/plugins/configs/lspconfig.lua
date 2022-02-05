@@ -3,21 +3,10 @@ local lsp = require("lspconfig")
 vim.diagnostic.config({
     virtual_text = {
         source = "always",
-        prefix = "ﱢ "
+        prefix = "❏ "
     },
     severity_sort = true,
 })
-
--- local border = {
---     {"🭽", "FloatBorder"},
---     {"▔", "FloatBorder"},
---     {"🭾", "FloatBorder"},
---     {"▕", "FloatBorder"},
---     {"🭿", "FloatBorder"},
---     {"▁", "FloatBorder"},
---     {"🭼", "FloatBorder"},
---     {"▏", "FloatBorder"},
--- }
 
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -46,14 +35,6 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
-
--- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-
--- function vim.lsp.util.open_floating_preview(contents, syntax, options, ...)
---     opts = options or {}
---     opts.border = opts.border or border
---     return orig_util_open_floating_preview(contents, syntax, opts, ...)
--- end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
