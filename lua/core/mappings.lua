@@ -1,14 +1,12 @@
 local lua_fn = require("core.map_utils").lua_fn
 local key = vim.api.nvim_set_keymap
-local bufkey = vim.api.nvim_buf_set_keymap
 
 local noremap = { noremap = true, silent = true }
-local norewait = { nowait = true, noremap = true, silent = true }
 
 key("n", "<leader>w", ":write! <CR>", noremap) -- write buffer
 key("n", "<leader>x", ":Bdelete! <CR>", noremap) -- close buffer w/o ruin your window
 
-bufkey(0, "n", "qq", ":q! <CR>", norewait)
+key("n", "<leader>q", ":q! <CR>", noremap)
 
 key("n", "<leader>bp", ":BufferLinePick <CR>", noremap)
 key("n", "<leader>bc", ":BufferLinePickClose <CR>", noremap)

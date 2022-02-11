@@ -15,6 +15,7 @@ local config = {
             return require("packer.util").float({border = "rounded"})
         end
     },
+    compile_path = vim.fn.stdpath("config").."/lua/packer_compiled.lua",
     log = { level = "warn" },
     profile = {
         enable = true,
@@ -28,6 +29,12 @@ return packer.startup({
     function(use)
         -- ensure packer is not removed
         use { "wbthomason/packer.nvim" }
+        use {
+            "lewis6991/impatient.nvim",
+            config = function()
+                require("impatient")
+            end
+        }
 
         -- git integration
         use { "tpope/vim-fugitive" }
@@ -186,10 +193,7 @@ return packer.startup({
                 require("plugins.configs.outline")
             end
         }
-        use {
-            "editorconfig/editorconfig-vim",
-            cond = file_exists(".editorconfig")
-        }
+        use { "editorconfig/editorconfig-vim" }
         use {
             "famiu/bufdelete.nvim",
             cmd = "Bdelete",
@@ -270,8 +274,7 @@ return packer.startup({
         }
 
         -- colorschemes
-        use { "rose-pine/neovim", as = "rose-pine" }
-        use { "sainnhe/gruvbox-material" }
+        use { "rebelot/kanagawa.nvim" }
     end,
 
     config = config

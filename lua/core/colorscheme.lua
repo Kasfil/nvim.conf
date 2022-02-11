@@ -1,67 +1,68 @@
-vim.g.gruvbox_material_background = "hard"
-vim.g.gruvbox_material_sign_column_background = "none"
-vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-vim.g.gruvbox_material_diagnostic_text_highlight = 1
+local palette = require("kanagawa.colors").setup()
 
-local background = vim.opt.background:get()
-local configuration = vim.fn["gruvbox_material#get_configuration"]()
-local palette = vim.fn["gruvbox_material#get_palette"](background, configuration.palette)
+require('kanagawa').setup({
+    undercurl = true,           -- enable undercurls
+    commentStyle = "italic",
+    functionStyle = "NONE",
+    keywordStyle = "NONE",
+    statementStyle = "bold",
+    typeStyle = "NONE",
+    variablebuiltinStyle = "NONE",
+    specialReturn = true,       -- special highlight for the return keyword
+    specialException = true,    -- special highlight for exception handling keywords
+    transparent = false,        -- do not set background color
+    dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
+})
 
 local M = {}
 
 local custom_hl = {
     -- normal
-    NonText = {fg = palette.bg2[1]},
-    -- StatusLine = {bg = palette.bg_statusline3[1]},
-    -- StatusLineNC = {bg = palette.bg1[1]},
+    NonText = {fg = palette.sumiInk3},
+    CursorLine = {bg = palette.sumiInk2},
+    VertSplit = {fg = palette.sumiInk0, style = "bold" },
 
     -- treesitter
     -- TSComment = {fg = palette.subtle, style = "italic"},
 
     -- Telescope
-    TelescopePromptNormal = {bg = palette.bg3[1], fg = palette.fg0[1]},
-    TelescopePromptBorder = {bg = palette.bg3[1], fg = palette.bg3[1]},
-    TelescopePromptTitle = {bg = palette.green[1], fg = palette.bg3[1]},
-    TelescopePromptPrefix = {fg = palette.green[1], bg = palette.bg3[1]},
-    TelescopePromptCounter = {fg = palette.green[1]},
+    TelescopePromptNormal = {bg = palette.sumiInk3, fg = palette.fujiWhite},
+    TelescopePromptBorder = {bg = palette.sumiInk3, fg = palette.sumiInk3},
+    TelescopePromptTitle = {bg = palette.springGreen, fg = palette.sumiInk3},
+    TelescopePromptPrefix = {fg = palette.springGreen, bg = palette.sumiInk3},
+    TelescopePromptCounter = {fg = palette.springGreen},
 
-    TelescopeResultsNormal = {bg = palette.bg1[1]},
-    TelescopeResultsBorder = {bg = palette.bg1[1], fg = palette.bg1[1]},
-    TelescopeResultsTitle = {bg = palette.bg1[1], fg = palette.bg1[1]},
+    TelescopeResultsNormal = {bg = palette.sumiInk0},
+    TelescopeResultsBorder = {bg = palette.sumiInk0, fg = palette.sumiInk0},
+    TelescopeResultsTitle = {bg = palette.sumiInk0, fg = palette.sumiInk0},
 
-    TelescopePreviewNormal = {bg = palette.bg1[1]},
-    TelescopePreviewBorder = {bg = palette.bg1[1], fg = palette.bg1[1]},
-    TelescopePreviewTitle = {bg = palette.yellow[1], fg = palette.bg1[1]},
+    TelescopePreviewNormal = {bg = palette.sumiInk0},
+    TelescopePreviewBorder = {bg = palette.sumiInk0, fg = palette.sumiInk0},
+    TelescopePreviewTitle = {bg = palette.carpYellow, fg = palette.sumiInk0},
 
-    TelescopeSelection = {bg = palette.bg3[1]},
-    TelescopeSelectionCaret = {fg = palette.red[1], bg = palette.bg3[1]},
+    TelescopeSelection = {bg = palette.sumiInk3},
+    TelescopeSelectionCaret = {fg = palette.waveRed, bg = palette.sumiInk3},
 
     -- Lightspeed
-    LightspeedLabel = {fg = palette.bg0[1], bg = palette.orange[1]},
-    LightspeedLabelOverlapped = {fg = palette.bg0[1], bg = palette.red[1]},
-    LightspeedShortcut = {fg = palette.bg0[1], bg = palette.orange[1]},
-    LightspeedShortcutOverlapped = {fg = palette.bg0[1], bg = palette.red[1]},
-    LightspeedOneCharMatch = {fg = palette.bg0[1], bg = palette.red[1]},
+    LightspeedLabel = {fg = palette.sumiInk0, bg = palette.surimiOrange},
+    LightspeedLabelOverlapped = {fg = palette.sumiInk0, bg = palette.waveRed},
+    LightspeedShortcut = {fg = palette.sumiInk0, bg = palette.surimiOrange},
+    LightspeedShortcutOverlapped = {fg = palette.sumiInk0, bg = palette.waveRed},
+    LightspeedOneCharMatch = {fg = palette.sumiInk0, bg = palette.waveRed},
 
     -- SymbolsOutline
-    FocusedSymbol = {bg = palette.bg1[1], fg = palette.yellow[1]},
+    FocusedSymbol = {bg = palette.sumiInk0, fg = palette.carpYellow},
 
     -- dap nvim
-    DebugPC = {bg = palette.bg1[1]},
+    DebugPC = {bg = palette.winterRed},
 
     -- Gitsigns
-    GitSignsCurrentLineBlame = {fg = palette.bg3[1]},
-
-    -- nvim tree lua
-    -- NvimTreeNormal = {bg = extended_colors.base_darker, fg = palette.fg0[1]},
-
-    -- custom
-    -- SideWin = {bg = extended_colors.base_darker, fg = palette.fg0[1]},
+    GitSignsCurrentLineBlame = {fg = palette.waveBlue2},
 }
 
 M.apply = function ()
 
-    vim.cmd("colorscheme gruvbox-material")
+    vim.cmd("colorscheme kanagawa")
 
     -- apply custom highlight
     for group, color in pairs(custom_hl) do
