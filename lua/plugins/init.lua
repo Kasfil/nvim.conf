@@ -35,7 +35,11 @@ return packer.startup({
         }
 
         -- git integration
-        use { "tpope/vim-fugitive" }
+        use {
+            "tpope/vim-fugitive",
+            requires = { "tpope/vim-dispatch" },
+            cmd = { "G", "Git" },
+        }
         use {
             "lewis6991/gitsigns.nvim",
             requires = {"nvim-lua/plenary.nvim"},
