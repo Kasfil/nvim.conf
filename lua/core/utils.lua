@@ -13,8 +13,12 @@ M.file_exists = function(file)
 end
 
 M.asyncGitPush = function()
-    local err = a.vim.cmd("Git push")
-    assert(not err, err)
+    a.run(
+        vim.cmd("Git push"),
+        function()
+            print("cannot run git push")
+        end
+    )
 end
 
 M.send_key = function (key)
