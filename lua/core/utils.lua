@@ -1,3 +1,4 @@
+local a = require("plenary.async")
 local M = {}
 
 M.file_exists = function(file)
@@ -9,6 +10,11 @@ M.file_exists = function(file)
     else
         return false
     end
+end
+
+M.asyncGitPush = function()
+    local err = a.vim.cmd("Git push")
+    assert(not err, err)
 end
 
 M.send_key = function (key)
