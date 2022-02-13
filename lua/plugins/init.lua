@@ -217,20 +217,6 @@ return packer.startup({
             end
         }
         use {
-            "TimUntersberger/neogit",
-            requires = {"nvim-lua/plenary.nvim"},
-            cmd = "Neogit",
-            config = function()
-                require("neogit").setup({
-                    signs = {
-                        section = { " ", " " },
-                        item = { " ", " " },
-                        hunk = { " ", " " },
-                    }
-                })
-            end
-        }
-        use {
             "mfussenegger/nvim-dap",
             requires = {
                 "mfussenegger/nvim-dap-python",
