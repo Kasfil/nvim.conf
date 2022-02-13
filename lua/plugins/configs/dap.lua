@@ -7,8 +7,8 @@ vim.cmd [[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]]
 dap.defaults.fallback.external_terminal = {
     command = "alacritty",
     args = {
-        "-o",
-        "window.decorations=none",
+        "-t",
+        "Nvim-Dap",
         "-e"
     },
 }
@@ -23,8 +23,11 @@ vim.fn.sign_define("DapLogPoint", {text="⯁ ", texthl="Error", linehl="", numhl
 vim.fn.sign_define("DapBreakpointRejected", {text=" ", texthl="Error", linehl="", numhl=""})
 vim.fn.sign_define("DapStopped", {text=" ", texthl="", linehl="debugPC", numhl=""})
 
+-- dap go initialization
+require("dap-go").setup()
+
 -- setting dap-python
-pydap.setup("python", { console = "externalTerminal" })
+pydap.setup("python")
 pydap.test_runner = "pytest"
 
 table.insert(dap.configurations.python, {
@@ -67,15 +70,15 @@ table.insert(dap.configurations.python, {
         return args
     end,
     console = "externalTerminal",
+    subProcess = false,
 })
 
 table.insert(dap.configurations.python, {
     name = "Django",
     type = "python",
     request = "launch",
-    program = "${workspaceFolder}/manage.py",
+    program = vim.fn.getcwd() .. "/manage.py",
     args = {"runserver", "--noreload", "--nothreading"},
-    autoReload = {enable = true},
     console = "externalTerminal",
 })
 
@@ -84,6 +87,3 @@ dap.listeners.after["event_debugpyAttach"]["dap-python"] = function(_, config)
     session:initialize(config)
     dap.set_session(session)
 end
-
--- dap go initialization
-require("dap-go").setup()
