@@ -1,5 +1,4 @@
 local fn = vim.fn
-local file_exists = require("core.utils").file_exists
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({
@@ -12,11 +11,10 @@ end
 local config = {
     display = {
         open_fn = function()
-            return require("packer.util").float({border = "rounded"})
+            return require("packer.util").float({border = "single"})
         end
     },
     compile_path = vim.fn.stdpath("config").."/lua/packer_compiled.lua",
-    log = { level = "warn" },
     profile = {
         enable = true,
         threshold = 1,
@@ -113,7 +111,7 @@ return packer.startup({
                 require("fidget").setup({
                     text = {
                         spinner = "arrow",
-                        done = "++",
+                        done = "✓",
                     }
                 })
             end
