@@ -3,7 +3,7 @@ local lsp = require("lspconfig")
 vim.diagnostic.config({
     virtual_text = {
         source = "always",
-        prefix = "❏ "
+        prefix = "⯀ "
     },
     severity_sort = true,
 })
@@ -13,9 +13,8 @@ vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<C
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -104,6 +103,16 @@ lsp.gopls.setup({
 })
 
 lsp.rls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+lsp.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+lsp.vuels.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
