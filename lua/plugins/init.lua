@@ -254,6 +254,15 @@ return packer.startup({
                 require("plugins.configs.lualine")
             end
         }
+        use { "kevinhwang91/nvim-bqf", ft = "qf" }
+        use {
+            "sindrets/diffview.nvim",
+            requires = "nvim-lua/plenary.nvim",
+            cmd = {"DiffviewOpen", "DiffviewFileHistory"},
+            config = function()
+                require("diffview").setup()
+            end
+        }
 
         -- language specific
         use {
