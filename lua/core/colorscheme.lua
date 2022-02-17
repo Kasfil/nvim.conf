@@ -58,6 +58,10 @@ local custom_hl = {
 
     -- Gitsigns
     GitSignsCurrentLineBlame = {fg = palette.waveBlue2},
+
+    -- bqf
+    BqfPreviewBorder = {fg = palette.springGreen, bg = palette.sumiInk0},
+    BqfPreviewFloat = {bg = palette.sumiInk0},
 }
 
 M.apply = function ()
