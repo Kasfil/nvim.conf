@@ -254,6 +254,7 @@ return packer.startup({
                 require("plugins.configs.lualine")
             end
         }
+        use { "kevinhwang91/nvim-bqf", ft = "qf" }
 
         -- language specific
         use {
