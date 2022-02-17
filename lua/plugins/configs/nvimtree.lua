@@ -34,8 +34,8 @@ require("nvim-tree").setup({
     },
     update_focused_file = {
         enable      = true,
-        update_cwd  = true,
-        ignore_list = {"help"}
+        update_cwd  = false,
+        ignore_list = {"help", "nowrite"}
     },
     system_open = {
         cmd  = nil,
