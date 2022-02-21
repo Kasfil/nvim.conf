@@ -123,6 +123,10 @@ return packer.startup({
 
         -- syntax highlighting
         use {
+            "yioneko/nvim-yati",
+            event = {"BufReadPre"}
+        }
+        use {
             "nvim-treesitter/nvim-treesitter",
             event = {"BufRead"},
             config = function()
@@ -204,6 +208,16 @@ return packer.startup({
             "mizlan/iswap.nvim",
             after = "nvim-treesitter",
         }
+        use {
+            "rmagatti/auto-session",
+            config = function()
+                require("auto-session").setup {
+                    log_level = "info",
+                    pre_save_cmds = {"NvimTreeClose"},
+                    post_restore_cmds = {"NvimTreeRefresh"},
+                }
+            end
+        }
 
         -- terminal
         use {
@@ -263,11 +277,12 @@ return packer.startup({
                 require("diffview").setup()
             end
         }
-
-        -- language specific
-        use {
-            "Vimjas/vim-python-pep8-indent",
-            ft = "python"
+        use{ "anuvyklack/pretty-fold.nvim",
+            event = {"BufRead"},
+            config = function()
+                require("pretty-fold").setup{}
+                require("pretty-fold.preview").setup()
+            end
         }
 
         -- colorschemes
