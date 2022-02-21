@@ -15,6 +15,7 @@ local setup_treesitter = function()
             enable = true,
             disable = {"python"}
         },
+        yati = { enable = true },
         incremental_selection = {
             enable = true,
             keymaps = {
