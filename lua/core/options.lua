@@ -45,6 +45,7 @@ opt.fillchars = {eob=" "}
 opt.formatoptions = "1jcroql"
 opt.signcolumn = "yes"
 opt.conceallevel = 2
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 local disabled_built_ins = {
     "2html_plugin",
