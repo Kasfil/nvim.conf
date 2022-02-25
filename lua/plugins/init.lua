@@ -89,6 +89,7 @@ return packer.startup({
         use {
             "jose-elias-alvarez/null-ls.nvim",
             event = "BufReadPost",
+            requires = { "nvim-lua/plenary.nvim" },
             config = function()
                 require("plugins.configs.null-ls")
             end
@@ -120,6 +121,17 @@ return packer.startup({
                 })
             end
         }
+        use {
+            "Pocco81/TrueZen.nvim",
+            cmd = {"TZMinimalist", "TZFocus", "TZAtaraxis"},
+            config = function()
+                require("true-zen").setup({
+                    integrations = {
+                        nvim_bufferline = true,
+                    },
+                })
+            end,
+        }
 
         -- syntax highlighting
         use {
@@ -145,6 +157,8 @@ return packer.startup({
         use {
             "danymat/neogen",
             after = "nvim-treesitter",
+            module = {"neogen"},
+            cmd = {"Neogen"},
             config = function()
                 require('neogen').setup {
                     enabled = true
