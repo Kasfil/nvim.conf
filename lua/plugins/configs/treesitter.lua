@@ -3,7 +3,7 @@ local treesitter = require("nvim-treesitter.configs")
 local setup_treesitter = function()
     local ensured = {
         "go", "gomod", "rust", "comment", "javascript", "typescript",
-        "python", "graphql", "json", "jsonc", "lua", "yaml", "toml"
+        "python", "graphql", "json", "jsonc", "lua", "yaml", "toml", "vue"
     }
 
     treesitter.setup({
@@ -15,7 +15,6 @@ local setup_treesitter = function()
             enable = true,
             disable = {"python"}
         },
-        yati = { enable = true },
         incremental_selection = {
             enable = true,
             keymaps = {

@@ -135,10 +135,6 @@ return packer.startup({
 
         -- syntax highlighting
         use {
-            "yioneko/nvim-yati",
-            event = {"BufReadPre"}
-        }
-        use {
             "nvim-treesitter/nvim-treesitter",
             event = {"BufRead"},
             config = function()
@@ -297,6 +293,12 @@ return packer.startup({
                 require("pretty-fold").setup{}
                 require("pretty-fold.preview").setup()
             end
+        }
+
+        -- language specific
+        use {
+            "hynek/vim-python-pep8-indent",
+            ft = "python",
         }
 
         -- colorschemes
