@@ -49,6 +49,11 @@ key("n", "<C-h>", "<C-w>h", noremap)
 key("n", "<C-j>", "<C-w>j", noremap)
 key("n", "<C-k>", "<C-w>k", noremap)
 
+-- zen mode
+key("n", "<leader>zf", ":TZFocus <CR>", noremap)
+key("n", "<leader>za", ":TZAtaraxis <CR>", noremap)
+key("n", "<leader>zm", ":TZMinimalist <CR>", noremap)
+
 -- Resize
 key("n", "<S-Right>", ":vertical resize +5 <CR>", noremap)
 key("n", "<S-Left>", ":vertical resize -5 <CR>", noremap)
