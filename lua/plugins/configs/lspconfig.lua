@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gf', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
@@ -54,8 +54,17 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- add nvim-cmp capabilities
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+-- basic lsp config servers
+local servers = {"rls", "vuels", "tsserver"}
+for _, server in pairs(servers) do
+    lsp[server].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+end
+
 local sumneko_root = os.getenv("HOME") .. "/github/lua-language-server"
-local sumneko_binary = sumneko_root .. "/bin/Linux/lua-language-server"
+local sumneko_binary = sumneko_root .. "/bin/lua-language-server"
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -88,8 +97,9 @@ lsp.jedi_language_server.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {
-        completion = {
-            disableSnippet = true,
+        codeAction = {
+            nameExtractVariable = "jls_extract_var",
+            nameExtractFunction = "jls_extract_def"
         },
         diagnostics = {
             enable = false,
@@ -104,20 +114,5 @@ lsp.gopls.setup({
 
         on_attach(client, bufnr)
     end,
-    capabilities = capabilities,
-})
-
-lsp.rls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
-lsp.tsserver.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
-lsp.vuels.setup({
-    on_attach = on_attach,
     capabilities = capabilities,
 })

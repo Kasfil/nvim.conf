@@ -43,22 +43,24 @@ key("n", "<space>K", lua_fn(function() require("dap.ui.widgets").hover() end), n
 key("n", "<space>ws", lua_fn(function() require("dap.ui.widgets").sidebar(require("dap.ui.widgets").frames).open() end), noremap)
 key("n", "<space>wc", lua_fn(function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end), noremap)
 
+-- [[ Currently this mapping handled by aserowy/tmux.nvim
 -- moving
-key("n", "<C-l>", "<C-w>l", noremap)
-key("n", "<C-h>", "<C-w>h", noremap)
-key("n", "<C-j>", "<C-w>j", noremap)
-key("n", "<C-k>", "<C-w>k", noremap)
+-- key("n", "<C-l>", "<C-w>l", noremap)
+-- key("n", "<C-h>", "<C-w>h", noremap)
+-- key("n", "<C-j>", "<C-w>j", noremap)
+-- key("n", "<C-k>", "<C-w>k", noremap)
+
+-- Resize
+-- key("n", "<S-Right>", ":vertical resize +5 <CR>", noremap)
+-- key("n", "<S-Left>", ":vertical resize -5 <CR>", noremap)
+-- key("n", "<S-Up>", ":resize +5 <CR>", noremap)
+-- key("n", "<S-Down>", ":resize -5 <CR>", noremap)
+-- ]]
 
 -- zen mode
 key("n", "<leader>zf", ":TZFocus <CR>", noremap)
 key("n", "<leader>za", ":TZAtaraxis <CR>", noremap)
 key("n", "<leader>zm", ":TZMinimalist <CR>", noremap)
-
--- Resize
-key("n", "<S-Right>", ":vertical resize +5 <CR>", noremap)
-key("n", "<S-Left>", ":vertical resize -5 <CR>", noremap)
-key("n", "<S-Up>", ":resize +5 <CR>", noremap)
-key("n", "<S-Down>", ":resize -5 <CR>", noremap)
 
 -- nvimtree
 key("n", "<A-n>", ":NvimTreeToggle <CR>", noremap)

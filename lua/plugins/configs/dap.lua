@@ -18,7 +18,7 @@ dap.defaults.fallback.force_external_terminal = true
 
 -- debugging signs
 vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="Error", linehl="", numhl=""})
-vim.fn.sign_define("DapBreakpointCondition", {text=" ", texthl="Error", linehl="", numhl=""})
+vim.fn.sign_define("DapBreakpointCondition", {text="⯁ ", texthl="Error", linehl="", numhl=""})
 vim.fn.sign_define("DapLogPoint", {text="⯁ ", texthl="Error", linehl="", numhl=""})
 vim.fn.sign_define("DapBreakpointRejected", {text=" ", texthl="Error", linehl="", numhl=""})
 vim.fn.sign_define("DapStopped", {text=" ", texthl="", linehl="debugPC", numhl=""})
@@ -78,7 +78,7 @@ table.insert(dap.configurations.python, {
     type = "python",
     request = "launch",
     program = vim.fn.getcwd() .. "/manage.py",
-    args = {"runserver", "--noreload", "--nothreading"},
+    args = { "runserver", "--noreload" },
     console = "externalTerminal",
 })
 

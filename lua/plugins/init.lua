@@ -180,8 +180,13 @@ return packer.startup({
             end
         }
         use {
-            "tpope/vim-surround",
+            "ur4ltz/surround.nvim",
             event = {"BufReadPost"},
+            config = function()
+                require("surround").setup({
+                    mappings_style = "surround",
+                })
+            end
         }
         use {
             "ethanholz/nvim-lastplace",
@@ -228,6 +233,17 @@ return packer.startup({
                 }
             end
         }
+        use {
+            "mfussenegger/nvim-dap",
+            requires = {
+                "mfussenegger/nvim-dap-python",
+                "leoluz/nvim-dap-go",
+            },
+            module = {"dap"},
+            config = function()
+                require("plugins.configs.dap")
+            end
+        }
 
         -- terminal
         use {
@@ -245,14 +261,21 @@ return packer.startup({
             end
         }
         use {
-            "mfussenegger/nvim-dap",
-            requires = {
-                "mfussenegger/nvim-dap-python",
-                "leoluz/nvim-dap-go",
-            },
-            module = {"dap"},
+            "aserowy/tmux.nvim",
             config = function()
-                require("plugins.configs.dap")
+                require("tmux").setup({
+                    copy_sync = {
+                        enable = false,
+                    },
+                    navigation = {
+                        enable_default_keybindings = true,
+                    },
+                    resize = {
+                        enable_default_keybindings = true,
+                        resize_step_x = 3,
+                        resize_step_y = 3,
+                    },
+                })
             end
         }
 

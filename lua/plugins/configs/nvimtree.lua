@@ -2,14 +2,6 @@ local g = vim.g
 
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_highlight_opened_files = 0
-g.nvim_tree_window_picker_exclude = {
-    filetype = {
-        "notify",
-        "packer",
-        "qf",
-        "Outline",
-    }
-}
 
 require("nvim-tree").setup({
     disable_netrw       = true,
@@ -27,12 +19,6 @@ require("nvim-tree").setup({
     },
     diagnostics = {
         enable = false,
-        icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-        }
     },
     update_focused_file = {
         enable      = true,
@@ -57,7 +43,7 @@ require("nvim-tree").setup({
         height = 30,
         hide_root_folder = true,
         side = "left",
-        auto_resize = false,
+        preserve_window_proportions = true,
         mappings = {
             custom_only = false,
             list = {}
@@ -68,5 +54,20 @@ require("nvim-tree").setup({
     trash = {
         cmd = "trash",
         require_confirm = true
+    },
+    actions = {
+        open_file = {
+            quit_on_open = false,
+            window_picker = {
+                exclude = {
+                    filetype = {
+                        "notify",
+                        "packer",
+                        "qf",
+                        "Outline",
+                    }
+                }
+            }
+        }
     }
 })
