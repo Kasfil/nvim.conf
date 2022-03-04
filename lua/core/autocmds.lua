@@ -17,3 +17,6 @@ vim.cmd [[
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=700})
     augroup END
 ]]
+
+-- nvim lightbulb
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]

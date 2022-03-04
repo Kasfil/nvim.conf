@@ -122,15 +122,11 @@ return packer.startup({
             end
         }
         use {
-            "Pocco81/TrueZen.nvim",
-            cmd = {"TZMinimalist", "TZFocus", "TZAtaraxis"},
+            "kosayoda/nvim-lightbulb",
+            module = {"nvim-lightbulb"},
             config = function()
-                require("true-zen").setup({
-                    integrations = {
-                        nvim_bufferline = true,
-                    },
-                })
-            end,
+                require("nvim-lightbulb").setup()
+            end
         }
 
         -- syntax highlighting
@@ -233,6 +229,19 @@ return packer.startup({
                 }
             end
         }
+        use {
+            "Pocco81/TrueZen.nvim",
+            cmd = {"TZMinimalist", "TZFocus", "TZAtaraxis"},
+            config = function()
+                require("true-zen").setup({
+                    integrations = {
+                        nvim_bufferline = true,
+                    },
+                })
+            end,
+        }
+
+        -- debugging
         use {
             "mfussenegger/nvim-dap",
             requires = {
