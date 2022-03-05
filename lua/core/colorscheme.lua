@@ -55,6 +55,7 @@ local custom_hl = {
 
     -- dap nvim
     DebugPC = {bg = palette.winterRed},
+    DapStatusLine = {bg = "NONE", fg = palette.roninYellow, style = "bold"},
 
     -- Gitsigns
     GitSignsCurrentLineBlame = {fg = palette.waveBlue2},
