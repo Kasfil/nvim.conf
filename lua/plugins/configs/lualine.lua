@@ -1,3 +1,5 @@
+local dap = require("dap")
+
 -- [[
 -- this code stolen from https://www.reddit.com/r/neovim/comments/t48x5i/comment/hyx6fkl/?utm_source=share&utm_medium=web2x&context=3
 local gstatus = { ahead = 0, behind = 0 }
@@ -33,7 +35,16 @@ require"lualine".setup {
     },
     sections = {
         lualine_a = {"mode"},
-        lualine_b = {},
+        lualine_b = {
+            {
+                function() return "  DAP mode active" end,
+                cond = function()
+                    return dap.session() ~= nil
+                end,
+                color = "DapStatusLine",
+            },
+            "filetype",
+        },
         lualine_c = {
             {
                 "filename",
@@ -56,10 +67,9 @@ require"lualine".setup {
                     removed = "-"
                 },
             },
-            {"branch", icon = ""},
             { function() return gstatus.ahead.."↑ "..gstatus.behind.."↓" end },
         },
-        lualine_y = {"filetype"},
+        lualine_y = {{"branch", icon = ""}},
         lualine_z = {"location"}
     },
     inactive_sections = {
