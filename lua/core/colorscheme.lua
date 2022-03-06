@@ -60,6 +60,11 @@ local custom_hl = {
     -- Gitsigns
     GitSignsCurrentLineBlame = {fg = palette.waveBlue2},
 
+    -- neogit
+    NeogitNotificationInfo = {fg = palette.springBlue},
+    NeogitNotificationWarning = {fg = palette.carpYellow},
+    NeogitNotificationError = {fg = palette.peachRed},
+
     -- bqf
     BqfPreviewBorder = {fg = palette.springGreen, bg = palette.sumiInk0},
     BqfPreviewFloat = {bg = palette.sumiInk0},

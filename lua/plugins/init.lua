@@ -36,16 +36,22 @@ return packer.startup({
 
         -- git integration
         use {
-            "tpope/vim-fugitive",
-            requires = { "tpope/vim-dispatch" },
-            cmd = { "G", "Git" },
-        }
-        use {
             "lewis6991/gitsigns.nvim",
             requires = {"nvim-lua/plenary.nvim"},
             event = "VimEnter",
             config = function()
                 require("plugins.configs.gitsigns")
+            end
+        }
+        use {
+            "TimUntersberger/neogit",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "sindrets/diffview.nvim",
+            },
+            cmd = {"Neogit"},
+            config = function()
+                require("plugins.configs.neogit")
             end
         }
 
