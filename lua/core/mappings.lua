@@ -1,5 +1,4 @@
-local lua_fn = require("core.map_utils").lua_fn
-local key = vim.api.nvim_set_keymap
+local key = vim.keymap.set
 
 local noremap = { noremap = true, silent = true }
 
@@ -27,21 +26,21 @@ key("n", "<A-\\>", "<CMD>sp<CR>", noremap)
 
 -- nvim dap
 -- debugger mapping
-key("n", "<F5>", lua_fn(function() require("dap").continue() end), noremap)
-key("n", "<F17>", lua_fn(function() require("dap").terminate() end), noremap)
-key("n", "<F4>", lua_fn(function() require("dap").run_last() end), noremap)
-key("n", "<F10>", lua_fn(function() require("dap").step_over() end), noremap)
-key("n", "<F9>", lua_fn(function() require("dap").step_into() end), noremap)
-key("n", "<F21>", lua_fn(function() require("dap").step_out() end), noremap)
-key("n", "<leader>dc", lua_fn(function() require("dap").clear_breakpoints() end), noremap)
-key("n", "<leader>db", lua_fn(function() require("dap").toggle_breakpoint() end), noremap)
-key("n", "<leader>dB", lua_fn(function() require("dap").set_breakpoint(vim.fn.input("condition: ")) end), noremap)
-key("n", "<leader>dl", lua_fn(function() require("dap").set_breakpoint(nil, nil, vim.fn.input("log point message: ")) end), noremap)
-key("n", "<leader>dr", lua_fn(function() require("dap").repl.open() end), noremap)
+key("n", "<F5>", function() require("dap").continue() end, noremap)
+key("n", "<F17>", function() require("dap").terminate() end, noremap)
+key("n", "<F4>", function() require("dap").run_last() end, noremap)
+key("n", "<F10>", function() require("dap").step_over() end, noremap)
+key("n", "<F9>", function() require("dap").step_into() end, noremap)
+key("n", "<F21>", function() require("dap").step_out() end, noremap)
+key("n", "<leader>dc", function() require("dap").clear_breakpoints() end, noremap)
+key("n", "<leader>db", function() require("dap").toggle_breakpoint() end, noremap)
+key("n", "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("condition: ")) end, noremap)
+key("n", "<leader>dl", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("log point message: ")) end, noremap)
+key("n", "<leader>dr", function() require("dap").repl.open() end, noremap)
 -- debugger widget
-key("n", "<space>K", lua_fn(function() require("dap.ui.widgets").hover() end), noremap)
-key("n", "<space>ws", lua_fn(function() require("dap.ui.widgets").sidebar(require("dap.ui.widgets").frames).open() end), noremap)
-key("n", "<space>wc", lua_fn(function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end), noremap)
+key("n", "<space>K", function() require("dap.ui.widgets").hover() end, noremap)
+key("n", "<space>ws", function() require("dap.ui.widgets").sidebar(require("dap.ui.widgets").frames).open() end, noremap)
+key("n", "<space>wc", function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end, noremap)
 
 -- [[ Currently this mapping handled by aserowy/tmux.nvim
 -- moving
