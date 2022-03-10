@@ -2,6 +2,13 @@ local g = vim.g
 
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_highlight_opened_files = 0
+g.nvim_tree_icons = {
+    git = {
+        untracked = "",
+        deleted = "",
+        ignored = "",
+    }
+}
 
 require("nvim-tree").setup({
     disable_netrw       = true,
