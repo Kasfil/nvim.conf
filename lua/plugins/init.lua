@@ -338,6 +338,7 @@ return packer.startup({
             "hynek/vim-python-pep8-indent",
             ft = "python",
         }
+        use {"ellisonleao/glow.nvim", cmd = {"Glow"}}
 
         -- colorschemes
         use { "rebelot/kanagawa.nvim" }
