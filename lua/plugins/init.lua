@@ -332,6 +332,14 @@ return packer.startup({
                 require("pretty-fold.preview").setup()
             end
         }
+        use {
+            "toppair/reach.nvim",
+            module = {"reach"},
+            config = function()
+                require("reach").setup()
+            end
+        }
+        use {"nathom/filetype.nvim"}
 
         -- language specific
         use {
