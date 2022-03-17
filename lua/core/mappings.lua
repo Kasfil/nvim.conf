@@ -11,8 +11,10 @@ key("n", "<leader>bp", ":BufferLinePick <CR>", noremap)
 key("n", "<leader>bc", ":BufferLinePickClose <CR>", noremap)
 key("n", "<leader>ff", ":Telescope find_files <CR>", noremap)
 key("n", "<leader>fw", ":Telescope live_grep <CR>", noremap)
-key("n", "<leader>fb", ":Telescope buffers <CR>", noremap)
 key("n", "<leader>fh", ":Telescope help_tags <CR>", noremap)
+
+-- reach nvim
+key("n", "<leader>fb", function() require("reach").buffers() end, noremap)
 
 -- Space mapping
 key("n", "<space>o", ":SymbolsOutline<CR>", noremap)
