@@ -20,7 +20,9 @@ local custom_hl = {
     -- normal
     NonText = {fg = palette.sumiInk3},
     CursorLine = {bg = palette.sumiInk2},
-    VertSplit = {fg = palette.sumiInk0, style = "bold" },
+    WinSeparator = {fg = palette.sumiInk4},
+    -- LineNr = {bg = palette.sumiInk0},
+    -- SignColumn = {bg = palette.sumiInk0},
 
     -- treesitter
     -- TSComment = {fg = palette.subtle, style = "italic"},
