@@ -43,7 +43,16 @@ opt.previewheight = 15
 opt.laststatus = 2
 opt.list = true
 opt.listchars = {tab="»·",nbsp="+",trail="·",extends="→",precedes="←",eol="↲"}
-opt.fillchars = {eob=" "}
+opt.fillchars = {
+    eob=" ",
+    horiz = '━',
+    horizup = '┻',
+    horizdown = '┳',
+    vert = '┃',
+    vertleft  = '┫',
+    vertright = '┣',
+    verthoriz = '╋',
+}
 opt.formatoptions = "1jcroql"
 opt.signcolumn = "yes"
 opt.conceallevel = 2
