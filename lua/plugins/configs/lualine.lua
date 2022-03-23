@@ -31,7 +31,8 @@ require"lualine".setup {
         theme = "kanagawa",
         section_separators = {left = "", right = ""},
         component_separators = {left = "", right = ""},
-        disabled_filetypes = {"packer", "toggleterm"}
+        disabled_filetypes = {"packer", "toggleterm"},
+        globalstatus = true,
     },
     sections = {
         lualine_a = {"mode"},
