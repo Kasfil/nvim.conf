@@ -13,9 +13,6 @@ dap.defaults.fallback.external_terminal = {
     },
 }
 
--- force to use external terminal
-dap.defaults.fallback.force_external_terminal = true
-
 -- debugging signs
 vim.fn.sign_define("DapBreakpoint", {text=" ", texthl="Error", linehl="", numhl=""})
 vim.fn.sign_define("DapBreakpointCondition", {text="⯁ ", texthl="Error", linehl="", numhl=""})
@@ -69,7 +66,6 @@ table.insert(dap.configurations.python, {
 
         return args
     end,
-    console = "externalTerminal",
     subProcess = false,
 })
 
@@ -79,11 +75,4 @@ table.insert(dap.configurations.python, {
     request = "launch",
     program = vim.fn.getcwd() .. "/manage.py",
     args = { "runserver", "--noreload" },
-    console = "externalTerminal",
 })
-
-dap.listeners.after["event_debugpyAttach"]["dap-python"] = function(_, config)
-    local session = require("dap.session"):connect(config.connect, {}, vim.inspect)
-    session:initialize(config)
-    dap.set_session(session)
-end
