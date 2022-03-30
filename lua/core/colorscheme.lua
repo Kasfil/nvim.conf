@@ -22,7 +22,9 @@ local custom_hl = {
     CursorLine = {bg = palette.sumiInk2},
     WinSeparator = {fg = palette.sumiInk4},
     -- LineNr = {bg = palette.sumiInk0},
-    -- SignColumn = {bg = palette.sumiInk0},
+
+    -- virtcolumn
+    VirtColumn = {fg = palette.sumiInk2},
 
     -- treesitter
     -- TSComment = {fg = palette.subtle, style = "italic"},
