@@ -22,3 +22,20 @@ autocmd({"CursorHold", "CursorHoldI"}, {
         require("nvim-lightbulb").update_lightbulb()
     end
 })
+
+-- disable virt-column in certain filetype and buftype
+local disable_virt_column = augroup("NoVirtColumn", {clear = true})
+autocmd("FileType", {
+    group = disable_virt_column,
+    pattern = {"toggleterm", "help"},
+    callback = function()
+        require("virt-column").setup_buffer({virtcolumn = ""})
+    end
+})
+autocmd("BufAdd", {
+    group = disable_virt_column,
+    pattern = {"terminal"},
+    callback = function()
+        require("virt-column").setup_buffer({virtcolumn = ""})
+    end
+})
