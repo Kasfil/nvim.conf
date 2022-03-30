@@ -153,6 +153,15 @@ return packer.startup({
             end
         }
         use {
+            "lukas-reineke/virt-column.nvim",
+            event = {"BufRead"},
+            config = function()
+                require("virt-column").setup({
+                    virtcolumn = "80,100"
+                })
+            end
+        }
+        use {
             "danymat/neogen",
             after = "nvim-treesitter",
             module = {"neogen"},
