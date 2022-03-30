@@ -20,8 +20,6 @@ local single_revive = h.make_builtin({
         from_stderr = false,
         ignore_stderr = false,
         args = {
-            "-config",
-            "./revive.toml",
             "-formatter",
             "json",
             "$FILENAME",
