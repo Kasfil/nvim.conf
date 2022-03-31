@@ -43,16 +43,24 @@ return packer.startup({
                 require("plugins.configs.gitsigns")
             end
         }
+        -- use {
+        --     "TimUntersberger/neogit",
+        --     requires = {
+        --         "nvim-lua/plenary.nvim",
+        --         "sindrets/diffview.nvim",
+        --     },
+        --     cmd = {"Neogit"},
+        --     config = function()
+        --         require("plugins.configs.neogit")
+        --     end
+        -- }
         use {
-            "TimUntersberger/neogit",
-            requires = {
-                "nvim-lua/plenary.nvim",
-                "sindrets/diffview.nvim",
-            },
-            cmd = {"Neogit"},
-            config = function()
-                require("plugins.configs.neogit")
-            end
+            "tpope/vim-fugitive",
+            cmd = {
+                "G", "Git", "GBrowse", "Gdiff",
+                "Gstatus", "Gdiffsplit", "Gvdiffsplit",
+                "Gread", "Gwrite",
+            }
         }
 
         -- lsp stuff
