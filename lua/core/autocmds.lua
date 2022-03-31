@@ -39,3 +39,12 @@ autocmd("BufAdd", {
         require("virt-column").setup_buffer({virtcolumn = ""})
     end
 })
+
+autocmd("FileType", {
+    pattern = {"fugitive"},
+    callback = function()
+        local opts = { buffer=true, silent=true, noremap=true }
+        vim.keymap.set("n", "cP", ":Git -c push.default=current push<CR>", opts)
+        vim.keymap.set("n", "cp", ":Git pull<CR>", opts)
+    end
+})
