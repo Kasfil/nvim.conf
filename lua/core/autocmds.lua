@@ -3,7 +3,7 @@ local augroup = vim.api.nvim_create_augroup
 
 -- close window with q
 autocmd("FileType", {
-    pattern = {"dap-float", "qf"},
+    pattern = {"dap-float", "qf", "git", "fugitive", "gitcommit"},
     command = "nnoremap <buffer><silent> q <cmd>close!<CR>"
 })
 
@@ -27,7 +27,7 @@ autocmd({"CursorHold", "CursorHoldI"}, {
 local disable_virt_column = augroup("NoVirtColumn", {clear = true})
 autocmd("FileType", {
     group = disable_virt_column,
-    pattern = {"toggleterm", "help"},
+    pattern = {"toggleterm", "help", "fugitive", "gitcommit"},
     callback = function()
         require("virt-column").setup_buffer({virtcolumn = ""})
     end
