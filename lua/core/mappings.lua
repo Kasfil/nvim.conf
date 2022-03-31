@@ -19,7 +19,7 @@ key("n", "<leader>fb", function() require("reach").buffers() end, noremap)
 -- Space mapping
 key("n", "<space>o", ":SymbolsOutline<CR>", noremap)
 key("n", "<space>d", ":TroubleToggle<CR>", noremap)
-key("n", "<space>g", ":Neogit<CR>", noremap)
+key("n", "<space>g", ":G<CR>", noremap)
 key("n", "<space>t", ":ToggleTerm<CR>", noremap)
 
 key("n", "<ESC>", ":nohlsearch <CR>", noremap)
