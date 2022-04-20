@@ -58,6 +58,10 @@ opt.signcolumn = "yes"
 opt.conceallevel = 2
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
+if g.neovide == true then
+    opt.guifont = [[JetBrains Mono:h10.7]]
+end
+
 local disabled_built_ins = {
     "2html_plugin",
     "getscript",

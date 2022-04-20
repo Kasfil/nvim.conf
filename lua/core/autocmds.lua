@@ -27,7 +27,7 @@ autocmd({"CursorHold", "CursorHoldI"}, {
 local disable_virt_column = augroup("NoVirtColumn", {clear = true})
 autocmd("FileType", {
     group = disable_virt_column,
-    pattern = {"toggleterm", "help", "fugitive", "gitcommit"},
+    pattern = {"toggleterm", "help", "fugitive", "gitcommit", "glowpreview"},
     callback = function()
         require("virt-column").setup_buffer({virtcolumn = ""})
     end

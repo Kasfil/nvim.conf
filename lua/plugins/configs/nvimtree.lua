@@ -1,8 +1,4 @@
-local g = vim.g
-
-g.nvim_tree_indent_markers = 1
-g.nvim_tree_highlight_opened_files = 0
-g.nvim_tree_icons = {
+vim.g.nvim_tree_icons = {
     git = {
         untracked = "",
         deleted = "",
@@ -45,12 +41,17 @@ require("nvim-tree").setup({
         ignore = false,
         timeout = 500,
     },
+    renderer = {
+        indent_markers = {
+            enable = true,
+        }
+    },
     view = {
         width = 32,
         height = 30,
         hide_root_folder = true,
         side = "left",
-        preserve_window_proportions = true,
+        preserve_window_proportions = false,
         mappings = {
             custom_only = false,
             list = {}

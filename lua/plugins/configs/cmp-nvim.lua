@@ -4,6 +4,34 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 require("nvim-autopairs").setup()
 
+local cmp_kinds = {
+    Text = '  ',
+    Method = '  ',
+    Function = '  ',
+    Constructor = '  ',
+    Field = '  ',
+    Variable = '  ',
+    Class = '  ',
+    Interface = '  ',
+    Module = '  ',
+    Property = '  ',
+    Unit = '  ',
+    Value = '  ',
+    Enum = '  ',
+    Keyword = '  ',
+    Snippet = '  ',
+    Color = '  ',
+    File = '  ',
+    Reference = '  ',
+    Folder = '  ',
+    EnumMember = '  ',
+    Constant = '  ',
+    Struct = '  ',
+    Event = '  ',
+    Operator = '  ',
+    TypeParameter = '  ',
+}
+
 local has_word_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
         return false
@@ -18,10 +46,15 @@ cmp.setup({
             luasnip.lsp_expand(args.body)
         end
     },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     sources = {
         { name = "nvim_lsp"},
         { name = "nvim_lua" },
         { name = "luasnip" },
+        { name = "nvim_lsp_signature_help" },
         { name = "path" },
         { name = "buffer" },
     },
@@ -52,7 +85,7 @@ cmp.setup({
             end
         end, { "i", "s" }),
 
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-e>'] = cmp.mapping({
@@ -63,6 +96,12 @@ cmp.setup({
             behavior = cmp.ConfirmBehavior.Insert,
             select = false
         }),
+    },
+    formatting = {
+        format = function(_, vim_item)
+            vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+            return vim_item
+        end,
     },
 })
 

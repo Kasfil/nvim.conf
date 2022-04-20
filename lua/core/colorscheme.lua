@@ -23,6 +23,9 @@ local custom_hl = {
     WinSeparator = {fg = palette.sumiInk4},
     -- LineNr = {bg = palette.sumiInk0},
 
+    -- HTML (mostly linked by markdown)
+    htmlBoldItalic = {fg = palette.oniViolet, style = "bold,italic"},
+
     -- virtcolumn
     VirtColumn = {fg = palette.sumiInk2},
 
@@ -72,6 +75,11 @@ local custom_hl = {
     -- bqf
     BqfPreviewBorder = {fg = palette.springGreen, bg = palette.sumiInk0},
     BqfPreviewFloat = {bg = palette.sumiInk0},
+
+    -- dressing
+    DressingInput = {bg = palette.sumiInk1, fg = palette.fujiWhite},
+    DressingBorder = {bg = palette.sumiInk1, fg = palette.autumnYellow},
+    FloatTitle = {bg = palette.sumiInk1, fg = palette.autumnYellow, style = "bold,italic"},
 }
 
 M.apply = function ()

@@ -5,6 +5,9 @@ local t = ls.text_node
 local i = ls.insert_node
 local c = ls.choice_node
 
+-- load vscode snippet or friendly snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+
 ls.snippets = {
     python = {
         s("adef", {
@@ -47,8 +50,6 @@ ls.snippets = {
         })
     }
 }
-
-ls.filetype_extend("python", {"python"})
 
 local current_nsid = vim.api.nvim_create_namespace("LuaSnipChoiceListSelections")
 local current_win = nil
@@ -139,6 +140,3 @@ au User LuasnipChoiceNodeLeave lua ChoisePopupClose()
 au User LuasnipChangeChoice lua UpdateChoicePopup(require("luasnip").session.event_node)
 augroup END
 ]])
-
-vim.api.nvim_set_keymap("i", "<C-F>", "<Plug>luasnip-next-choice", {})
-vim.api.nvim_set_keymap("s", "<C-F>", "<Plug>luasnip-next-choice", {})

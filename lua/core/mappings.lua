@@ -20,7 +20,8 @@ key("n", "<leader>fb", function() require("reach").buffers() end, noremap)
 key("n", "<space>o", ":SymbolsOutline<CR>", noremap)
 key("n", "<space>d", ":TroubleToggle<CR>", noremap)
 key("n", "<space>g", ":G<CR>", noremap)
-key("n", "<space>t", ":ToggleTerm<CR>", noremap)
+key("n", "<space>tt", ":ToggleTerm direction=horizontal<CR>", noremap)
+key("n", "<space>tf", ":ToggleTerm direction=float<CR>", noremap)
 
 key("n", "<ESC>", ":nohlsearch <CR>", noremap)
 key("n", "<C-\\>", "<CMD>vsp<CR>", noremap)
@@ -84,6 +85,9 @@ key("v", "J", ":m '>+1<CR>gv=gv", noremap)
 key("v", "K", ":m '<-2<CR>gv=gv", noremap)
 key("n", "<A-Up>", ":m .-2<CR>==", noremap)
 key("n", "<A-Down>", ":m .+1<CR>==", noremap)
+
+-- luasnip
+key({"i","s"}, "<C-F>", "<Plug>luasnip-nex-choice", {silent = true})
 
 -- terminal mode
 key("t", "<esc>", "<C-\\><C-n>", noremap)

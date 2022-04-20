@@ -28,45 +28,17 @@ pydap.setup("python")
 pydap.test_runner = "pytest"
 
 table.insert(dap.configurations.python, {
-    name = "uvicorn",
+    name = "Exec file",
     type = "python",
     request = "launch",
-    module = "uvicorn",
-    args = function()
-        local args = {}
-
-        -- app name
-        local app = vim.fn.input("app (index:app): ")
-        if app == "" then
-            app = "index:app"
-        end
-        table.insert(args, app)
-
-        -- port to run
-        local port = vim.fn.input("port (8000): ")
-        if (port == nil or port == "") then
-            port = 8000
-        else
-            port = tonumber(port)
-        end
-        table.insert(args, "--port=" .. port)
-
-        -- ask should enable reload?
-        local reload = vim.fn.input("enable reload? (y/N): ")
-        local reload_exclude = {".*", "tmp", "log*"}
-        if string.lower(reload) == "y" then
-            -- enable reload
-            table.insert(args, "--reload")
-            table.insert(args, "--reload-delay=0.5")
-            -- exclude regular excluded file and folder
-            for _, item in pairs(reload_exclude) do
-                table.insert(args, "--reload-exclude=" .. item)
-            end
-        end
-
-        return args
+    program = function()
+        local app = vim.fn.input("filename: ")
+        return "${workspaceFolder}/" .. app
     end,
-    subProcess = false,
+    args = function()
+        local args_string = vim.fn.input("Arguments: ")
+        return vim.split(args_string, " +")
+    end,
 })
 
 table.insert(dap.configurations.python, {

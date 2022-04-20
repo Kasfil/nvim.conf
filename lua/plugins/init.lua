@@ -43,17 +43,6 @@ return packer.startup({
                 require("plugins.configs.gitsigns")
             end
         }
-        -- use {
-        --     "TimUntersberger/neogit",
-        --     requires = {
-        --         "nvim-lua/plenary.nvim",
-        --         "sindrets/diffview.nvim",
-        --     },
-        --     cmd = {"Neogit"},
-        --     config = function()
-        --         require("plugins.configs.neogit")
-        --     end
-        -- }
         use {
             "tpope/vim-fugitive",
             cmd = {
@@ -66,33 +55,26 @@ return packer.startup({
         -- lsp stuff
         use {
             "hrsh7th/nvim-cmp",
-            event = "BufReadPre",
-            requires = {
-                "windwp/nvim-autopairs",
-                {
-                    "L3MON4D3/LuaSnip",
-                    config = function()
-                        require("plugins.configs.luasnip")
-                    end
-                }
-            },
+            event = { "InsertEnter" },
+            requires = { "windwp/nvim-autopairs" },
             config = function()
                 require("plugins.configs.cmp-nvim")
             end
         }
-        use { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" }
+        use { "rafamadriz/friendly-snippets", event = { "BufReadPre" } }
+        use {
+            "L3MON4D3/LuaSnip",
+            event = {"BufReadPre"},
+            config = function()
+                require("plugins.configs.luasnip")
+            end
+        }
+        use { "saadparwaiz1/cmp_luasnip", event = {"BufReadPre"} }
         use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
         use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua", module = "cmp_nvim_lsp" }
         use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
         use { "hrsh7th/cmp-path", after = "cmp-buffer" }
-        use { "rafamadriz/friendly-snippets", after = "LuaSnip" }
-        use {
-            "ray-x/lsp_signature.nvim",
-            after = "nvim-cmp",
-            config = function()
-                require("plugins.configs.lsp_signature")
-            end
-        }
+        use { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" }
         use {
             "neovim/nvim-lspconfig",
             event = "BufReadPre",
@@ -164,9 +146,7 @@ return packer.startup({
             "lukas-reineke/virt-column.nvim",
             event = {"BufRead"},
             config = function()
-                require("virt-column").setup({
-                    virtcolumn = "80,100"
-                })
+                require("plugins.configs.virtcolumn")
             end
         }
         use {
@@ -192,20 +172,15 @@ return packer.startup({
         }
         use {
             "kyazdani42/nvim-tree.lua",
-            cmd = {"NvimTreeToggle", "NvimTreeFocus"},
+            cmd = {"NvimTreeToggle", "NvimTreeFocus", "NvimTreeRefresh", "NvimTreeClose"},
             requires = {"kyazdani42/nvim-web-devicons"},
             config = function()
                 require("plugins.configs.nvimtree")
             end
         }
         use {
-            "ur4ltz/surround.nvim",
+            "tpope/vim-surround",
             event = {"BufReadPost"},
-            config = function()
-                require("surround").setup({
-                    mappings_style = "surround",
-                })
-            end
         }
         use {
             "ethanholz/nvim-lastplace",
@@ -248,7 +223,6 @@ return packer.startup({
                 require("auto-session").setup {
                     log_level = "info",
                     pre_save_cmds = {"NvimTreeClose"},
-                    post_restore_cmds = {"NvimTreeRefresh"},
                 }
             end
         }
@@ -280,6 +254,7 @@ return packer.startup({
         -- terminal
         use {
             "akinsho/toggleterm.nvim",
+            -- disable = true,
             cmd = { "ToggleTerm" },
             config = function()
                 require("toggleterm").setup({
@@ -287,7 +262,8 @@ return packer.startup({
                     size = 13,
                     direction = "horizontal",
                     float_opts = {
-                        border = "rounded",
+                        border = "double",
+                        windblend = 12,
                     },
                 })
             end
@@ -314,6 +290,7 @@ return packer.startup({
         -- user interfaces
         use {
             "akinsho/bufferline.nvim",
+            -- disable = true,
             event = {"VimEnter"},
             config = function()
                 require("plugins.configs.bufferline")
@@ -356,14 +333,33 @@ return packer.startup({
                 require("reach").setup()
             end
         }
-        use {"nathom/filetype.nvim"}
+        use { "nathom/filetype.nvim" }
+        use {
+            "JASONews/glow-hover",
+            event = {"BufReadPost"},
+            config = function()
+                require("glow-hover").setup()
+            end
+        }
+        use {
+            "stevearc/dressing.nvim",
+            config = function()
+                require("plugins.configs.dressing")
+            end,
+        }
 
         -- language specific
         use {
             "hynek/vim-python-pep8-indent",
             ft = "python",
         }
-        use {"ellisonleao/glow.nvim", cmd = {"Glow"}}
+        use {
+            "ellisonleao/glow.nvim",
+            setup = function()
+                vim.g.glow_width = 90
+            end,
+            cmd = {"Glow"}
+        }
 
         -- colorschemes
         use { "rebelot/kanagawa.nvim" }
