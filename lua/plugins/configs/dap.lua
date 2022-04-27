@@ -48,3 +48,10 @@ table.insert(dap.configurations.python, {
     program = vim.fn.getcwd() .. "/manage.py",
     args = { "runserver", "--noreload" },
 })
+
+table.insert(dap.configurations.go, {
+    name = "Run Main",
+    type = "go",
+    request = "launch",
+    program = "${workspaceFolder}" .. "/main.go"
+})

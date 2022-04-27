@@ -16,13 +16,6 @@ autocmd("TextYankPost", {
     end
 })
 
--- nvim lightbulb
-autocmd({"CursorHold", "CursorHoldI"}, {
-    callback = function()
-        require("nvim-lightbulb").update_lightbulb()
-    end
-})
-
 -- disable virt-column in certain filetype and buftype
 local disable_virt_column = augroup("NoVirtColumn", {clear = true})
 autocmd("FileType", {
@@ -46,5 +39,21 @@ autocmd("FileType", {
         local opts = { buffer=true, silent=true, noremap=true }
         vim.keymap.set("n", "cP", ":Git -c push.default=current push<CR>", opts)
         vim.keymap.set("n", "cp", ":Git pull<CR>", opts)
+    end
+})
+
+local leap_on = augroup("LeapOn", {clear = true})
+autocmd({"User LeapEnter"}, {
+    group = leap_on,
+    pattern = "*",
+    command = "let g:leap_active = 1",
+})
+autocmd({"User LeapLeave"}, {
+    group = leap_on,
+    pattern = "*",
+    callback = function()
+        if vim.g.leap_active ~= nil then
+            vim.api.nvim_del_var("leap_active")
+        end
     end
 })

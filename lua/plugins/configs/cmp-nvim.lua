@@ -1,5 +1,7 @@
+local prequire = require("core.utils").prequire
+
 local cmp = require("cmp")
-local luasnip = require("luasnip")
+local luasnip = prequire("luasnip")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 require("nvim-autopairs").setup()
@@ -45,10 +47,6 @@ cmp.setup({
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
     },
     sources = {
         { name = "nvim_lsp"},

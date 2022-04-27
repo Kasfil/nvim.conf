@@ -12,5 +12,10 @@ require("bufferline").setup({
                 text_align = "center"
             }
         },
+    },
+    highlights = {
+        buffer_selected = {
+            gui = "bold"
+        }
     }
 })

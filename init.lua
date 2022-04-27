@@ -1,6 +1,6 @@
 require("core.options")
 require("plugins")
-require("packer_compiled")
-require("core.colorscheme").apply()
+require("core.colorscheme")
 require("core.mappings")
 require("core.autocmds")
+require("packer_compiled")

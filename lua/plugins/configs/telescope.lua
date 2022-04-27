@@ -1,6 +1,8 @@
 local telescope = require("telescope")
 local action = require("telescope.actions")
 
+telescope.load_extension("persisted")
+
 local default = {
     defaults = {
         vimgrep_arguments = {

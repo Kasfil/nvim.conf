@@ -15,10 +15,6 @@ local config = {
         end
     },
     compile_path = vim.fn.stdpath("config").."/lua/packer_compiled.lua",
-    profile = {
-        enable = true,
-        threshold = 1,
-    }
 }
 
 local packer = require("packer")
@@ -31,6 +27,14 @@ return packer.startup({
             "lewis6991/impatient.nvim",
             config = function()
                 require("impatient")
+            end
+        }
+
+        -- syntax highlighting
+        use {
+            "nvim-treesitter/nvim-treesitter",
+            config = function()
+                require("plugins.configs.treesitter")
             end
         }
 
@@ -55,26 +59,30 @@ return packer.startup({
         -- lsp stuff
         use {
             "hrsh7th/nvim-cmp",
+            module = {"cmp", "cmp_nvim_lsp"},
             event = { "InsertEnter" },
-            requires = { "windwp/nvim-autopairs" },
             config = function()
                 require("plugins.configs.cmp-nvim")
             end
         }
-        use { "rafamadriz/friendly-snippets", event = { "BufReadPre" } }
+        use {
+            "windwp/nvim-autopairs",
+            module = "nvim-autopairs.completion.cmp",
+        }
+        use "rafamadriz/friendly-snippets"
         use {
             "L3MON4D3/LuaSnip",
-            event = {"BufReadPre"},
+            event = "VimEnter",
             config = function()
                 require("plugins.configs.luasnip")
             end
         }
-        use { "saadparwaiz1/cmp_luasnip", event = {"BufReadPre"} }
-        use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-        use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua", module = "cmp_nvim_lsp" }
-        use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-        use { "hrsh7th/cmp-path", after = "cmp-buffer" }
-        use { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" }
+        use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
+        use { "hrsh7th/cmp-nvim-lua" }
+        use { "hrsh7th/cmp-nvim-lsp" }
+        use { "hrsh7th/cmp-buffer" }
+        use { "hrsh7th/cmp-path" }
+        use { "hrsh7th/cmp-nvim-lsp-signature-help" }
         use {
             "neovim/nvim-lspconfig",
             event = "BufReadPre",
@@ -117,22 +125,6 @@ return packer.startup({
                 })
             end
         }
-        use {
-            "kosayoda/nvim-lightbulb",
-            module = {"nvim-lightbulb"},
-            config = function()
-                require("nvim-lightbulb").setup()
-            end
-        }
-
-        -- syntax highlighting
-        use {
-            "nvim-treesitter/nvim-treesitter",
-            event = {"BufRead"},
-            config = function()
-                require("plugins.configs.treesitter")
-            end
-        }
 
         -- utilities
         use {
@@ -162,12 +154,13 @@ return packer.startup({
             requires = "nvim-treesitter/nvim-treesitter"
         }
         use {
-            "ggandor/lightspeed.nvim",
+            "ggandor/leap.nvim",
             event = "BufReadPost",
             config = function()
-                require("lightspeed").setup({
-                    repeat_ft_with_target_char = true,
-                })
+                local leap = require("leap")
+                leap.setup({})
+                leap.set_default_keymaps()
+                leap.init_highlight()
             end
         }
         use {
@@ -203,7 +196,7 @@ return packer.startup({
         }
         use {
             "simrat39/symbols-outline.nvim",
-            cmd = {"SymbolsOutline"},
+            cmd = {"SymbolsOutline", "SymbolsOutlineClose"},
             config = function()
                 require("plugins.configs.outline")
             end
@@ -218,13 +211,11 @@ return packer.startup({
             after = "nvim-treesitter",
         }
         use {
-            "rmagatti/auto-session",
+            "olimorris/persisted.nvim",
+            event = "VimEnter",
             config = function()
-                require("auto-session").setup {
-                    log_level = "info",
-                    pre_save_cmds = {"NvimTreeClose"},
-                }
-            end
+                require("plugins.configs.persisted")
+            end,
         }
         use {
             "Pocco81/TrueZen.nvim",
@@ -334,13 +325,6 @@ return packer.startup({
             end
         }
         use { "nathom/filetype.nvim" }
-        use {
-            "JASONews/glow-hover",
-            event = {"BufReadPost"},
-            config = function()
-                require("glow-hover").setup()
-            end
-        }
         use {
             "stevearc/dressing.nvim",
             config = function()

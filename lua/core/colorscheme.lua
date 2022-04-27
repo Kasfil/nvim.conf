@@ -1,20 +1,9 @@
 local palette = require("kanagawa.colors").setup()
 
-require('kanagawa').setup({
-    undercurl = true,           -- enable undercurls
-    commentStyle = "italic",
-    functionStyle = "NONE",
-    keywordStyle = "NONE",
-    statementStyle = "bold",
-    typeStyle = "NONE",
-    variablebuiltinStyle = "NONE",
-    specialReturn = true,       -- special highlight for the return keyword
-    specialException = true,    -- special highlight for exception handling keywords
-    transparent = false,        -- do not set background color
-    dimInactive = false,        -- dim inactive window `:h hl-NormalNC`
-})
-
-local M = {}
+local colors = {
+    lightgreen = "#7ae582",
+    lightblue = "#77aaff",
+}
 
 local custom_hl = {
     -- normal
@@ -51,11 +40,13 @@ local custom_hl = {
     TelescopeSelectionCaret = {fg = palette.waveRed, bg = palette.sumiInk3},
 
     -- Lightspeed
-    LightspeedLabel = {fg = palette.sumiInk0, bg = palette.surimiOrange},
-    LightspeedLabelOverlapped = {fg = palette.sumiInk0, bg = palette.waveRed},
-    LightspeedShortcut = {fg = palette.sumiInk0, bg = palette.surimiOrange},
-    LightspeedShortcutOverlapped = {fg = palette.sumiInk0, bg = palette.waveRed},
-    LightspeedOneCharMatch = {fg = palette.sumiInk0, bg = palette.waveRed},
+    LeapBackdrop = {fg = palette.fujiGray},
+    -- LightspeedLabel = {fg = palette.sumiInk2, bg = colors.lightgreen},
+    -- LightspeedLabelOverlapped = {fg = palette.sumiInk2, bg = colors.lightblue},
+    -- LightspeedShortcut = {link = "LightspeedLabel"},
+    -- LightspeedShortcutOverlapped = {link = "LightspeedLabelOverlapped"},
+    -- LightspeedOneCharMatch = {link = "LightspeedLabel"},
+    -- LightspeedUniqueChar = {fg = palette.sumiInk2, bg = palette.surimiOrange},
 
     -- SymbolsOutline
     FocusedSymbol = {bg = palette.sumiInk0, fg = palette.carpYellow},
@@ -82,20 +73,11 @@ local custom_hl = {
     FloatTitle = {bg = palette.sumiInk1, fg = palette.autumnYellow, style = "bold,italic"},
 }
 
-M.apply = function ()
+require("kanagawa").setup({
+    dimInactive = false,
+    globalStatus = true,
+    overrides = custom_hl,
+    colors = colors,
+})
 
-    vim.cmd("colorscheme kanagawa")
-
-    -- apply custom highlight
-    for group, color in pairs(custom_hl) do
-        local style = color.style and "gui=" .. color.style or "gui=NONE"
-        local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
-        local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
-        local sp = color.sp and "guisp=" .. color.sp or ""
-
-        local hl = "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp
-        vim.cmd(hl)
-    end
-end
-
-return M
+vim.cmd("colorscheme kanagawa")

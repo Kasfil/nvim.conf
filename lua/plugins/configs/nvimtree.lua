@@ -11,15 +11,10 @@ require("nvim-tree").setup({
     hijack_netrw        = true,
     open_on_setup       = false,
     ignore_ft_on_setup  = {},
-    auto_close          = false,
     open_on_tab         = false,
     hijack_cursor       = true,
     update_cwd          = false,
     hijack_unnamed_buffer_when_opening = false,
-    update_to_buf_dir   = {
-        enable = true,
-        auto_open = true,
-    },
     diagnostics = {
         enable = false,
     },
@@ -68,13 +63,9 @@ require("nvim-tree").setup({
             quit_on_open = false,
             window_picker = {
                 exclude = {
-                    filetype = {
-                        "notify",
-                        "packer",
-                        "qf",
-                        "Outline",
-                    }
-                }
+                    filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", "Outline" },
+                    buftype = { "nofile", "terminal", "help" },
+                },
             }
         }
     }
