@@ -62,6 +62,9 @@ local sources = {
 
     -- rust
     b.formatting.rustfmt,
+
+    -- json
+    b.diagnostics.jsonlint,
 }
 
 null_ls.setup({
