@@ -222,9 +222,7 @@ return packer.startup({
             cmd = {"TZMinimalist", "TZFocus", "TZAtaraxis"},
             config = function()
                 require("true-zen").setup({
-                    integrations = {
-                        nvim_bufferline = true,
-                    },
+                    integrations = {},
                 })
             end,
         }
@@ -279,14 +277,6 @@ return packer.startup({
         }
 
         -- user interfaces
-        use {
-            "akinsho/bufferline.nvim",
-            -- disable = true,
-            event = {"VimEnter"},
-            config = function()
-                require("plugins.configs.bufferline")
-            end
-        }
         use {
             "lukas-reineke/indent-blankline.nvim",
             event = {"BufRead"},
