@@ -10,6 +10,7 @@ local custom_hl = {
     NonText = {fg = palette.sumiInk3},
     CursorLine = {bg = palette.sumiInk2},
     WinSeparator = {fg = palette.sumiInk4},
+    SideWin = {fg = palette.fujiWhite, bg = palette.sumiInk0},
     -- LineNr = {bg = palette.sumiInk0},
 
     -- HTML (mostly linked by markdown)
@@ -17,6 +18,10 @@ local custom_hl = {
 
     -- virtcolumn
     VirtColumn = {fg = palette.sumiInk2},
+
+    -- nvim-tree
+    NvimTreeNormal = {link = "SideWin"},
+    NvimTreeNormalNC = {link = "SideWin"},
 
     -- treesitter
     -- TSComment = {fg = palette.subtle, style = "italic"},
