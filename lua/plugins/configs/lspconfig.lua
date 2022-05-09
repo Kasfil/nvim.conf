@@ -3,7 +3,7 @@ local lsp = require("lspconfig")
 vim.diagnostic.config({
     virtual_text = {
         source = "always",
-        prefix = "⯀ "
+        prefix = "■ "
     },
     severity_sort = true,
 })
