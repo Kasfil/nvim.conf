@@ -226,6 +226,21 @@ return packer.startup({
                 })
             end,
         }
+        use {
+            "klen/nvim-test",
+            cmd = {
+                "TestSuite",
+                "TestFile",
+                "TestEdit",
+                "TestNearest",
+                "TestLast",
+                "TestVisit",
+                "TestInfo",
+            },
+            config = function()
+                require("plugins.configs.nvim-test")
+            end
+        }
 
         -- debugging
         use {
@@ -301,10 +316,11 @@ return packer.startup({
             end
         }
         use{ "anuvyklack/pretty-fold.nvim",
+            requires = {"anuvyklack/nvim-keymap-amend"},
             event = {"BufRead"},
             config = function()
                 require("pretty-fold").setup{}
-                require("pretty-fold.preview").setup()
+                require("pretty-fold.preview").setup({})
             end
         }
         use {
