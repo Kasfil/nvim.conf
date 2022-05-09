@@ -14,7 +14,9 @@ key("n", "<leader>fw", ":Telescope live_grep <CR>", noremap)
 key("n", "<leader>fh", ":Telescope help_tags <CR>", noremap)
 
 -- reach nvim
-key("n", "<leader>fb", function() require("reach").buffers() end, noremap)
+key("n", "<leader>fb", function() require("reach").buffers({
+    auto_exclude_handles = {"1","2","3","4","5","6","7","8","9","0"},
+}) end, noremap)
 
 -- Space mapping
 key("n", "<space>o", ":SymbolsOutline<CR>", noremap)
