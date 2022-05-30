@@ -27,15 +27,15 @@ local custom_hl = {
     -- TSComment = {fg = palette.subtle, style = "italic"},
 
     -- Telescope
-    TelescopePromptNormal = {bg = palette.sumiInk3, fg = palette.fujiWhite},
-    TelescopePromptBorder = {bg = palette.sumiInk3, fg = palette.sumiInk3},
-    TelescopePromptTitle = {bg = palette.springGreen, fg = palette.sumiInk3},
-    TelescopePromptPrefix = {fg = palette.springGreen, bg = palette.sumiInk3},
-    TelescopePromptCounter = {fg = palette.springGreen},
+    TelescopePromptNormal = {bg = palette.autumnGreen, fg = palette.sumiInk3},
+    TelescopePromptBorder = {bg = palette.autumnGreen, fg = palette.autumnGreen},
+    TelescopePromptTitle = {bg = palette.autumnYellow, fg = palette.sumiInk3},
+    TelescopePromptPrefix = {fg = palette.sumiInk3, bg = palette.autumnGreen},
+    TelescopePromptCounter = {fg = palette.sumiInk3},
 
-    TelescopeResultsNormal = {bg = palette.sumiInk0},
-    TelescopeResultsBorder = {bg = palette.sumiInk0, fg = palette.sumiInk0},
-    TelescopeResultsTitle = {bg = palette.sumiInk0, fg = palette.sumiInk0},
+    TelescopeResultsNormal = {bg = palette.sumiInk2},
+    TelescopeResultsBorder = {bg = palette.sumiInk2, fg = palette.sumiInk2},
+    TelescopeResultsTitle = {bg = palette.sumiInk2, fg = palette.sumiInk2},
 
     TelescopePreviewNormal = {bg = palette.sumiInk0},
     TelescopePreviewBorder = {bg = palette.sumiInk0, fg = palette.sumiInk0},
@@ -46,15 +46,9 @@ local custom_hl = {
 
     -- Lightspeed
     LeapBackdrop = {fg = palette.fujiGray},
-    -- LightspeedLabel = {fg = palette.sumiInk2, bg = colors.lightgreen},
-    -- LightspeedLabelOverlapped = {fg = palette.sumiInk2, bg = colors.lightblue},
-    -- LightspeedShortcut = {link = "LightspeedLabel"},
-    -- LightspeedShortcutOverlapped = {link = "LightspeedLabelOverlapped"},
-    -- LightspeedOneCharMatch = {link = "LightspeedLabel"},
-    -- LightspeedUniqueChar = {fg = palette.sumiInk2, bg = palette.surimiOrange},
 
     -- SymbolsOutline
-    FocusedSymbol = {bg = palette.sumiInk0, fg = palette.carpYellow},
+    FocusedSymbol = {bg = "NONE"},
 
     -- dap nvim
     DebugPC = {bg = palette.winterRed},

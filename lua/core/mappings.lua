@@ -21,7 +21,7 @@ key("n", "<leader>fb", function() require("reach").buffers({
 -- Space mapping
 key("n", "<space>o", ":SymbolsOutline<CR>", noremap)
 key("n", "<space>d", ":TroubleToggle<CR>", noremap)
-key("n", "<space>g", ":G<CR>", noremap)
+key("n", "<space>g", ":Neogit<CR>", noremap)
 key("n", "<space>tt", ":ToggleTerm direction=horizontal<CR>", noremap)
 key("n", "<space>tf", ":ToggleTerm direction=float<CR>", noremap)
 

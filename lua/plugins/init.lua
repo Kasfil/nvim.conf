@@ -48,12 +48,28 @@ return packer.startup({
             end
         }
         use {
-            "tpope/vim-fugitive",
-            cmd = {
-                "G", "Git", "GBrowse", "Gdiff",
-                "Gstatus", "Gdiffsplit", "Gvdiffsplit",
-                "Gread", "Gwrite",
-            }
+            "TimUntersberger/neogit",
+            requires = "nvim-lua/plenary.nvim",
+            cmd = { "Neogit" },
+            config = function()
+                require("neogit").setup({
+                    disable_commit_confirmation = false,
+                    signs = {
+                        section = {" ", " "},
+                        item = {" ", " "},
+                        hunk = {" ", " "},
+                    },
+                    integrations = {
+                        diffview = true,
+                    }
+                })
+            end
+        }
+        use {
+            "akinsho/git-conflict.nvim",
+            config = function()
+                require("git-conflict").setup()
+            end
         }
 
         -- lsp stuff

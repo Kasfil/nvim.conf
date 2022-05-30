@@ -1,11 +1,3 @@
-vim.g.nvim_tree_icons = {
-    git = {
-        untracked = "",
-        deleted = "",
-        ignored = "",
-    }
-}
-
 require("nvim-tree").setup({
     disable_netrw       = true,
     hijack_netrw        = true,
@@ -39,6 +31,15 @@ require("nvim-tree").setup({
     renderer = {
         indent_markers = {
             enable = true,
+        },
+        icons = {
+            glyphs = {
+                git = {
+                    untracked = "",
+                    deleted = "",
+                    ignored = "",
+                }
+            }
         }
     },
     view = {

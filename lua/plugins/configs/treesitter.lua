@@ -11,6 +11,6 @@ treesitter.setup({
     },
     indent = {
         enable = true,
-        disable = {"python"}
+        disable = {"python", "yaml"}
     },
 })
