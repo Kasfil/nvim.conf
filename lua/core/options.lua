@@ -8,6 +8,7 @@ local wildignore = {
     "**/tmp/**", "**/node_modules/**", "**/bower_modules/**", "**/__pycache__/**"
 }
 
+opt.equalalways = false
 opt.termguicolors = true
 opt.mouse = "a"
 opt.hidden = true
@@ -18,7 +19,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = false
 opt.title = true
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.cul = true
 opt.expandtab = true
 opt.shiftwidth = 4
