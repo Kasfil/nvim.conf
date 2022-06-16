@@ -14,7 +14,7 @@ local custom_hl = {
     -- LineNr = {bg = palette.sumiInk0},
 
     -- HTML (mostly linked by markdown)
-    htmlBoldItalic = {fg = palette.oniViolet, style = "bold,italic"},
+    htmlBoldItalic = {fg = palette.oniViolet, italic = true, bold = true},
 
     -- virtcolumn
     VirtColumn = {fg = palette.sumiInk2},
@@ -24,7 +24,7 @@ local custom_hl = {
     NvimTreeNormalNC = {link = "SideWin"},
 
     -- treesitter
-    -- TSComment = {fg = palette.subtle, style = "italic"},
+    -- Comment = {fg = palette.fujiGray, italic = true},
 
     -- Telescope
     TelescopePromptNormal = {bg = palette.autumnGreen, fg = palette.sumiInk3},
@@ -52,7 +52,7 @@ local custom_hl = {
 
     -- dap nvim
     DebugPC = {bg = palette.winterRed},
-    DapStatusLine = {bg = "NONE", fg = palette.roninYellow, style = "bold"},
+    DapStatusLine = {bg = "NONE", fg = palette.roninYellow, bold = true},
 
     -- Gitsigns
     GitSignsCurrentLineBlame = {fg = palette.waveBlue2},
@@ -69,10 +69,11 @@ local custom_hl = {
     -- dressing
     DressingInput = {bg = palette.sumiInk1, fg = palette.fujiWhite},
     DressingBorder = {bg = palette.sumiInk1, fg = palette.autumnYellow},
-    FloatTitle = {bg = palette.sumiInk1, fg = palette.autumnYellow, style = "bold,italic"},
+    FloatTitle = {bg = palette.sumiInk1, fg = palette.autumnYellow, bold = true, italic = true},
 }
 
 require("kanagawa").setup({
+    commentStyle = { italic = true },
     dimInactive = false,
     globalStatus = true,
     overrides = custom_hl,
