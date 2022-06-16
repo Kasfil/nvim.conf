@@ -98,7 +98,13 @@ return packer.startup({
         use { "hrsh7th/cmp-nvim-lsp" }
         use { "hrsh7th/cmp-buffer" }
         use { "hrsh7th/cmp-path" }
-        use { "hrsh7th/cmp-nvim-lsp-signature-help" }
+        use {
+            "ray-x/lsp_signature.nvim",
+            after = "nvim-lspconfig",
+            config = function()
+                require("plugins.configs.lspsignature")
+            end
+        }
         use {
             "neovim/nvim-lspconfig",
             event = "BufReadPre",
