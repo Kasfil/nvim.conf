@@ -1,8 +1,8 @@
 require("nvim-test").setup({
     term = "toggleterm",
     termOpts = {
-        direction = "float",
-        width = 180,
+        direction = "vertical",
+        width = 102,
         height = 45,
     },
 })
