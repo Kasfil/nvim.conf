@@ -8,7 +8,7 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -32,7 +32,7 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -55,7 +55,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- basic lsp config servers
-local servers = {"rls", "vuels", "tsserver"}
+local servers = { "rls", "vuels", "tsserver" }
 for _, server in pairs(servers) do
     lsp[server].setup({
         on_attach = on_attach,
@@ -73,7 +73,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 lsp.sumneko_lua.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = {sumneko_binary},
+    cmd = { sumneko_binary },
     settings = {
         Lua = {
             runtime = {
@@ -81,7 +81,7 @@ lsp.sumneko_lua.setup({
                 path = runtime_path,
             },
             diagnostics = {
-                globals = {"vim"},
+                globals = { "vim" },
             },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true),
