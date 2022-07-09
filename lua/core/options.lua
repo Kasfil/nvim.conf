@@ -19,7 +19,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = false
 opt.title = true
-opt.cmdheight = 0
+opt.cmdheight = 1
 opt.cul = true
 opt.expandtab = true
 opt.shiftwidth = 4
@@ -43,13 +43,13 @@ opt.pumheight = 15
 opt.previewheight = 15
 opt.laststatus = 2
 opt.list = true
-opt.listchars = {tab="»·",nbsp="+",trail="·",extends="→",precedes="←",eol="↲"}
+opt.listchars = { tab = "»·", nbsp = "+", trail = "·", extends = "→", precedes = "←", eol = "↲" }
 opt.fillchars = {
-    eob=" ",
-    horiz = '━',
-    horizup = '┻',
+    eob       = " ",
+    horiz     = '━',
+    horizup   = '┻',
     horizdown = '┳',
-    vert = '┃',
+    vert      = '┃',
     vertleft  = '┫',
     vertright = '┣',
     verthoriz = '╋',
