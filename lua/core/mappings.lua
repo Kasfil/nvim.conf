@@ -15,8 +15,9 @@ key("n", "<leader>fh", ":Telescope help_tags <CR>", noremap)
 
 -- reach nvim
 key("n", "<leader>fb", function() require("reach").buffers({
-    auto_exclude_handles = {"1","2","3","4","5","6","7","8","9","0"},
-}) end, noremap)
+        auto_exclude_handles = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" },
+    })
+end, noremap)
 
 -- Space mapping
 key("n", "<space>o", ":SymbolsOutline<CR>", noremap)
@@ -34,7 +35,7 @@ key("n", "<A-\\>", "<CMD>sp<CR>", noremap)
 key("n", "<F5>", function() require("dap").continue() end, noremap)
 key("n", "<F17>", function() require("dap").terminate() end, noremap)
 key("n", "<F4>", function() require("dap").run_last() end, noremap)
-key("n", "<F10>", function() require("dap").step_over() end, noremap)
+key("n", "<F10>", function() require("dap").step_over({}) end, noremap)
 key("n", "<F9>", function() require("dap").step_into() end, noremap)
 key("n", "<F21>", function() require("dap").step_out() end, noremap)
 key("n", "<leader>dc", function() require("dap").clear_breakpoints() end, noremap)
@@ -71,8 +72,8 @@ key("n", "<A-n>", ":NvimTreeToggle <CR>", noremap)
 key("n", "<A-N>", ":NvimTreeFocus <CR>", noremap)
 
 -- bufferline
-key("n", "<TAB>",  ":BufferLineCycleNext <CR>", noremap)
-key("n", "<S-TAB>",  ":BufferLineCyclePrev <CR>", noremap)
+-- key("n", "<TAB>", ":BufferLineCycleNext <CR>", noremap)
+-- key("n", "<S-TAB>", ":BufferLineCyclePrev <CR>", noremap)
 
 key("n", "Y", "y$", noremap)
 key("n", "n", "nzzzv", noremap)
@@ -89,7 +90,7 @@ key("n", "<A-Up>", ":m .-2<CR>==", noremap)
 key("n", "<A-Down>", ":m .+1<CR>==", noremap)
 
 -- luasnip
-key({"i","s"}, "<C-F>", "<Plug>luasnip-nex-choice", {silent = true})
+key({ "i", "s" }, "<C-F>", "<Plug>luasnip-nex-choice", { silent = true })
 
 -- terminal mode
 key("t", "<esc>", "<C-\\><C-n>", noremap)
