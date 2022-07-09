@@ -11,14 +11,13 @@ end
 local config = {
     display = {
         open_fn = function()
-            return require("packer.util").float({border = "single"})
+            return require("packer.util").float({ border = "single" })
         end
     },
-    compile_path = vim.fn.stdpath("config").."/lua/packer_compiled.lua",
+    compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 }
 
 local packer = require("packer")
-
 return packer.startup({
     function(use)
         -- ensure packer is not removed
@@ -41,7 +40,7 @@ return packer.startup({
         -- git integration
         use {
             "lewis6991/gitsigns.nvim",
-            requires = {"nvim-lua/plenary.nvim"},
+            requires = { "nvim-lua/plenary.nvim" },
             event = "VimEnter",
             config = function()
                 require("plugins.configs.gitsigns")
@@ -55,9 +54,9 @@ return packer.startup({
                 require("neogit").setup({
                     disable_commit_confirmation = false,
                     signs = {
-                        section = {" ", " "},
-                        item = {" ", " "},
-                        hunk = {" ", " "},
+                        section = { " ", " " },
+                        item = { " ", " " },
+                        hunk = { " ", " " },
                     },
                     integrations = {
                         diffview = true,
@@ -75,7 +74,7 @@ return packer.startup({
         -- lsp stuff
         use {
             "hrsh7th/nvim-cmp",
-            module = {"cmp", "cmp_nvim_lsp"},
+            module = { "cmp", "cmp_nvim_lsp" },
             event = { "InsertEnter" },
             config = function()
                 require("plugins.configs.cmp-nvim")
@@ -122,15 +121,15 @@ return packer.startup({
         }
         use {
             "folke/lsp-trouble.nvim",
-            requires = {"kyazdani42/nvim-web-devicons"},
-            cmd = {"TroubleToggle"},
+            requires = { "kyazdani42/nvim-web-devicons" },
+            cmd = { "TroubleToggle" },
             config = function()
                 require("plugins.configs.trouble")
             end
         }
         use {
             "rmagatti/goto-preview",
-            keys = {"gpd", "gpi"},
+            keys = { "gpd", "gpi" },
             config = function()
                 require("plugins.configs.goto-preview")
             end
@@ -151,14 +150,14 @@ return packer.startup({
         -- utilities
         use {
             "numToStr/Comment.nvim",
-            event = {"BufReadPost"},
+            event = { "BufReadPost" },
             config = function()
                 require("Comment").setup()
             end
         }
         use {
             "lukas-reineke/virt-column.nvim",
-            event = {"BufRead"},
+            event = { "BufRead" },
             config = function()
                 require("plugins.configs.virtcolumn")
             end
@@ -166,8 +165,8 @@ return packer.startup({
         use {
             "danymat/neogen",
             after = "nvim-treesitter",
-            module = {"neogen"},
-            cmd = {"Neogen"},
+            module = { "neogen" },
+            cmd = { "Neogen" },
             config = function()
                 require('neogen').setup {
                     enabled = true
@@ -187,30 +186,33 @@ return packer.startup({
         }
         use {
             "kyazdani42/nvim-tree.lua",
-            cmd = {"NvimTreeToggle", "NvimTreeFocus", "NvimTreeRefresh", "NvimTreeClose"},
-            requires = {"kyazdani42/nvim-web-devicons"},
+            cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeRefresh", "NvimTreeClose" },
+            requires = { "kyazdani42/nvim-web-devicons" },
             config = function()
                 require("plugins.configs.nvimtree")
             end
         }
         use {
-            "tpope/vim-surround",
-            event = {"BufReadPost"},
+            "kylechui/nvim-surround",
+            event = { "BufReadPost" },
+            config = function()
+                require("nvim-surround").setup()
+            end
         }
         use {
             "ethanholz/nvim-lastplace",
-            event = {"BufRead"},
+            event = { "BufRead" },
             config = function()
                 require("nvim-lastplace").setup({
-                    lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-                    lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+                    lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+                    lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
                     lastplace_open_folds = true
                 })
             end
         }
         use {
             "nvim-telescope/telescope.nvim",
-            requires = {"nvim-lua/plenary.nvim"},
+            requires = { "nvim-lua/plenary.nvim" },
             cmd = "Telescope",
             config = function()
                 require("plugins.configs.telescope")
@@ -218,7 +220,7 @@ return packer.startup({
         }
         use {
             "simrat39/symbols-outline.nvim",
-            cmd = {"SymbolsOutline", "SymbolsOutlineClose"},
+            cmd = { "SymbolsOutline", "SymbolsOutlineClose" },
             config = function()
                 require("plugins.configs.outline")
             end
@@ -241,12 +243,25 @@ return packer.startup({
         }
         use {
             "Pocco81/TrueZen.nvim",
-            cmd = {"TZMinimalist", "TZFocus", "TZAtaraxis"},
+            cmd = { "TZMinimalist", "TZFocus", "TZAtaraxis" },
             config = function()
                 require("true-zen").setup({
                     integrations = {},
                 })
             end,
+        }
+        use {
+            "folke/todo-comments.nvim",
+            requires = "nvim-lua/plenary.nvim",
+            cmd = {
+                "TodoQuickFix",
+                "TodoLocList",
+                "TodoTrouble",
+                "TodoTelescope",
+            },
+            config = function()
+                require("todo-comments").setup({})
+            end
         }
         use {
             "klen/nvim-test",
@@ -271,7 +286,7 @@ return packer.startup({
                 "mfussenegger/nvim-dap-python",
                 "leoluz/nvim-dap-go",
             },
-            module = {"dap"},
+            module = { "dap" },
             config = function()
                 require("plugins.configs.dap")
             end
@@ -316,7 +331,7 @@ return packer.startup({
         -- user interfaces
         use {
             "lukas-reineke/indent-blankline.nvim",
-            event = {"BufRead"},
+            event = { "BufRead" },
             config = function()
                 require("plugins.configs.indentblankline")
             end
@@ -332,22 +347,22 @@ return packer.startup({
         use {
             "sindrets/diffview.nvim",
             requires = "nvim-lua/plenary.nvim",
-            cmd = {"DiffviewOpen", "DiffviewFileHistory"},
+            cmd = { "DiffviewOpen", "DiffviewFileHistory" },
             config = function()
                 require("diffview").setup()
             end
         }
-        use{ "anuvyklack/pretty-fold.nvim",
-            requires = {"anuvyklack/nvim-keymap-amend"},
-            event = {"BufRead"},
+        use { "anuvyklack/pretty-fold.nvim",
+            requires = { "anuvyklack/nvim-keymap-amend" },
+            event = { "BufRead" },
             config = function()
-                require("pretty-fold").setup{}
+                require("pretty-fold").setup {}
                 require("pretty-fold.preview").setup({})
             end
         }
         use {
             "toppair/reach.nvim",
-            module = {"reach"},
+            module = { "reach" },
             config = function()
                 require("reach").setup()
             end
@@ -370,7 +385,7 @@ return packer.startup({
             setup = function()
                 vim.g.glow_width = 90
             end,
-            cmd = {"Glow"}
+            cmd = { "Glow" }
         }
 
         -- colorschemes
