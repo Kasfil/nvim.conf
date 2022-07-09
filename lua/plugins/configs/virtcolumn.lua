@@ -1,3 +1,3 @@
 require("virt-column").setup({
-    virtcolumn = "88,100"
+    virtcolumn = "80,88,100"
 })
