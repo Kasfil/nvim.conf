@@ -31,6 +31,7 @@ table.insert(dap.configurations.python, {
     name = "Exec file",
     type = "python",
     request = "launch",
+    console = "integratedTerminal",
     program = function()
         local app = vim.fn.input("filename: ")
         return "${workspaceFolder}/" .. app
@@ -45,6 +46,7 @@ table.insert(dap.configurations.python, {
     name = "Django",
     type = "python",
     request = "launch",
+    console = "integratedTerminal",
     program = vim.fn.getcwd() .. "/manage.py",
     args = { "runserver", "--noreload" },
 })
