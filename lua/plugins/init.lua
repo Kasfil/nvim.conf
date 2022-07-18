@@ -196,7 +196,7 @@ return packer.startup({
             "kylechui/nvim-surround",
             event = { "BufReadPost" },
             config = function()
-                require("nvim-surround").setup()
+                require("plugins.configs.nvim-surround")
             end
         }
         use {
