@@ -73,6 +73,16 @@ local custom_hl = {
 
     -- nvim-surround
     NvimSurroundHighlightTextObject = { link = "IncSearch" },
+
+    -- neotest
+    NeotestAdapterName = { fg = palette.fujiWhite, bold = true },
+    NeotestDir = { fg = palette.springBlue },
+    NeotestFile = { fg = palette.autumnYellow, bold = true },
+    NeotestTest = { fg = palette.carpYellow, bold = true },
+    NeotestNamespace = { fg = palette.waveBlue2 },
+    NeotestFocused = { fg = palette.sumiInk2, bg = palette.roninYellow, bold = true },
+    NeotestMarked = { fg = palette.sumiInk2, bg = colors.lightgreen, bold = true },
+    NeotestWinSelect = { link = "SideWin" },
 }
 
 require("kanagawa").setup({

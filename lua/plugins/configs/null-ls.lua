@@ -17,6 +17,11 @@ local sources = {
 
     -- json
     b.diagnostics.jsonlint,
+
+    -- javascript
+    b.code_actions.eslint_d,
+    b.diagnostics.eslint_d,
+    b.formatting.eslint_d,
 }
 
 null_ls.setup({

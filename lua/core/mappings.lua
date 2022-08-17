@@ -1,8 +1,18 @@
 local key = vim.keymap.set
+local path = require("plenary.path")
 
 local noremap = { noremap = true, silent = true }
 
-key("n", "<leader>w", ":write! <CR>", noremap) -- write buffer
+key("n", "<leader>w", function()
+    vim.notify(
+        path:new(vim.call("expand", "%")):normalize() .. " saved",
+        "info",
+        {
+            title = "notification",
+        }
+    )
+    vim.cmd("write")
+end, noremap) -- write buffer
 key("n", "<leader>x", ":Bdelete! <CR>", noremap) -- close buffer w/o ruin your window
 
 key("n", "<leader>q", ":q! <CR>", noremap)
@@ -41,7 +51,8 @@ key("n", "<F21>", function() require("dap").step_out() end, noremap)
 key("n", "<leader>dc", function() require("dap").clear_breakpoints() end, noremap)
 key("n", "<leader>db", function() require("dap").toggle_breakpoint() end, noremap)
 key("n", "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("condition: ")) end, noremap)
-key("n", "<leader>dl", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("log point message: ")) end, noremap)
+key("n", "<leader>dl", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("log point message: ")) end,
+    noremap)
 key("n", "<leader>dr", function() require("dap").repl.open() end, noremap)
 -- debugger widget
 key("n", "<space>K", function() require("dap.ui.widgets").hover() end, noremap)
@@ -90,7 +101,10 @@ key("n", "<A-Up>", ":m .-2<CR>==", noremap)
 key("n", "<A-Down>", ":m .+1<CR>==", noremap)
 
 -- luasnip
-key({ "i", "s" }, "<C-F>", "<Plug>luasnip-nex-choice", { silent = true })
+key({ "i", "s" }, "<C-F>", "<Plug>luasnip-next-choice", { silent = true })
+
+-- neotest
+key("n", "<leader>tv", ":NeotestSummaryToggle <CR>", noremap)
 
 -- terminal mode
 key("t", "<esc>", "<C-\\><C-n>", noremap)

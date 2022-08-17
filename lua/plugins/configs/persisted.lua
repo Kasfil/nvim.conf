@@ -1,5 +1,6 @@
 require("persisted").setup({
     autoload = true,
+    autosave = true,
     before_save = function()
         local cmds = {
             "NvimTreeClose",
@@ -7,7 +8,9 @@ require("persisted").setup({
         }
 
         for _, cmd in ipairs(cmds) do
-            vim.cmd(cmd)
+            vim.notify("running " .. cmd, "warning")
+            -- prevent error
+            pcall(function() vim.cmd(cmd) end)
         end
     end
 })

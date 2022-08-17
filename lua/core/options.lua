@@ -19,7 +19,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = false
 opt.title = true
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.cul = true
 opt.expandtab = true
 opt.shiftwidth = 4
@@ -41,7 +41,7 @@ opt.showmode = false
 opt.shortmess = "aoOTIcF"
 opt.pumheight = 15
 opt.previewheight = 15
-opt.laststatus = 2
+opt.laststatus = 3
 opt.list = true
 opt.listchars = { tab = "»·", nbsp = "+", trail = "·", extends = "→", precedes = "←", eol = "↲" }
 opt.fillchars = {
@@ -60,7 +60,9 @@ opt.conceallevel = 2
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 if g.neovide == true then
-    opt.guifont = [[JetBrains Mono:h10.7]]
+    opt.guifont = [[JetBrains Mono:h10]]
+    g.neovide_cursor_animation_length = 0.09
+    -- g.neovide_fullscreen = true
 end
 
 local disabled_built_ins = {

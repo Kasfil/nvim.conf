@@ -33,6 +33,9 @@ require("nvim-tree").setup({
             enable = true,
         },
         icons = {
+            show = {
+                folder_arrow = false,
+            },
             glyphs = {
                 git = {
                     untracked = "",

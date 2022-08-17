@@ -61,7 +61,7 @@ cmp.setup({
                 cmp.select_next_item()
             elseif require("neogen").jumpable() then
                 require("neogen").jump_next()
-            elseif luasnip.expand_or_jumpable() then
+            elseif luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
             elseif has_word_before() then
                 cmp.complete()
@@ -73,10 +73,10 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif require("neogen").jumpable(true) then
+            elseif require("neogen").jumpable(-1) then
                 require("neogen").jump_prev()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            elseif luasnip.expand_or_locally_jumpable(-1) then
+                luasnip.expand_or_jump(-1)
             else
                 fallback()
             end

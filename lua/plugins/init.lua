@@ -84,9 +84,9 @@ return packer.startup({
             "windwp/nvim-autopairs",
             module = "nvim-autopairs.completion.cmp",
         }
-        use "rafamadriz/friendly-snippets"
         use {
             "L3MON4D3/LuaSnip",
+            requires = { "rafamadriz/friendly-snippets" },
             event = "VimEnter",
             config = function()
                 require("plugins.configs.luasnip")
@@ -140,7 +140,7 @@ return packer.startup({
             config = function()
                 require("fidget").setup({
                     text = {
-                        spinner = "arrow",
+                        spinner = "dots_snake",
                         done = "✓",
                     }
                 })
@@ -236,13 +236,12 @@ return packer.startup({
         }
         use {
             "olimorris/persisted.nvim",
-            event = "VimEnter",
             config = function()
                 require("plugins.configs.persisted")
             end,
         }
         use {
-            "Pocco81/TrueZen.nvim",
+            "Pocco81/true-zen.nvim",
             cmd = { "TZMinimalist", "TZFocus", "TZAtaraxis" },
             config = function()
                 require("true-zen").setup({
@@ -253,29 +252,32 @@ return packer.startup({
         use {
             "folke/todo-comments.nvim",
             requires = "nvim-lua/plenary.nvim",
-            cmd = {
-                "TodoQuickFix",
-                "TodoLocList",
-                "TodoTrouble",
-                "TodoTelescope",
-            },
+            event = "BufReadPre",
             config = function()
                 require("todo-comments").setup({})
             end
         }
         use {
-            "klen/nvim-test",
+            "nvim-neotest/neotest",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+                "antoinemadec/FixCursorHold.nvim",
+                "nvim-neotest/neotest-python",
+                "nvim-neotest/neotest-go",
+                "nvim-neotest/neotest-plenary",
+            },
+            ft = { "python", "go" },
             cmd = {
-                "TestSuite",
-                "TestFile",
-                "TestEdit",
-                "TestNearest",
-                "TestLast",
-                "TestVisit",
-                "TestInfo",
+                "NeotestSummaryToggle",
+                "NeotestRunSuite",
+                "NeotestRunNearest",
+                "NeotestRunLast",
+                "NeotestDebugNearest",
+                "NeotestDebugLast",
             },
             config = function()
-                require("plugins.configs.nvim-test")
+                require("plugins.configs.neotest")
             end
         }
 
@@ -353,11 +355,14 @@ return packer.startup({
             end
         }
         use { "anuvyklack/pretty-fold.nvim",
-            requires = { "anuvyklack/nvim-keymap-amend" },
+            requires = {
+                "anuvyklack/nvim-keymap-amend",
+                "anuvyklack/fold-preview.nvim"
+            },
             event = { "BufRead" },
             config = function()
-                require("pretty-fold").setup {}
-                require("pretty-fold.preview").setup({})
+                require("pretty-fold").setup({})
+                require("fold-preview").setup({})
             end
         }
         use {
@@ -374,6 +379,16 @@ return packer.startup({
                 require("plugins.configs.dressing")
             end,
         }
+        use {
+            "rcarriga/nvim-notify",
+            config = function()
+                local notify = require("notify")
+                notify.setup({
+                    timeout = 1000
+                })
+                vim.notify = notify
+            end
+        }
 
         -- language specific
         use {
@@ -386,6 +401,10 @@ return packer.startup({
                 vim.g.glow_width = 90
             end,
             cmd = { "Glow" }
+        }
+        use {
+            "wren/jrnl.vim",
+            ft = "jrnl",
         }
 
         -- colorschemes
