@@ -1,6 +1,13 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
     "Lua.diagnostics.disable": [
-        "need-check-nil"
-    ]
+        "need-check-nil",
+        "missing-parameter",
+        "redundant-parameter"
+    ],
+    "Lua.format.defaultConfig": {
+        "indent_size": "2",
+        "indent_style": "space"
+    },
+    "Lua.workspace.checkThirdParty": false
 }
