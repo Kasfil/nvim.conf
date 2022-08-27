@@ -29,7 +29,7 @@ import("telescope", function(telescope)
           ["<ESC>"] = t_action.close,
         },
       },
-      selection_caret = "i ",
+      selection_caret = " ",
       prompt_prefix = "Find  ",
       entry_prefix = "  ",
       initial_mode = "insert",

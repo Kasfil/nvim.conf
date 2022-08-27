@@ -44,6 +44,7 @@ return packer.startup(function(use)
     "miversen33/import.nvim",
     config = function()
       require("import").config({
+        output_split_type = "vertical",
         import_failed_icon = " ",
         import_success_icon = " ",
       })

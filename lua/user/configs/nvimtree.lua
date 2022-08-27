@@ -62,7 +62,7 @@ import("nvim-tree", function(nvimtree)
         enable = true,
         open_win_config = {
           width = 32,
-          height = 45,
+          height = vim.api.nvim_win_get_height(0) - (vim.opt.cmdheight:get() + 3),
         },
       },
     },

@@ -7,6 +7,6 @@ import("indent_blankline", function(indent)
     show_trailing_blankline_indent = true,
     char_highlight_list = { "NonText" },
     buftype_exclude = { "terminal", "nofile" },
-    filetype_exclude = { "NvimTree", "packer", "help", "lspinfo", "sagahover", "ImportManager" },
+    filetype_exclude = { "NvimTree", "packer", "help", "lspinfo", "sagahover", "ImportManager", "toggleterm" },
   })
 end)
