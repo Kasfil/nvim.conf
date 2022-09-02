@@ -49,6 +49,7 @@ import("kanagawa", function(kanagawa)
     LeapBackdrop = { fg = palette.fujiGray },
 
     -- SymbolsOutline
+    -- TODO: set better highlight
     FocusedSymbol = { bg = "NONE" },
 
     -- dap nvim
@@ -59,9 +60,15 @@ import("kanagawa", function(kanagawa)
     GitSignsCurrentLineBlame = { fg = palette.waveBlue2 },
 
     -- neogit
+    -- TODO: set better highlight
     NeogitNotificationInfo = { fg = palette.springBlue },
     NeogitNotificationWarning = { fg = palette.carpYellow },
     NeogitNotificationError = { fg = palette.peachRed },
+    NeogitDiffAddHighlight = { bg = palette.springGreen, fg = palette.sumiInk0 },
+    NeogitDiffDeleteHighlight = { bg = palette.sumiInk3, fg = palette.autumnRed },
+    NeogitDiffContextHighlight = { bg = palette.sumiInk2, fg = palette.oldWhite },
+    NeogitHunkHeader = { bg = palette.sumiInk2, fg = palette.fujiWhite },
+    NeogitHunkHeaderHighlight = { bg = palette.sumiInk2, fg = palette.fujiWhite },
 
     -- bqf
     BqfPreviewBorder = { fg = palette.springGreen, bg = palette.sumiInk0 },
@@ -76,6 +83,7 @@ import("kanagawa", function(kanagawa)
     NvimSurroundHighlightTextObject = { link = "IncSearch" },
 
     -- neotest
+    -- TODO: set better highlight
     NeotestAdapterName = { fg = palette.fujiWhite, bold = true },
     NeotestDir = { fg = palette.springBlue },
     NeotestFile = { fg = palette.autumnYellow, bold = true },

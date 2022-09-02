@@ -184,6 +184,8 @@ return packer.startup(function(use)
       require("user.configs.neotest")
     end,
   })
+  use({ "matbme/JABS.nvim" })
+  use({ "NvChad/nvim-colorizer.lua" })
 
   -- debugging
   use({
@@ -253,4 +255,9 @@ return packer.startup(function(use)
 
   -- colorschemes
   use({ "rebelot/kanagawa.nvim" })
+  use({
+    "catppuccin/nvim",
+    as = "catppuccin",
+    tag = "v0.2.2",
+  })
 end)
