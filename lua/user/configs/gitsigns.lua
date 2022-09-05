@@ -6,14 +6,14 @@ import("gitsigns", function(gitsigns)
       delete = {
         hl = "GitSignsDelete",
         text = "-",
-        linehl = "GitSignsDeleteLn"
+        linehl = "GitSignsDeleteLn",
       },
       topdelete = {
         hl = "GitSignsDelete",
         text = "‾",
-        linehl = "GitSignsDeleteLn"
+        linehl = "GitSignsDeleteLn",
       },
-      changedelete = { hl = "GitSignsChange", text = "≈" }
+      changedelete = { hl = "GitSignsChange", text = "≈" },
     },
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
     numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -26,9 +26,9 @@ import("gitsigns", function(gitsigns)
       virt_text = true,
       virt_text_pos = "eol",
       delay = 500,
-      ignore_whitespace = false
+      ignore_whitespace = true,
     },
-    current_line_blame_formatter_opts = { relative_time = true },
+    current_line_blame_formatter = "  <author>, <author_time> - <summary>",
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
@@ -39,11 +39,10 @@ import("gitsigns", function(gitsigns)
       style = "minimal",
       relative = "cursor",
       row = 0,
-      col = 1
+      col = 1,
     },
     yadm = { enable = false },
     on_attach = function(bufnr)
-
       local function map(mode, l, r, opts)
         opts = opts or {}
         opts.buffer = bufnr
@@ -51,31 +50,27 @@ import("gitsigns", function(gitsigns)
       end
 
       -- Navigation
-      map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'",
-        { expr = true })
-      map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'",
-        { expr = true })
+      map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
+      map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
 
       -- Actions
-      map('n', '<leader>hs', '<cmd>Gitsigns stage_hunk<CR>')
-      map('v', '<leader>hs', '<cmd>Gitsigns stage_hunk<CR>')
-      map('n', '<leader>hr', '<cmd>Gitsigns reset_hunk<CR>')
-      map('v', '<leader>hr', '<cmd>Gitsigns reset_hunk<CR>')
-      map('n', '<leader>hS', '<cmd>Gitsigns stage_buffer<CR>')
-      map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>')
-      map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>')
-      map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>')
-      map('n', '<leader>hb',
-        '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
-      map('n', '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
-      map('n', '<leader>hd', '<cmd>Gitsigns diffthis<CR>')
-      map('n', '<leader>hD',
-        '<cmd>lua require"gitsigns".diffthis("~")<CR>')
-      map('n', '<leader>td', '<cmd>Gitsigns toggle_deleted<CR>')
+      map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>")
+      map("v", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>")
+      map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
+      map("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>")
+      map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
+      map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
+      map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
+      map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
+      map("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
+      map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+      map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
+      map("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+      map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
 
       -- Text object
-      map('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-      map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-    end
+      map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
+      map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
+    end,
   })
 end)
