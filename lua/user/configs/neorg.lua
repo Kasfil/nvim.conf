@@ -10,6 +10,7 @@ import("neorg", function(neorg)
           workspaces = {
             work = "~/Documents/neorg/work",
             home = "~/Documents/neorg/notes",
+            sided = "~/Documents/neorg/sided",
           },
         },
       },
