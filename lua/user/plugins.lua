@@ -185,7 +185,7 @@ return packer.startup(function(use)
     end,
   })
   use({ "toppair/reach.nvim" })
-  use({ "Akianonymus/nvim-colorizer.lua" })
+  use({ "NvChad/nvim-colorizer.lua" })
   use({ "nvim-neorg/neorg" })
 
   -- debugging
