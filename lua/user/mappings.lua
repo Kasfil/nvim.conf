@@ -9,6 +9,7 @@ map("n", "<leader>w", function()
   })
 end)
 map("n", "<leader>x", ":Bdelete! <CR>") -- close buffer w/o ruin your window
+map("n", "<leader>X", ":bdelete! <CR>") -- close buffer also close window
 map("n", "<leader>q", function()
   close_win()
 end)
