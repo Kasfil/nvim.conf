@@ -1,6 +1,7 @@
 import("notify", function(notify)
   notify.setup({
-    timeout = 750,
+    background_colour = "#24273A",
+    timeout = 500,
   })
 
   vim.notify = notify
