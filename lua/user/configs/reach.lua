@@ -3,8 +3,9 @@ import("reach", function(reach)
 
   reach.setup()
   local options = {
+    handle = "dynamic",
     force_delete = { "terminal" },
-    auto_handles = { "a", "s", "d", "f", "g", "h", "j", "k", "l" },
+    auto_handles = vim.split("asdfghjkl;", ""),
   }
 
   map("n", "<leader>fb", function()
