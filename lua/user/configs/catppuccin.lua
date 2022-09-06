@@ -41,6 +41,7 @@ import("catppuccin", function(catppuccin)
       LeapBackdrop = { fg = pallete.overlay2 },
 
       GitSignsCurrentLineBlame = { fg = pallete.subtext0 },
+      SideWin = { fg = pallete.text, bg = pallete.crust },
     },
     compile = {
       enabled = true,
