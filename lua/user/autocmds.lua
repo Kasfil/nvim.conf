@@ -17,14 +17,25 @@ autocmd("TextYankPost", {
 })
 
 -- disable virt-column in certain filetype and buftype
--- local disable_virt_column = augroup("NoVirtColumn", { clear = true })
--- autocmd("FileType", {
---   group = disable_virt_column,
---   pattern = { "toggleterm", "help", "fugitive", "gitcommit", "glowpreview" },
---   callback = function()
---     require("virt-column").setup_buffer({ virtcolumn = "" })
---   end,
--- })
+local disable_virt_column = augroup("NoVirtColumn", { clear = true })
+autocmd("FileType", {
+  group = disable_virt_column,
+  pattern = {
+    "toggleterm",
+    "packer",
+    "help",
+    "lspinfo",
+    "Neogit*",
+    -- "NeogitStatus",
+    -- "NeogitCommitMessage",
+    -- "NeogitPopup",
+    "glowpreview",
+    "",
+  },
+  callback = function()
+    require("virt-column").setup_buffer({ virtcolumn = "" })
+  end,
+})
 -- autocmd("BufAdd", {
 --   group = disable_virt_column,
 --   pattern = { "terminal" },
