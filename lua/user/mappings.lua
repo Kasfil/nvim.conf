@@ -6,6 +6,9 @@ map("n", "<leader>w", function()
   vim.cmd("write")
   vim.notify(path:new(vim.call("expand", "%")):normalize() .. " saved", "info", {
     title = "notification",
+    render = "minimal",
+    timeout = 250,
+    hide_from_history = true,
   })
 end)
 map("n", "<leader>x", ":Bdelete! <CR>") -- close buffer w/o ruin your window
