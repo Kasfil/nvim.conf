@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local map = require("user.utils").map
 
 -- close window with q
 autocmd("FileType", {
@@ -36,22 +37,6 @@ autocmd("FileType", {
     require("virt-column").setup_buffer({ virtcolumn = "" })
   end,
 })
--- autocmd("BufAdd", {
---   group = disable_virt_column,
---   pattern = { "terminal" },
---   callback = function()
---     require("virt-column").setup_buffer({ virtcolumn = "" })
---   end,
--- })
-
--- autocmd("FileType", {
---   pattern = { "fugitive" },
---   callback = function()
---     local opts = { buffer = true, silent = true, noremap = true }
---     vim.keymap.set("n", "cP", ":Git -c push.default=current push<CR>", opts)
---     vim.keymap.set("n", "cp", ":Git pull<CR>", opts)
---   end,
--- })
 
 local leap_on = augroup("LeapOn", { clear = true })
 autocmd({ "User LeapEnter" }, {
@@ -66,5 +51,18 @@ autocmd({ "User LeapLeave" }, {
     if vim.g.leap_active ~= nil then
       vim.api.nvim_del_var("leap_active")
     end
+  end,
+})
+
+-- set terminal keymap
+autocmd({ "TermOpen" }, {
+  pattern = "term://*",
+  callback = function()
+    local opt = { buffer = 0 }
+    map("t", "<esc>", [[<C-\><C-n>]], opt)
+    map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opt)
+    map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opt)
+    map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opt)
+    map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opt)
   end,
 })

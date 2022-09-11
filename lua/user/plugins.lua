@@ -156,6 +156,15 @@ return packer.startup(function(use)
     after = "nvim-treesitter",
   })
   use({
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup({
+        preview_empty_name = true,
+        input_buffer_type = "dressing",
+      })
+    end,
+  })
+  use({
     "olimorris/persisted.nvim",
     config = function()
       require("user.configs.persisted")

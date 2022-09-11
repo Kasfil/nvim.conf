@@ -1,7 +1,7 @@
 import("catppuccin", function(catppuccin)
   vim.g.catppuccin_flavour = "macchiato"
 
-  --  rosewater = "#F4DBD6",
+  -- rosewater = "#F4DBD6",
   -- flamingo = "#F0C6C6",
   -- pink = "#F5BDE6",
   -- mauve = "#C6A0F6",

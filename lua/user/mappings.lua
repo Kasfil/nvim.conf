@@ -21,8 +21,12 @@ end)
 map("n", "<space>o", ":SymbolsOutline<CR>")
 map("n", "<space>d", ":TroubleToggle<CR>")
 map("n", "<space>g", ":Neogit<CR>")
+
 map("n", "<space>tt", ":ToggleTerm direction=horizontal<CR>")
 map("n", "<space>tf", ":ToggleTerm direction=float<CR>")
+map("n", "<space>tg", function()
+  ToggleLazygit()
+end)
 
 map("n", "<ESC>", ":nohlsearch <CR>")
 map("n", "<C-\\>", "<CMD>vsp<CR>")
@@ -41,6 +45,10 @@ map("n", "<A-\\>", "<CMD>sp<CR>")
 -- map("n", "<S-Up>", ":resize +5 <CR>")
 -- map("n", "<S-Down>", ":resize -5 <CR>")
 -- ]]
+
+map("n", "<leader>rn", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true, silent = false })
 
 -- zen mode
 map("n", "<leader>zf", ":TZFocus <CR>")
@@ -67,6 +75,3 @@ map("n", "<A-Down>", ":m .+1<CR>==")
 
 -- neotest
 map("n", "<leader>tv", ":NeotestSummaryToggle <CR>")
-
--- terminal mode
-map("t", "<esc>", "<C-\\><C-n>")

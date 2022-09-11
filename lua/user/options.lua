@@ -103,3 +103,4 @@ end
 
 g.mapleader = ","
 g.python3_host_prog = "/usr/bin/python3"
+g.ts_highlight_lua = true
