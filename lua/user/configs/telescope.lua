@@ -49,7 +49,7 @@ import("telescope", function(telescope)
         height = 0.80,
         preview_cutoff = 120,
       },
-      file_ignore_patterns = { "node_modules" },
+      file_ignore_patterns = { "node_modules", "%.log", "__pycache__/", ".git/" },
       path_display = { "truncate" },
       winblend = 0,
       border = {},
@@ -64,7 +64,7 @@ import("telescope", function(telescope)
 
   -- mappings
   map("n", "<leader>ff", function()
-    t_builtin.find_files()
+    t_builtin.find_files({ hidden = true, no_ignore = true })
   end)
   map("n", "<leader>fw", function()
     t_builtin.live_grep()
