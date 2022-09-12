@@ -19,6 +19,9 @@ import("toggleterm", function(toggleterm)
       border = "double",
       windblend = 12,
     },
+    on_open = function(_)
+      vim.keymap.del("t", "<esc>", { buffer = 0 })
+    end,
   })
 
   function ToggleLazygit()
