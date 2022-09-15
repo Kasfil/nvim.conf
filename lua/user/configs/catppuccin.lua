@@ -45,6 +45,8 @@ import("catppuccin", function(catppuccin)
 
       GitSignsCurrentLineBlame = { fg = pallete.subtext0 },
       SideWin = { fg = pallete.text, bg = pallete.crust },
+
+      DapStatusLine = { fg = pallete.maroon, bg = pallete.surface0 },
     },
     styles = {
       comments = {},

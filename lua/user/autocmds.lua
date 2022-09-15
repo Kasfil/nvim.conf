@@ -27,10 +27,8 @@ autocmd("FileType", {
     "help",
     "lspinfo",
     "Neogit*",
-    -- "NeogitStatus",
-    -- "NeogitCommitMessage",
-    -- "NeogitPopup",
     "glowpreview",
+    "dap-repl",
     "",
   },
   callback = function()
@@ -56,7 +54,7 @@ autocmd({ "User LeapLeave" }, {
 
 -- set terminal keymap
 autocmd({ "TermOpen" }, {
-  pattern = "term://*",
+  pattern = { "term://*", "*" },
   callback = function()
     local opt = { buffer = 0 }
     map("t", "<esc>", [[<C-\><C-n>]], opt)
@@ -64,5 +62,7 @@ autocmd({ "TermOpen" }, {
     map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opt)
     map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opt)
     map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opt)
+
+    require("virt-column").setup_buffer({ virtcolumn = "" })
   end,
 })

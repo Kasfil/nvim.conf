@@ -59,6 +59,7 @@ import("lualine", function(lualine)
           "Outline",
           "NvinTree",
           "",
+          "dap-repl",
           "Trouble",
           "NeogitStatus",
           "NeogitPopup",
