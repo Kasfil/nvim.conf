@@ -245,6 +245,7 @@ return packer.startup(function(use)
       "anuvyklack/fold-preview.nvim",
     },
   })
+  use({ "SmiteshP/nvim-navic" })
   use({ "nathom/filetype.nvim" })
   use({ "stevearc/dressing.nvim" })
   use({ "rcarriga/nvim-notify" })
