@@ -39,13 +39,26 @@ import("catppuccin", function(catppuccin)
       IndentBlanklineContextChar = { fg = ucolors.blend(pallete.pink, pallete.base, 0.5) },
 
       LeapBackdrop = { fg = pallete.overlay2 },
+      WinBar = { bg = pallete.mantle },
+      WinBarFile = { fg = pallete.teal, bg = pallete.mantle },
+      WinBarFileIcon = { fg = pallete.peach, bg = pallete.mantle },
 
       GitSignsCurrentLineBlame = { fg = pallete.subtext0 },
       SideWin = { fg = pallete.text, bg = pallete.crust },
     },
-    compile = {
-      enabled = true,
-      path = vim.fn.stdpath("cache") .. "/catppuccin",
+    styles = {
+      comments = {},
+      conditionals = {},
+      loops = {},
+      functions = {},
+      keywords = {},
+      strings = {},
+      variables = {},
+      numbers = {},
+      booleans = {},
+      properties = {},
+      types = {},
+      operators = {},
     },
     integrations = {
       native_lsp = {
@@ -69,6 +82,10 @@ import("catppuccin", function(catppuccin)
         enable_ui = false,
       },
       neogit = true,
+      navic = {
+        enabled = true,
+        custom_bg = pallete.mantle,
+      },
     },
   })
 end)
