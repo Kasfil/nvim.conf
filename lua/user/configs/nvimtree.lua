@@ -61,9 +61,9 @@ import("nvim-tree", function(nvimtree)
       float = {
         enable = true,
         open_win_config = {
-          border = "none",
-          width = 32,
-          height = vim.api.nvim_win_get_height(0) - (vim.opt.cmdheight:get() + 1),
+          border = "single",
+          width = 35,
+          height = vim.api.nvim_win_get_height(0) - vim.opt.cmdheight:get(),
         },
       },
     },
