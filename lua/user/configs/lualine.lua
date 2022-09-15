@@ -1,8 +1,14 @@
 ---@diagnostic disable: lowercase-global
 import("lualine", function(lualine)
   dap_status = nil
+  navic = nil
+
   import("dap", function(_)
     dap_status = _
+  end)
+
+  import("nvim-navic", function(_)
+    navic = _
   end)
 
   -- [[
@@ -44,8 +50,31 @@ import("lualine", function(lualine)
       theme = "catppuccin",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
-      disabled_filetypes = { "packer", "toggleterm" },
       globalstatus = true,
+      disabled_filetypes = {
+        statusline = { "packer", "toggleterm" },
+        winbar = {
+          "packer",
+          "toggleterm",
+          "Outline",
+          "NvinTree",
+          "",
+          "Trouble",
+          "NeogitStatus",
+          "NeogitPopup",
+          "NeogitHelpPopup",
+          "NeogitNotification",
+          "NeogitCommitSelectView",
+          "NeogitCommitMessage",
+          "NeogitRebaseTodo",
+          "NeogitStatusNew",
+          "NeogitBranHelpchSelectView",
+          "NeogitBranchSelectView",
+          "NeogitBranchSelectView",
+          "NeogitCommitView",
+          "NeogitLogView",
+        },
+      },
     },
     sections = {
       lualine_a = { "mode" },
@@ -101,7 +130,45 @@ import("lualine", function(lualine)
       lualine_y = {},
       lualine_z = {},
     },
-    tabline = {},
+    -- tabline = {},
+    winbar = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {
+        function()
+          local win_number = "[" .. vim.api.nvim_win_get_number(0) .. "]"
+          local file = vim.call("expand", "%:t")
+          local prefix = win_number .. " " .. "%#WinBarFileIcon# %*%#WinBarFile#" .. file .. "%*"
+          if navic.get_location() ~= "" then
+            return prefix .. "%#NavicSeparator# > %*" .. navic.get_location()
+          else
+            return prefix
+          end
+        end,
+      },
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
+    },
+    inactive_winbar = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {
+        function()
+          local win_number = "[" .. vim.api.nvim_win_get_number(0) .. "]"
+          local file = vim.call("expand", "%:t")
+          local prefix = win_number .. " " .. "%#WinBarFileIcon# %*%#WinBarFile#" .. file .. "%*"
+          if navic.get_location() ~= "" then
+            return prefix .. "%#NavicSeparator# > %*" .. navic.get_location()
+          else
+            return prefix
+          end
+        end,
+      },
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
+    },
     extensions = { "nvim-tree" },
   })
 end)

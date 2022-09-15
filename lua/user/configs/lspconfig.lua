@@ -1,5 +1,6 @@
 import("lspconfig", function(lsp)
   local map = require("user.utils").map
+  local navic = require("nvim-navic")
 
   vim.diagnostic.config({
     virtual_text = {
@@ -14,9 +15,12 @@ import("lspconfig", function(lsp)
   map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
   map("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
 
-  local on_attach = function(_, bufnr)
+  local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+    -- attach navic
+    navic.attach(client, bufnr)
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
