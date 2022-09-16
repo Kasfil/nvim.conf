@@ -29,6 +29,7 @@ autocmd("FileType", {
     "Neogit*",
     "glowpreview",
     "dap-repl",
+    "qf",
     "",
   },
   callback = function()
