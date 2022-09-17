@@ -3,6 +3,9 @@ import("lualine", function(lualine)
   dap_status = nil
   navic = nil
 
+  local _, catppuccin = pcall(require, "catppuccin.palettes")
+  local pallete = catppuccin.get_palette()
+
   import("dap", function(_)
     dap_status = _
   end)
@@ -79,7 +82,7 @@ import("lualine", function(lualine)
       },
     },
     sections = {
-      lualine_a = { "mode" },
+      lualine_a = {},
       lualine_b = {
         {
           function()
@@ -90,9 +93,16 @@ import("lualine", function(lualine)
           end,
           color = "DapStatusLine",
         },
-        "filetype",
       },
       lualine_c = {
+        {
+          function()
+            return "█"
+          end,
+          color = { fg = pallete.teal },
+          padding = { left = 0, right = 1 },
+        },
+        { "filetype", color = { fg = pallete.yellow, gui = "bold" } },
         {
           "filename",
           path = 1,
@@ -105,6 +115,17 @@ import("lualine", function(lualine)
         },
       },
       lualine_x = {
+        -- {
+        --   function()
+        --     local recording = vim.fn.reg_recording()
+        --     return "Recording: " .. recording
+        --   end,
+        --   cond = function()
+        --     return vim.fn.reg_recording() ~= ""
+        --   end,
+        --   color = { fg = pallete.yellow, gui = "bold" },
+        --   padding = { right = 1 },
+        -- },
         {
           "diff",
           colored = true,
@@ -115,14 +136,22 @@ import("lualine", function(lualine)
           },
         },
         {
-          "import",
           function()
             return gstatus.ahead .. "↑ " .. gstatus.behind .. "↓"
           end,
         },
+        {
+          "branch",
+          icon = "",
+          color = { fg = pallete.peach, gui = "bold" },
+        },
+        {
+          "location",
+          color = { fg = pallete.blue },
+        },
       },
-      lualine_y = { { "branch", icon = "" } },
-      lualine_z = { "location" },
+      lualine_y = {},
+      lualine_z = {},
     },
     inactive_sections = {
       lualine_a = {},
