@@ -193,6 +193,7 @@ return packer.startup(function(use)
       require("user.configs.neotest")
     end,
   })
+  use({ "klen/nvim-config-local" })
   use({ "toppair/reach.nvim" })
   use({ "NvChad/nvim-colorizer.lua" })
   use({ "nvim-neorg/neorg" })
