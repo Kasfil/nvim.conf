@@ -26,6 +26,7 @@ autocmd("FileType", {
     "packer",
     "help",
     "lspinfo",
+    "DiffviewFileHistory",
     "Neogit*",
     "glowpreview",
     "dap-repl",
