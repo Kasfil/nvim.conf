@@ -1,5 +1,7 @@
 import("pretty-fold", function(prettyfold)
-  prettyfold.setup()
+  prettyfold.setup({
+    fill_char = "─",
+  })
 end)
 
 import("fold-preview", function(foldpreview)

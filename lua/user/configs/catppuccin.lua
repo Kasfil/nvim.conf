@@ -1,4 +1,4 @@
-import("catppuccin", function(catppuccin)
+import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, function(mods)
   vim.g.catppuccin_flavour = "macchiato"
 
   -- rosewater = "#F4DBD6",
@@ -28,12 +28,19 @@ import("catppuccin", function(catppuccin)
   -- mantle = "#1E2030",
   -- crust = "#181926",
 
-  local pallete = require("catppuccin.palettes").get_palette()
-  local ucolors = require("catppuccin.utils.colors")
+  local catppuccin = mods.catppuccin
+  local pallete = mods["catppuccin.palettes"].get_palette()
+  local ucolors = mods["catppuccin.utils.colors"]
 
   catppuccin.setup({
     custom_highlights = {
       NonText = { fg = ucolors.lighten(pallete.surface0, 1, pallete.surface0) },
+
+      DiffDelete = {
+        bg = ucolors.darken(pallete.red, 0.09, pallete.base),
+        fg = pallete.surface1,
+        style = { "bold" },
+      },
 
       IndentBlanklineChar = { fg = ucolors.darken(pallete.surface0, 0.5, pallete.base) },
       IndentBlanklineContextChar = { fg = ucolors.blend(pallete.pink, pallete.base, 0.5) },

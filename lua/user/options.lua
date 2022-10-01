@@ -54,7 +54,14 @@ opt.pumheight = 15
 opt.previewheight = 15
 opt.laststatus = 3
 opt.list = true
-opt.listchars = { tab = "»·", nbsp = "+", trail = "·", extends = "→", precedes = "←", eol = "↙" }
+opt.listchars = {
+  tab = "»·",
+  nbsp = "+",
+  trail = "·",
+  extends = "→",
+  precedes = "←",
+  eol = "↙",
+}
 opt.fillchars = {
   eob = " ",
   horiz = "━",
@@ -64,6 +71,7 @@ opt.fillchars = {
   vertleft = "┫",
   vertright = "┣",
   verthoriz = "╋",
+  diff = "╱",
 }
 opt.formatoptions = "1jcroql"
 opt.signcolumn = "yes"

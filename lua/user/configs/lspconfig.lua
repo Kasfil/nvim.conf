@@ -1,6 +1,7 @@
-import("lspconfig", function(lsp)
+import({ "lspconfig", "nvim-navic" }, function(mods)
   local map = require("user.utils").map
-  local navic = require("nvim-navic")
+  local navic = mods["nvim-navic"]
+  local lsp = mods.lspconfig
 
   vim.diagnostic.config({
     virtual_text = {

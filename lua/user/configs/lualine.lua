@@ -1,29 +1,19 @@
----@diagnostic disable: lowercase-global
-import("lualine", function(lualine)
-  dap_status = nil
-  navic = nil
-
-  local _, catppuccin = pcall(require, "catppuccin.palettes")
-  local pallete = catppuccin.get_palette()
-
-  import("dap", function(_)
-    dap_status = _
-  end)
-
-  import("nvim-navic", function(_)
-    navic = _
-  end)
+import({ "lualine", "dap", "nvim-navic", "catppuccin.palettes", "plenary.job" }, function(mods)
+  local navic = mods["nvim-navic"]
+  local dap = mods.dap
+  local pallete = mods["catppuccin.palettes"].get_palette()
+  local job = mods["plenary.job"]
 
   -- [[
   -- this code stolen from https://www.reddit.com/r/neovim/comments/t48x5i/comment/hyx6fkl/?utm_source=share&utm_medium=web2x&context=3
   local gstatus = { ahead = 0, behind = 0 }
   local function update_gstatus()
-    require("plenary.job")
+    job
       :new({
         command = "git",
         args = { "rev-list", "--left-right", "--count", "HEAD...@{upstream}" },
-        on_exit = function(job, _)
-          local res = job:result()[1]
+        on_exit = function(fetch, _)
+          local res = fetch:result()[1]
           if type(res) ~= "string" then
             gstatus = { ahead = 0, behind = 0 }
             return
@@ -47,7 +37,7 @@ import("lualine", function(lualine)
   _G.Gstatus_timer:start(0, 2000, vim.schedule_wrap(update_gstatus))
   -- ]]
 
-  lualine.setup({
+  mods.lualine.setup({
     options = {
       icons_enabled = true,
       theme = "catppuccin",
@@ -89,7 +79,7 @@ import("lualine", function(lualine)
             return "  DAP mode active"
           end,
           cond = function()
-            return dap_status.session() ~= nil
+            return dap.session() ~= nil
           end,
           color = "DapStatusLine",
         },

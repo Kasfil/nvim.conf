@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use({ "nvim-lua/plenary.nvim" })
   -- syntax highlighting
   use({ "nvim-treesitter/nvim-treesitter" })
+  use({ "yioneko/nvim-yati", requires = "nvim-treesitter/nvim-treesitter" })
 
   -- git integration
   use({ "lewis6991/gitsigns.nvim" })
@@ -197,6 +198,7 @@ return packer.startup(function(use)
   use({ "toppair/reach.nvim" })
   use({ "NvChad/nvim-colorizer.lua" })
   use({ "nvim-neorg/neorg" })
+  use({ "declancm/cinnamon.nvim" })
 
   -- debugging
   use({

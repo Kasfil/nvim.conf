@@ -1,14 +1,9 @@
----@diagnostic disable: lowercase-global
-import("dap", function(dap)
+import({ "dap", "dap-python", "dap-go" }, function(mods)
+  local dap = mods.dap
+  local pydap = mods["dap-python"]
   local map = require("user.utils").map
   local autocmd = vim.api.nvim_create_autocmd
   local dapwidget = require("dap.ui.widgets")
-
-  pydap = nil
-
-  import("dap-python", function(_)
-    pydap = _
-  end)
 
   autocmd("FileType", {
     pattern = "dap-repl",
@@ -35,7 +30,7 @@ import("dap", function(dap)
   vim.fn.sign_define("DapStopped", { text = " ", texthl = "", linehl = "debugPC", numhl = "" })
 
   -- dap go initialization
-  require("dap-go").setup()
+  mods["dap-go"].setup()
 
   -- setting dap-python
   pydap.setup("python")

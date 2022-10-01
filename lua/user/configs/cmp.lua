@@ -1,22 +1,10 @@
----@diagnostic disable: lowercase-global
-import("cmp", function(cmp)
-  luasnip = nil
-  cmp_autopairs = nil
-  neogen = nil
+import({ "cmp", "luasnip", "neogen", "nvim-autopairs.completion.cmp", "nvim-autopairs" }, function(mods)
+  local cmp = mods.cmp
+  local luasnip = mods.luasnip
+  local cmp_autopairs = mods["nvim-autopairs.completion.cmp"]
+  local neogen = mods.neogen
 
-  import("luasnip", function(_)
-    luasnip = _
-  end)
-  import("neogen", function(_)
-    neogen = _
-  end)
-  import("nvim-autopairs.completion.cmp", function(_)
-    cmp_autopairs = _
-  end)
-
-  import("nvim-autopairs", function(autopairs)
-    autopairs.setup()
-  end)
+  mods["nvim-autopairs"].setup()
 
   local cmp_kinds = {
     Text = "  ",

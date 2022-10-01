@@ -2,6 +2,7 @@ import("nvim-treesitter.configs", function(treesitter)
   treesitter.setup({
     ensure_installed = {
       "bash",
+      "help",
       "comment",
       "gitignore",
       "go",
@@ -23,7 +24,10 @@ import("nvim-treesitter.configs", function(treesitter)
     },
     indent = {
       enable = true,
-      disable = { "python", "yaml" },
+      -- disable = { "python", "yaml" },
+    },
+    yati = {
+      enable = true,
     },
     incremental_selection = {
       enable = true,

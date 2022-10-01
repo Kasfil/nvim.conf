@@ -5,7 +5,7 @@ util.send_key = function(key)
 end
 
 util.close_window = function()
-  if vim.bo.buftype == "terminal" then
+  if vim.bo.filetype == "toggleterm" then
     vim.cmd("ToggleTerm")
   else
     vim.cmd("q")

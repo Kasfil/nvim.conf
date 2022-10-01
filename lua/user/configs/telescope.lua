@@ -1,17 +1,9 @@
----@diagnostic disable: lowercase-global
-import("telescope", function(telescope)
+import({ "telescope", "telescope.actions", "telescope.builtin" }, function(mods)
   local map = require("user.utils").map
 
-  t_action = nil
-  t_builtin = nil
-
-  import("telescope.actions", function(_)
-    t_action = _
-  end)
-
-  import("telescope.builtin", function(_)
-    t_builtin = _
-  end)
+  local telescope = mods.telescope
+  local t_action = mods["telescope.actions"]
+  local t_builtin = mods["telescope.builtin"]
 
   telescope.setup({
     defaults = {
