@@ -1,7 +1,8 @@
-import({ "lspconfig", "nvim-navic" }, function(mods)
+import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
   local map = require("user.utils").map
   local navic = mods["nvim-navic"]
   local lsp = mods.lspconfig
+  local cmp_nvim_lsp = mods.cmd_nvim_lsp
 
   vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
   vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
@@ -63,7 +64,7 @@ import({ "lspconfig", "nvim-navic" }, function(mods)
     },
   }
   -- add nvim-cmp capabilities
-  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
   -- basic lsp config servers
   local servers = { "rls", "vuels", "tsserver", "pyright" }
