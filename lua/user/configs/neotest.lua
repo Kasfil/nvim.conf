@@ -1,18 +1,8 @@
----@diagnostic disable: lowercase-global
-import("neotest", function(neotest)
-  neopython = nil
-  neogo = nil
-  neoplenary = nil
-
-  import("neotest-python", function(nt_python)
-    neopython = nt_python
-  end)
-  import("neotest-go", function(nt_go)
-    neogo = nt_go
-  end)
-  import("neotest-plenary", function(nt_plenary)
-    neoplenary = nt_plenary
-  end)
+import({ "neotest", "neotest-plenary", "neotest-python", "neotest-go" }, function(mods)
+  local neotest = mods.neotest
+  local neopython = mods["neotest-python"]
+  local neogo = mods["neotest-go"]
+  local neoplenary = mods["neotest-plenary"]
 
   neotest.setup({
     adapters = {
@@ -34,6 +24,7 @@ import("neotest", function(neotest)
 
   vim.api.nvim_create_user_command("NeotestRunSuite", function()
     neotest.run.run({ suite = true })
+    neotest.summary.open()
   end, {})
 
   vim.api.nvim_create_user_command("NeotestRunFile", function()
