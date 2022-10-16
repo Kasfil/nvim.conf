@@ -4,7 +4,7 @@ import("reach", function(reach)
   reach.setup()
   local options = {
     handle = "dynamic",
-    force_delete = { "terminal" },
+    force_delete = { "terminal", "dap-repl" },
     auto_handles = vim.split("asdfghjkl;", ""),
   }
 
