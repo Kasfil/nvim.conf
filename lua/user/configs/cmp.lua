@@ -48,13 +48,13 @@ import({ "cmp", "luasnip", "neogen", "nvim-autopairs.completion.cmp", "nvim-auto
         luasnip.lsp_expand(args.body)
       end,
     },
-    sources = {
+    sources = cmp.config.sources({
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "path" },
       { name = "buffer" },
-    },
+    }),
     mapping = {
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
