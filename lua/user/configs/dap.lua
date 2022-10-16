@@ -8,6 +8,10 @@ import({ "dap", "dap-python", "dap-go" }, function(mods)
   autocmd("FileType", {
     pattern = "dap-repl",
     callback = function()
+      vim.opt_local.relativenumber = false
+      vim.opt_local.number = false
+      vim.opt_local.signcolumn = "no"
+
       require("dap.ext.autocompl").attach()
     end,
   })
@@ -22,12 +26,15 @@ import({ "dap", "dap-python", "dap-go" }, function(mods)
     },
   }
 
+  -- dap integrated terminal window config
+  dap.defaults.fallback.terminal_win_cmd = "45vsplit new"
+
   -- debugging signs
-  vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "Error", linehl = "", numhl = "" })
-  vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "Error", linehl = "", numhl = "" })
-  vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "Error", linehl = "", numhl = "" })
-  vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "Error", linehl = "", numhl = "" })
-  vim.fn.sign_define("DapStopped", { text = " ", texthl = "", linehl = "debugPC", numhl = "" })
+  vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
+  vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "Error", linehl = "", numhl = "" })
+  vim.fn.sign_define("DapLogPoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
+  vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Error", linehl = "", numhl = "" })
+  vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "debugPC", numhl = "" })
 
   -- dap go initialization
   mods["dap-go"].setup()
