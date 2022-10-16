@@ -31,6 +31,7 @@ autocmd("FileType", {
     "glowpreview",
     "dap-repl",
     "qf",
+    "Trouble",
     "",
   },
   callback = function()
