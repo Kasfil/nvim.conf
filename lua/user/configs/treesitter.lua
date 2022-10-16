@@ -24,10 +24,10 @@ import("nvim-treesitter.configs", function(treesitter)
     },
     indent = {
       enable = true,
-      -- disable = { "python", "yaml" },
+      disable = { "python", "yaml" },
     },
     yati = {
-      enable = true,
+      enable = false,
     },
     incremental_selection = {
       enable = true,
