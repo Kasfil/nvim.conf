@@ -45,6 +45,8 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
       IndentBlanklineChar = { fg = ucolors.darken(pallete.surface0, 0.5, pallete.base) },
       IndentBlanklineContextChar = { fg = ucolors.blend(pallete.pink, pallete.base, 0.5) },
 
+      WinSelect = { bg = pallete.yellow, fg = pallete.mantle },
+
       LeapBackdrop = { fg = pallete.overlay2 },
       WinBar = { bg = pallete.mantle },
       WinBarFile = { fg = pallete.teal, bg = pallete.mantle },
