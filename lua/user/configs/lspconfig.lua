@@ -3,6 +3,11 @@ import({ "lspconfig", "nvim-navic" }, function(mods)
   local navic = mods["nvim-navic"]
   local lsp = mods.lspconfig
 
+  vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+  vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+  vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+  vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
   vim.diagnostic.config({
     virtual_text = {
       source = "always",
@@ -61,7 +66,7 @@ import({ "lspconfig", "nvim-navic" }, function(mods)
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
   -- basic lsp config servers
-  local servers = { "rls", "vuels", "tsserver" }
+  local servers = { "rls", "vuels", "tsserver", "pyright" }
   for _, server in pairs(servers) do
     lsp[server].setup({
       on_attach = on_attach,
@@ -102,15 +107,15 @@ import({ "lspconfig", "nvim-navic" }, function(mods)
     },
   })
 
-  lsp.jedi_language_server.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    init_options = {
-      diagnostics = {
-        enable = false,
-      },
-    },
-  })
+  -- lsp.jedi_language_server.setup({
+  --   on_attach = on_attach,
+  --   capabilities = capabilities,
+  --   init_options = {
+  --     diagnostics = {
+  --       enable = false,
+  --     },
+  --   },
+  -- })
 
   lsp.gopls.setup({
     on_attach = function(client, bufnr)
