@@ -199,6 +199,8 @@ return packer.startup(function(use)
   use({ "NvChad/nvim-colorizer.lua" })
   use({ "nvim-neorg/neorg" })
   use({ "declancm/cinnamon.nvim" })
+  use({ "numtostr/BufOnly.nvim" })
+  use({ "https://gitlab.com/yorickpeterse/nvim-window.git" })
 
   -- debugging
   use({
