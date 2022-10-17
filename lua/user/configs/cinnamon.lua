@@ -1,5 +1,5 @@
 import("cinnamon", function(cinnamon)
   cinnamon.setup({
-    extra_keymaps = false,
+    extra_keymaps = true,
   })
 end)
