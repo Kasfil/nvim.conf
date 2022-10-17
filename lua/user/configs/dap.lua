@@ -27,7 +27,7 @@ import({ "dap", "dap-python", "dap-go" }, function(mods)
   }
 
   -- dap integrated terminal window config
-  dap.defaults.fallback.terminal_win_cmd = "45vsplit new"
+  dap.defaults.fallback.terminal_win_cmd = [[45vnew]]
 
   -- debugging signs
   vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
