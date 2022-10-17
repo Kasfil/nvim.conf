@@ -2,7 +2,7 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
   local map = require("user.utils").map
   local navic = mods["nvim-navic"]
   local lsp = mods.lspconfig
-  local cmp_nvim_lsp = mods.cmd_nvim_lsp
+  local cmp_nvim_lsp = mods.cmp_nvim_lsp
 
   vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
   vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
