@@ -201,6 +201,7 @@ return packer.startup(function(use)
   use({ "declancm/cinnamon.nvim" })
   use({ "numtostr/BufOnly.nvim" })
   use({ "https://gitlab.com/yorickpeterse/nvim-window.git" })
+  use({ "smjonas/live-command.nvim" })
 
   -- debugging
   use({
