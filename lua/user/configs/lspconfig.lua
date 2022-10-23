@@ -12,7 +12,7 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
   vim.diagnostic.config({
     virtual_text = {
       source = "always",
-      prefix = "■ ",
+      prefix = "■",
     },
     severity_sort = true,
   })
