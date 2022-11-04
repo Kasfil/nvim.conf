@@ -7,6 +7,7 @@ import("null-ls", function(null_ls)
     b.diagnostics.flake8,
     b.formatting.isort,
     b.formatting.black,
+    b.diagnostics.mypy,
 
     -- golang
     b.formatting.goimports,

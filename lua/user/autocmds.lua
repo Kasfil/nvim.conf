@@ -32,7 +32,17 @@ autocmd("FileType", {
     "dap-repl",
     "qf",
     "Trouble",
-    "",
+    "lspsaga",
+    " ",
+  },
+  callback = function()
+    require("virt-column").setup_buffer({ virtcolumn = "" })
+  end,
+})
+autocmd("BufNew", {
+  group = disable_virt_column,
+  pattern = {
+    "nofile",
   },
   callback = function()
     require("virt-column").setup_buffer({ virtcolumn = "" })

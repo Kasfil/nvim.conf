@@ -27,7 +27,10 @@ import("nvim-treesitter.configs", function(treesitter)
       disable = { "python", "yaml" },
     },
     yati = {
-      enable = false,
+      enable = true,
+      disable = { "lua" },
+      default_lazy = true,
+      suppress_conflict_warning = true,
     },
     incremental_selection = {
       enable = true,

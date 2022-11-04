@@ -56,6 +56,8 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
       SideWin = { fg = pallete.text, bg = pallete.crust },
 
       DapStatusLine = { fg = pallete.maroon, bg = pallete.surface0 },
+
+      LspSagaHoverBorder = { fg = pallete.crust, bg = pallete.crust },
     },
     styles = {
       comments = {},
@@ -72,6 +74,10 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
       operators = {},
     },
     integrations = {
+      lsp_saga = true,
+      notify = true,
+      fidget = true,
+      symbols_outline = true,
       native_lsp = {
         virtual_text = {
           errors = {},
@@ -88,11 +94,13 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
       },
       lsp_trouble = true,
       leap = true,
+      cmp = true,
       dap = {
         enabled = true,
         enable_ui = false,
       },
       neogit = true,
+      gitsigns = true,
       navic = {
         enabled = true,
         custom_bg = pallete.mantle,

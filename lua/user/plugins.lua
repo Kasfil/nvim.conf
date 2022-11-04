@@ -114,6 +114,7 @@ return packer.startup(function(use)
       })
     end,
   })
+  use({ "glepnir/lspsaga.nvim", branch = "main" })
 
   -- utilities
   use({
@@ -275,6 +276,5 @@ return packer.startup(function(use)
   use({
     "catppuccin/nvim",
     as = "catppuccin",
-    tag = "v0.2.2",
   })
 end)
