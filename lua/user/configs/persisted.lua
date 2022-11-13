@@ -1,7 +1,7 @@
 import("persisted", function(persisted)
   persisted.setup({
-    autoload = true,
-    autosave = true,
+    autoload = false,
+    autosave = false,
     branch_separator = "_",
     before_save = function()
       local cmds = {

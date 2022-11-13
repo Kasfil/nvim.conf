@@ -39,15 +39,6 @@ autocmd("FileType", {
     require("virt-column").setup_buffer({ virtcolumn = "" })
   end,
 })
-autocmd("BufNew", {
-  group = disable_virt_column,
-  pattern = {
-    "nofile",
-  },
-  callback = function()
-    require("virt-column").setup_buffer({ virtcolumn = "" })
-  end,
-})
 
 local leap_on = augroup("LeapOn", { clear = true })
 autocmd({ "User LeapEnter" }, {

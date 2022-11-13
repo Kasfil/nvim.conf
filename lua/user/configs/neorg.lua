@@ -14,6 +14,7 @@ import("neorg", function(neorg)
           },
         },
       },
+      ["core.gtd.base"] = { config = { workspace = "work" } },
     },
   })
 end)

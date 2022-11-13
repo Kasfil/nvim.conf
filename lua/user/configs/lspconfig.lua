@@ -17,7 +17,7 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
     severity_sort = true,
   })
 
-  map("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
+  map("n", "<space>e", "<cmd>lua vim.diagnostic.open_float({border = 'single'})<CR>")
   map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
   map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
   map("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")

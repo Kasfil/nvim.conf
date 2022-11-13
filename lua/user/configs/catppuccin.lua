@@ -35,6 +35,7 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
   catppuccin.setup({
     custom_highlights = {
       NonText = { fg = ucolors.lighten(pallete.surface0, 1, pallete.surface0) },
+      VirtColumn = { fg = ucolors.darken(pallete.surface0, 0.15, pallete.base) },
 
       DiffDelete = {
         bg = ucolors.darken(pallete.red, 0.09, pallete.base),

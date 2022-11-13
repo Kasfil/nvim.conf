@@ -1,12 +1,12 @@
-local neogit = require("neogit")
-
-neogit.setup({
+import("neogit", function(neogit)
+  neogit.setup({
     signs = {
-        section = { "", "" },
-        item = { "", "" },
-        hunk = { "", "" },
+      section = { "", "" },
+      item = { "", "" },
+      hunk = { "-", "+" },
     },
     integrations = {
-        diffview = true
-    }
-})
+      diffview = true,
+    },
+  })
+end)

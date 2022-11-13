@@ -60,20 +60,6 @@ return packer.startup(function(use)
   use({
     "TimUntersberger/neogit",
     requires = "nvim-lua/plenary.nvim",
-    cmd = { "Neogit" },
-    config = function()
-      require("neogit").setup({
-        disable_commit_confirmation = false,
-        signs = {
-          section = { " ", " " },
-          item = { " ", " " },
-          hunk = { " ", " " },
-        },
-        integrations = {
-          diffview = true,
-        },
-      })
-    end,
   })
   use({
     "akinsho/git-conflict.nvim",
