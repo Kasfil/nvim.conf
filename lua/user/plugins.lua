@@ -61,12 +61,6 @@ return packer.startup(function(use)
     "TimUntersberger/neogit",
     requires = "nvim-lua/plenary.nvim",
   })
-  use({
-    "akinsho/git-conflict.nvim",
-    config = function()
-      require("git-conflict").setup()
-    end,
-  })
 
   -- lsp stuff
   use({ "hrsh7th/nvim-cmp" })
@@ -177,9 +171,6 @@ return packer.startup(function(use)
       "nvim-neotest/neotest-go",
       "nvim-neotest/neotest-plenary",
     },
-    config = function()
-      require("user.configs.neotest")
-    end,
   })
   use({ "klen/nvim-config-local" })
   use({ "toppair/reach.nvim" })
@@ -187,8 +178,9 @@ return packer.startup(function(use)
   use({ "nvim-neorg/neorg" })
   use({ "declancm/cinnamon.nvim" })
   use({ "numtostr/BufOnly.nvim" })
-  use({ "https://gitlab.com/yorickpeterse/nvim-window.git" })
+  use({ "ten3roberts/window-picker.nvim" })
   use({ "smjonas/live-command.nvim" })
+  use({ "petertriho/nvim-scrollbar" })
 
   -- debugging
   use({
@@ -201,24 +193,7 @@ return packer.startup(function(use)
 
   -- terminal
   use({ "akinsho/toggleterm.nvim" })
-  use({
-    "aserowy/tmux.nvim",
-    config = function()
-      require("tmux").setup({
-        copy_sync = {
-          enable = false,
-        },
-        navigation = {
-          enable_default_keybindings = true,
-        },
-        resize = {
-          enable_default_keybindings = true,
-          resize_step_x = 3,
-          resize_step_y = 3,
-        },
-      })
-    end,
-  })
+  use({ "aserowy/tmux.nvim" })
 
   -- user interfaces
   use({ "lukas-reineke/indent-blankline.nvim" })

@@ -59,6 +59,8 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
       DapStatusLine = { fg = pallete.maroon, bg = pallete.surface0 },
 
       LspSagaHoverBorder = { fg = pallete.crust, bg = pallete.crust },
+
+      ScrollbarHandle = { bg = ucolors.lighten(pallete.base, 0.1, pallete.surface0) },
     },
     styles = {
       comments = {},

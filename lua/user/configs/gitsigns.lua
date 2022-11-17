@@ -14,6 +14,7 @@ import("gitsigns", function(gitsigns)
         linehl = "GitSignsDeleteLn",
       },
       changedelete = { hl = "GitSignsChange", text = "≈" },
+      untracked = { hl = "GitSignsAdd", text = "▐" },
     },
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
     numhl = false, -- Toggle with `:Gitsigns toggle_numhl`

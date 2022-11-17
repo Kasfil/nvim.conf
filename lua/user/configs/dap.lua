@@ -1,4 +1,4 @@
-import({ "dap", "dap-python", "dap-go" }, function(mods)
+import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
   local dap = mods.dap
   local pydap = mods["dap-python"]
   local map = require("user.utils").map
@@ -16,6 +16,9 @@ import({ "dap", "dap-python", "dap-go" }, function(mods)
     end,
   })
 
+  -- load vscode debug config
+  mods["dap.ext.vscode"].load_launchjs()
+
   -- dap external terminal fallback
   dap.defaults.fallback.external_terminal = {
     command = "kitty",
@@ -27,7 +30,7 @@ import({ "dap", "dap-python", "dap-go" }, function(mods)
   }
 
   -- dap integrated terminal window config
-  dap.defaults.fallback.terminal_win_cmd = [[45 new]]
+  dap.defaults.fallback.terminal_win_cmd = [[45vnew]]
 
   -- debugging signs
   vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })

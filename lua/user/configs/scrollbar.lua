@@ -1,0 +1,47 @@
+import("scrollbar", function(scrollbar)
+  scrollbar.setup({
+    set_highlights = true,
+    excluded_filetypes = {
+      "prompt",
+      "TelescopePrompt",
+      "NeogitBranHelpchSelectView",
+      "NeogitBranchSelectView",
+      "NeogitBranchSelectView",
+      "NeogitCommitMessage",
+      "NeogitCommitSelectView",
+      "NeogitCommitView",
+      "NeogitHelpPopup",
+      "NeogitLogView",
+      "NeogitNotification",
+      "NeogitPopup",
+      "NeogitRebaseTodo",
+      "NeogitStatus",
+      "NeogitStatusNew",
+      "NvinTree",
+      "Outline",
+      "Trouble",
+      "dap-repl",
+      "packer",
+      "qf",
+      "toggleterm",
+    },
+    handlers = {
+      cursor = false,
+      gitsigns = true,
+    },
+    handle = {
+      highlight = "ScrollbarHandle",
+      hide_if_all_visible = false,
+    },
+    marks = {
+      Search = { highlight = "Search" },
+      Error = { highlight = "DiagnosticError" },
+      Warn = { highlight = "DiagnosticWarn" },
+      Info = { highlight = "DiagnosticInfo" },
+      Hint = { highlight = "DiagnosticHint" },
+      GitAdd = { text = "│", highlight = "GitSignsAdd" },
+      GitChange = { text = "│", highlight = "GitSignsChange" },
+      GitDelete = { text = "─", highlight = "GitSignsDelete" },
+    },
+  })
+end)

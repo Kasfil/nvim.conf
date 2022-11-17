@@ -1,6 +1,35 @@
-import("null-ls", function(null_ls)
+import({ "null-ls", "null-ls.helpers" }, function(mods)
+  local null_ls = mods["null-ls"]
+  local helpers = mods["null-ls.helpers"]
   local b = null_ls.builtins
   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+  local revive = {
+    name = "revive",
+    method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    filetypes = { "go" },
+    generator = helpers.generator_factory({
+      args = {
+        "-set_exit_status",
+        "-config=" .. vim.fn.expand("$HOME/.config/revive.toml"),
+        "-exclude=vendor/...",
+        "$FILENAME",
+      },
+      check_exit_code = function(code)
+        return code < 1
+      end,
+      command = "revive",
+      format = "line",
+      from_stderr = true,
+      on_output = helpers.diagnostics.from_patterns({
+        {
+          pattern = "([^:]+):(%d+):(%d+):%s(.+)",
+          groups = { "path", "row", "col", "message" },
+        },
+      }),
+      to_stdin = true,
+    }),
+  }
 
   local sources = {
     -- python
@@ -11,7 +40,7 @@ import("null-ls", function(null_ls)
 
     -- golang
     b.formatting.goimports,
-    b.diagnostics.revive,
+    revive,
 
     -- lua
     b.formatting.stylua,

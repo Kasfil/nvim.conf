@@ -67,7 +67,7 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
   capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
   -- basic lsp config servers
-  local servers = { "rls", "vuels", "tsserver" }
+  local servers = { "rls", "vuels", "tsserver", "pyright" }
   for _, server in pairs(servers) do
     lsp[server].setup({
       on_attach = on_attach,
@@ -108,15 +108,15 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
     },
   })
 
-  lsp.jedi_language_server.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    init_options = {
-      diagnostics = {
-        enable = false,
-      },
-    },
-  })
+  -- lsp.jedi_language_server.setup({
+  --   on_attach = on_attach,
+  --   capabilities = capabilities,
+  --   init_options = {
+  --     diagnostics = {
+  --       enable = false,
+  --     },
+  --   },
+  -- })
 
   lsp.gopls.setup({
     on_attach = function(client, bufnr)
