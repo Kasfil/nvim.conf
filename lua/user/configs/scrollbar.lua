@@ -17,7 +17,7 @@ import("scrollbar", function(scrollbar)
       "NeogitRebaseTodo",
       "NeogitStatus",
       "NeogitStatusNew",
-      "NvinTree",
+      "NvimTree",
       "Outline",
       "Trouble",
       "dap-repl",
