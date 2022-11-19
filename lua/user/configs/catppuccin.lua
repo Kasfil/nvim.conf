@@ -60,7 +60,7 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
 
       LspSagaHoverBorder = { fg = pallete.crust, bg = pallete.crust },
 
-      ScrollbarHandle = { bg = ucolors.lighten(pallete.base, 0.1, pallete.surface0) },
+      ScrollbarHandle = { bg = ucolors.darken(pallete.lavender, 0.25, pallete.base) },
     },
     styles = {
       comments = {},
