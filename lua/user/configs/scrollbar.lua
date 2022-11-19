@@ -1,6 +1,10 @@
 import("scrollbar", function(scrollbar)
   scrollbar.setup({
     set_highlights = true,
+    excluded_buftypes = {
+      "terminal",
+      "nofile",
+    },
     excluded_filetypes = {
       "prompt",
       "TelescopePrompt",
@@ -26,7 +30,6 @@ import("scrollbar", function(scrollbar)
       "toggleterm",
     },
     handlers = {
-      cursor = false,
       gitsigns = true,
     },
     handle = {
@@ -34,6 +37,7 @@ import("scrollbar", function(scrollbar)
       hide_if_all_visible = false,
     },
     marks = {
+      Cursor = { text = "●", highlight = "Normal" },
       Search = { highlight = "Search" },
       Error = { highlight = "DiagnosticError" },
       Warn = { highlight = "DiagnosticWarn" },
