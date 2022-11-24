@@ -82,20 +82,7 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" },
   })
   use({ "rmagatti/goto-preview" })
-  -- use({
-  --   "j-hui/fidget.nvim",
-  --   after = "nvim-lspconfig",
-  --   config = function()
-  --     require("fidget").setup({
-  --       text = {
-  --         spinner = "dots_snake",
-  --         done = "✓",
-  --       },
-  --     })
-  --   end,
-  -- })
   use({ "WhoIsSethDaniel/lualine-lsp-progress.nvim" })
-  use({ "glepnir/lspsaga.nvim", branch = "main" })
 
   -- utilities
   use({

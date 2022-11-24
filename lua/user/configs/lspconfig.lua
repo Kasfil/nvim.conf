@@ -37,7 +37,7 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
     map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
     map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
     map("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
-    -- map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+    map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
     map("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opt)
     map("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opt)
     map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opt)
@@ -66,8 +66,11 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
   -- add nvim-cmp capabilities
   capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+
   -- basic lsp config servers
-  local servers = { "rls", "vuels", "tsserver", "pyright" }
+  local servers = { "rls", "vuels", "tsserver", "jedi_language_server" }
   for _, server in pairs(servers) do
     lsp[server].setup({
       on_attach = on_attach,
@@ -107,16 +110,6 @@ import({ "lspconfig", "nvim-navic", "cmp_nvim_lsp" }, function(mods)
       },
     },
   })
-
-  -- lsp.jedi_language_server.setup({
-  --   on_attach = on_attach,
-  --   capabilities = capabilities,
-  --   init_options = {
-  --     diagnostics = {
-  --       enable = false,
-  --     },
-  --   },
-  -- })
 
   lsp.gopls.setup({
     on_attach = function(client, bufnr)
