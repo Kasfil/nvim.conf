@@ -1,5 +1,7 @@
-import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
+import({ "dap", "dap.ext.vscode", "dap-python", "dap-go", "json5" }, function(mods)
   local dap = mods.dap
+  local json5 = mods.json5
+  local godap = mods["dap-go"]
   local pydap = mods["dap-python"]
   local map = require("user.utils").map
   local autocmd = vim.api.nvim_create_autocmd
@@ -16,17 +18,10 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
     end,
   })
 
-  -- load vscode debug config
-  mods["dap.ext.vscode"].load_launchjs()
-
   -- dap external terminal fallback
   dap.defaults.fallback.external_terminal = {
     command = "kitty",
-    args = {
-      "-t",
-      "Nvim-Dap",
-      "-e",
-    },
+    args = { "-t", "Nvim-Dap", "-e" },
   }
 
   -- dap integrated terminal window config
@@ -40,7 +35,7 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
   vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "debugPC", numhl = "" })
 
   -- dap go initialization
-  mods["dap-go"].setup()
+  godap.setup()
 
   -- setting dap-python
   pydap.setup("python")
@@ -50,7 +45,7 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
     name = "Exec file",
     type = "python",
     request = "launch",
-    console = "integratedTerminal",
+    console = "internalConsole",
     program = function()
       local app = vim.fn.input("filename: ")
       return "${workspaceFolder}/" .. app
@@ -65,7 +60,7 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
     name = "Django",
     type = "python",
     request = "launch",
-    console = "integratedTerminal",
+    console = "internalConsole",
     program = vim.fn.getcwd() .. "/manage.py",
     args = { "runserver", "--noreload" },
   })
@@ -75,7 +70,12 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go" }, function(mods)
     type = "go",
     request = "launch",
     program = "${workspaceFolder}" .. "/main.go",
+    console = "internalConsole",
   })
+
+  -- load vscode debug config
+  mods["dap.ext.vscode"].json_decode = json5.parse
+  mods["dap.ext.vscode"].load_launchjs()
 
   -- debugger mapping
   map("n", "<F5>", function()
