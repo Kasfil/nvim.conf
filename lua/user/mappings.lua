@@ -28,7 +28,6 @@ map("n", "<space>tg", function()
   ToggleLazygit()
 end)
 
-map("n", "<ESC>", ":nohlsearch <CR>")
 map("n", "<C-\\>", "<CMD>vsp<CR>")
 map("n", "<A-\\>", "<CMD>sp<CR>")
 
@@ -60,8 +59,6 @@ map("n", "<A-n>", ":NvimTreeToggle <CR>")
 map("n", "<A-N>", ":NvimTreeFocus <CR>")
 
 map("n", "Y", "y$")
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
 
 -- this mapping lead crash when using cartographer
 map("n", "J", "mzJ`z")
@@ -75,3 +72,9 @@ map("n", "<A-Down>", ":m .+1<CR>==")
 
 -- neotest
 map("n", "<leader>tv", ":NeotestSummaryToggle <CR>")
+
+vim.on_key(function(char)
+  if vim.fn.mode() == "n" then
+    vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "?", "/" }, vim.fn.keytrans(char))
+  end
+end, vim.api.nvim_create_namespace("auto_hlsearch"))
