@@ -49,7 +49,7 @@ import({ "null-ls", "null-ls.helpers" }, function(mods)
     b.formatting.rustfmt,
 
     -- json
-    b.diagnostics.jsonlint,
+    b.formatting.jq,
 
     -- javascript
     b.code_actions.eslint_d,
