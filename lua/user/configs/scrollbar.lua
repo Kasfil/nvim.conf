@@ -37,7 +37,7 @@ import("scrollbar", function(scrollbar)
       hide_if_all_visible = false,
     },
     marks = {
-      Cursor = { text = "●", highlight = "Normal" },
+      Cursor = { text = "☵", highlight = "Normal" },
       Search = { highlight = "Search" },
       Error = { highlight = "DiagnosticError" },
       Warn = { highlight = "DiagnosticWarn" },
