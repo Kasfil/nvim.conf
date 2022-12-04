@@ -164,7 +164,6 @@ return packer.startup(function(use)
   use({ "toppair/reach.nvim" })
   use({ "NvChad/nvim-colorizer.lua" })
   use({ "nvim-neorg/neorg" })
-  use({ "declancm/cinnamon.nvim" })
   use({ "numtostr/BufOnly.nvim" })
   use({ "ten3roberts/window-picker.nvim" })
   use({ "smjonas/live-command.nvim" })
@@ -176,6 +175,7 @@ return packer.startup(function(use)
     requires = {
       "mfussenegger/nvim-dap-python",
       "leoluz/nvim-dap-go",
+      { "Joakker/lua-json5", run = "./install.sh" },
     },
   })
 
@@ -211,8 +211,12 @@ return packer.startup(function(use)
   use({ "ray-x/go.nvim" })
   use({
     "ellisonleao/glow.nvim",
-    setup = function()
-      vim.g.glow_width = 90
+    config = function()
+      require("glow").setup({
+        border = "single",
+        width_ratio = 0.7,
+        height_ratio = 0.7,
+      })
     end,
   })
   use({
