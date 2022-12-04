@@ -58,7 +58,7 @@ import("nvim-tree", function(nvimtree)
       number = false,
       relativenumber = false,
       float = {
-        enable = true,
+        enable = false,
         open_win_config = {
           border = "single",
           width = 35,
