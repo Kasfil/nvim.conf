@@ -25,7 +25,7 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go", "json5" }, function(mo
   }
 
   -- dap integrated terminal window config
-  dap.defaults.fallback.terminal_win_cmd = [[45vnew]]
+  -- dap.defaults.fallback.terminal_win_cmd = [[15 new]]
 
   -- debugging signs
   vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
@@ -45,7 +45,7 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go", "json5" }, function(mo
     name = "Exec file",
     type = "python",
     request = "launch",
-    console = "internalConsole",
+    console = "integratedTerminal",
     program = function()
       local app = vim.fn.input("filename: ")
       return "${workspaceFolder}/" .. app
@@ -57,10 +57,23 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go", "json5" }, function(mo
   })
 
   table.insert(dap.configurations.python, {
+    name = "uvicorn no reload",
+    type = "python",
+    request = "launch",
+    console = "integratedTerminal",
+    module = "uvicorn",
+    subProcess = false,
+    args = function()
+      local args_string = vim.fn.input("Arguments: ")
+      return vim.split(args_string, " ")
+    end,
+  })
+
+  table.insert(dap.configurations.python, {
     name = "Django",
     type = "python",
     request = "launch",
-    console = "internalConsole",
+    console = "integratedTerminal",
     program = vim.fn.getcwd() .. "/manage.py",
     args = { "runserver", "--noreload" },
   })
@@ -70,7 +83,7 @@ import({ "dap", "dap.ext.vscode", "dap-python", "dap-go", "json5" }, function(mo
     type = "go",
     request = "launch",
     program = "${workspaceFolder}" .. "/main.go",
-    console = "internalConsole",
+    console = "integratedTerminal",
   })
 
   -- load vscode debug config
