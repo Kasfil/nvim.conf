@@ -61,6 +61,14 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
       LspSagaHoverBorder = { fg = pallete.crust, bg = pallete.crust },
 
       ScrollbarHandle = { bg = ucolors.darken(pallete.lavender, 0.25, pallete.base) },
+
+      TelescopeNormal = { bg = pallete.mantle },
+      TelescopeBorder = { bg = pallete.mantle, fg = pallete.mantle },
+      TelescopePreviewTitle = { bg = pallete.maroon, fg = pallete.base },
+      TelescopePromptNormal = { bg = pallete.surface0 },
+      TelescopePromptBorder = { bg = pallete.surface0, fg = pallete.surface0 },
+      TelescopePromptTitle = { bg = pallete.yellow, fg = pallete.base },
+      TelescopePromptCounter = { fg = pallete.flamingo },
     },
     styles = {
       comments = {},

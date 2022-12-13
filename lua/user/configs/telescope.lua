@@ -2,7 +2,6 @@ import({ "telescope", "telescope.actions", "telescope.builtin" }, function(mods)
   local map = require("user.utils").map
 
   local telescope = mods.telescope
-  local t_action = mods["telescope.actions"]
   local t_builtin = mods["telescope.builtin"]
 
   telescope.setup({
@@ -16,11 +15,7 @@ import({ "telescope", "telescope.actions", "telescope.builtin" }, function(mods)
         "--column",
         "--smart-case",
       },
-      mappings = {
-        i = {
-          ["<ESC>"] = t_action.close,
-        },
-      },
+      mappings = {},
       selection_caret = " ",
       prompt_prefix = "Find  ",
       entry_prefix = "  ",
@@ -31,14 +26,14 @@ import({ "telescope", "telescope.actions", "telescope.builtin" }, function(mods)
       layout_config = {
         horizontal = {
           prompt_position = "top",
-          preview_width = 0.55,
-          results_width = 0.8,
+          preview_width = 0.6,
+          results_width = 0.4,
         },
         vertical = {
           mirror = false,
         },
-        width = 0.87,
-        height = 0.80,
+        width = 0.7,
+        height = 0.7,
         preview_cutoff = 120,
       },
       file_ignore_patterns = { "node_modules", "%.log", "__pycache__/", ".git/" },
