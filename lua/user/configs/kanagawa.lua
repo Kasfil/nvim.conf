@@ -17,9 +17,6 @@ import("kanagawa", function(kanagawa)
     -- HTML (mostly linked by markdown)
     htmlBoldItalic = { fg = palette.oniViolet, italic = true, bold = true },
 
-    -- virtcolumn
-    VirtColumn = { fg = palette.sumiInk2 },
-
     -- nvim-tree
     NvimTreeNormal = { link = "SideWin" },
     NvimTreeNormalNC = { link = "SideWin" },

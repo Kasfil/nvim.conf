@@ -6,5 +6,3 @@ vim.opt_local.list = false
 map("n", "q", function()
   require("neotest").summary.close()
 end)
-
-require("virt-column").setup_buffer({ virtcolumn = "" })

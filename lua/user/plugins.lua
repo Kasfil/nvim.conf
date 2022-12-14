@@ -91,7 +91,6 @@ return packer.startup(function(use)
       require("Comment").setup()
     end,
   })
-  use({ "lukas-reineke/virt-column.nvim" })
   use({
     "danymat/neogen",
     config = function()

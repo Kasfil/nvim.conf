@@ -40,7 +40,6 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
     },
     custom_highlights = {
       NonText = { fg = ucolors.lighten(pallete.surface0, 1, pallete.surface0) },
-      VirtColumn = { fg = ucolors.darken(pallete.surface0, 0.15, pallete.base) },
       WinSeparator = { bg = pallete.base, fg = pallete.base },
 
       DiffDelete = {

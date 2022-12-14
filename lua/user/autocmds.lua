@@ -17,29 +17,6 @@ autocmd("TextYankPost", {
   end,
 })
 
--- disable virt-column in certain filetype and buftype
-local disable_virt_column = augroup("NoVirtColumn", { clear = true })
-autocmd("FileType", {
-  group = disable_virt_column,
-  pattern = {
-    "toggleterm",
-    "packer",
-    "help",
-    "lspinfo",
-    "DiffviewFileHistory",
-    "Neogit*",
-    "glowpreview",
-    "dap-repl",
-    "qf",
-    "Trouble",
-    "lspsaga",
-    " ",
-  },
-  callback = function()
-    require("virt-column").setup_buffer({ virtcolumn = "" })
-  end,
-})
-
 local leap_on = augroup("LeapOn", { clear = true })
 autocmd({ "User LeapEnter" }, {
   group = leap_on,
@@ -66,7 +43,5 @@ autocmd({ "TermOpen" }, {
     map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opt)
     map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opt)
     map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opt)
-
-    require("virt-column").setup_buffer({ virtcolumn = "" })
   end,
 })
