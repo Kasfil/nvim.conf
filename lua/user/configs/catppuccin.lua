@@ -33,9 +33,15 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
   local ucolors = mods["catppuccin.utils.colors"]
 
   catppuccin.setup({
+    dim_inactive = {
+      enabled = true,
+      shade = "dark",
+      percentage = 0.1,
+    },
     custom_highlights = {
       NonText = { fg = ucolors.lighten(pallete.surface0, 1, pallete.surface0) },
       VirtColumn = { fg = ucolors.darken(pallete.surface0, 0.15, pallete.base) },
+      WinSeparator = { bg = pallete.base, fg = pallete.base },
 
       DiffDelete = {
         bg = ucolors.darken(pallete.red, 0.09, pallete.base),
