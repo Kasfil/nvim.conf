@@ -33,6 +33,7 @@ import({ "catppuccin", "catppuccin.palettes", "catppuccin.utils.colors" }, funct
   local ucolors = mods["catppuccin.utils.colors"]
 
   catppuccin.setup({
+    no_italic = true,
     dim_inactive = {
       enabled = true,
       shade = "dark",
